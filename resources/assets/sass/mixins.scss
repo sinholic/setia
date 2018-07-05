@@ -1,0 +1,192 @@
+/* mixins.scss */
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius !important;
+    -moz-border-radius: $radius !important;
+    -ms-border-radius: $radius !important;
+    border-radius: $radius !important;
+    border-top-left-radius: $radius !important;
+    border-top-right-radius: $radius !important;
+    border-bottom-left-radius: $radius !important;
+    border-bottom-right-radius: $radius !important;
+}
+
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+
+	$extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+	);
+
+	$formats: (
+		otf: "opentype",
+		ttf: "truetype"
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+/**
+ * Button background
+ * @type {[type]}
+ */
+@mixin button-bg($bg) {
+    background: $bg;
+    &:hover {
+        background:darken($bg,8%);
+        transition: all 0.3s ease;
+    }
+    &:active {
+        background:darken($bg,25%);
+    }
+}
+
+/**
+ * Background image
+ * @type {[type]}
+ */
+@mixin background($imgpath,$position:0 0,$repeat: no-repeat, $color: transparent) {
+    background: {
+        image: url($imgpath);
+        position: $position;
+        repeat: $repeat;
+        color: $color;
+    }
+}
+/**
+ * Mixin clearfix
+ * @type {[type]}
+ */
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+@mixin float($float) {
+    float: $float;
+}
+
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color !important;
+    -moz-box-shadow:inset $top $left $blur $color !important;
+    box-shadow:inset $top $left $blur $color !important;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color !important;
+    -moz-box-shadow: $top $left $blur $color !important;
+    box-shadow: $top $left $blur $color !important;
+  }
+}
+
+@mixin text-field {
+ display: inline-block;
+  outline: none;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: .5em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  @include rounded();
+  @include box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.2));
+}
+
+@mixin button($color: $red, $text_color: $white) {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px ;
+  padding: .5em 2em .55em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  @include rounded();
+
+
+  color: $text_color !important;
+  font-weight: bold;
+  border: solid 1px darken($color, 18%);
+  background: $color;
+
+
+  &:hover {
+    text-decoration: none;
+    background: saturate($color, 10%);
+    @include gradient(saturate($color, 5%), darken($color, 5%));
+  }
+
+  &:active {
+    position: relative;
+    top: 1px;
+    color: saturate($color, 15%);
+    @include gradient(saturate($color, 15%), lighten($color, 15%));
+  }
+}
+
+@mixin rounded($radius: 0.5em) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin gradient($from, $to) {
+  background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  background: -moz-linear-gradient(top,  $from, $to);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}
+
+/* mixin for multiline */
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
+    overflow: hidden;
+    position: relative;
+    line-height: $lineHeight;
+    max-height: $lineHeight * $lineCount;
+    text-align: justify;
+    margin-right: -1em;
+    padding-right: 1em;
+    &:before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        background: $bgColor;
+    }
+}
