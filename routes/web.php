@@ -26,6 +26,7 @@
             'prefix'=>'news'
         ],function () {
             Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
+            Route::get('/detail', ['uses' => 'NewsController@detail', 'as' => 'frontend.detail']);
     });
     Route::group([
             'prefix'=>'reporting'
