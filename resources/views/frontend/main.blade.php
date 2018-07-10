@@ -2,11 +2,11 @@
 @section('body')
 
 		<!-- SECTION -->
-		<div class="section">
+		<div class="section" style="background:#ddd;padding:0 0 0 0">
 			<!-- CONTAINER -->
-			<div class="container">
+			<div class="container" style="background:#fff;">
 				<!-- ROW -->
-				<div class="row">
+				<div class="row" style="padding:20px;">
 					<!-- Main Column -->
 					<div class="col-md-8">
 						<!-- row -->
@@ -212,7 +212,7 @@
 									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
 <a href="{{url('data/handset')}}">Handset Display</a></h4>
 							</div>
-							</article>
+						</article>
 							<article class="article widget-article">
 								<div class="article-body">
 									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
@@ -261,7 +261,7 @@
 										<li>By {{$listData->name}}</li>
 									</ul>
 								</div>
-							</article>
+							</article><hr>
 							<!-- /ARTICLE -->
 							@endif
 							@endforeach
