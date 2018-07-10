@@ -34,9 +34,9 @@
 
     </head>
 		<style>
-		#center-header{
+		/* #center-header{
 			background: #f7f7f7;
-		}
+		} */
 		</style>
 	<body>
 

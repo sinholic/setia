@@ -8,7 +8,7 @@
       <!-- Main Column -->
       <div class="col-md-12">
 
-        <iframe style="height:900px;width:100%;border:none" src={!! $url !!}></iframe>
+        <iframe style="height:900px;width:100%;border:none;overflow-y:auto;" src={!! $url !!}></iframe>
       </div>
     </div>
   </div>
