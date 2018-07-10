@@ -23,6 +23,11 @@
             Route::get('improvement', ['uses' => 'HomeController@improvement', 'as' => 'home.improvement']);
     });
     Route::group([
+            'prefix'=>'news'
+        ],function () {
+            Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
+    });
+    Route::group([
             'prefix'=>'reporting'
         ],function () {
         Route::get('/', ['uses' => 'ReportingController@index', 'as' => 'reporting.index']);
