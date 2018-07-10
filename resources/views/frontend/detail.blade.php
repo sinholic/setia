@@ -25,7 +25,7 @@
 								<a href="#" class="google"><i class="fa fa-google-plus"></i></a>
 							</div> -->
 							<div class="article-main-img">
-								<img src="{{asset('images/frontend/no_image.jpg')}}" alt="">
+								<img src="{{asset('images/frontend/not_avail.png')}}" style="height:auto" >
 							</div>
 							<div class="article-body">
 								<ul class="article-info">

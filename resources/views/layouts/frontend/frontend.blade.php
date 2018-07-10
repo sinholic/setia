@@ -43,29 +43,7 @@
 		<!-- Header -->
 		<header id="header">
 			<!-- Top Header -->
-			<div id="top-header">
-				<div class="container">
-					<div class="header-links">
-						<ul>
-							<li><a href="#">Handset Display</a></li>
-							<li><a href="#">Operator Code</a></li>
-							<li><a href="#">Roaming Exchange Rate</a></li>
-							<li><a href="#">Roaming Partner</a></li>
-							<li><a href="#">Roaming Partner Map</a></li>
-							<li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
-						</ul>
-					</div>
-					<div class="header-social">
-						<!-- <ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-						</ul> -->
-					</div>
-				</div>
-			</div>
+
 			<!-- /Top Header -->
 
 			<!-- Center Header -->
@@ -89,16 +67,16 @@
 							<a href="#" class="logo"><img src="./img/logo-alt.png" alt=""></a>
 						</div>
 						<ul class="main-nav nav navbar-nav">
-							<li class="active"><a href="#">Home</a></li>
-							<li><a href="#">News</a></li>
-							<li><a href="#">Sport</a></li>
-							<li><a href="#">Lifestyle</a></li>
-							<li><a href="#">Fashion</a></li>
-							<li><a href="#">Music</a></li>
-							<li><a href="#">Business</a></li>
+							<li {{{ (Request::is('/news') ? 'class=active' : '') }}}><a href="{{url('/news')}}">Home</a></li>
+              <li {{{ (Request::is('data/handset') ? 'class=active' : '') }}}><a href="{{url('data/handset')}}">Handset Display</a></li>
+							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Operator Code</a></li>
+							<li {{{ (Request::is('roaminger') ? 'class=active' : '') }}}><a href="#">Roaming Exchange Rate</a></li>
+							<li {{{ (Request::is('roamingp') ? 'class=active' : '') }}}><a href="#">Roaming Partner</a></li>
+							<li {{{ (Request::is('data/roaming') ? 'class=active' : '') }}}><a href="{{url('data/roaming')}}">Roaming Partner Map</a></li>
+							<li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
 						</ul>
 					</nav>
-					<div class="button-nav">
+					<!-- <div class="button-nav">
 						<button class="search-collapse-btn"><i class="fa fa-search"></i></button>
 						<button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
 						<div class="search-form">
@@ -106,7 +84,7 @@
 								<input class="input" type="text" name="search" placeholder="Search">
 							</form>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<!-- /Nav Header -->
@@ -115,8 +93,8 @@
     @yield('body')
 
     <!-- FOOTER -->
-    <footer id="footer">
-      <!-- Top Footer -->
+    <footer id="footer" >
+        <!-- Top Footer -->
       <div id="top-footer" class="section">
         <!-- CONTAINER -->
         <div class="container">
