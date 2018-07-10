@@ -3,15 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\News;
 
 class NewsController extends Controller
 {
     public function index(Request $request)
     {
-        return view('frontend.main', compact('activities'));
+        $dataAll=News::where('is_publish', '1')
+                ->get()->toJson();
+        return view('frontend.main', compact('dataAll'));
     }
-    public function detail(Request $request)
+    public function detail($id)
     {
-        return view('frontend.detail', compact('activities'));
+      $dataDetail=News::where('is_publish', '1')
+              ->where('id', $id)
+              ->get()->toJson();
+        return view('frontend.detail', compact('dataDetail'));
     }
 }

@@ -10,10 +10,11 @@
 					<div class="col-md-12">
 
 						<!-- breadcrumb -->
+						@foreach(json_decode($dataDetail) as $listData)
 						<ul class="article-breadcrumb">
 							<li><a href="#">Home</a></li>
 							<li><a href="#">News</a></li>
-							<li>Duis urbanitas eam in, tempor consequat.</li>
+							<li>{{$listData->title}}</li>
 						</ul>
 						<!-- /breadcrumb -->
 
@@ -24,6 +25,7 @@
 								<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
 								<a href="#" class="google"><i class="fa fa-google-plus"></i></a>
 							</div> -->
+
 							<div class="article-main-img">
 								<img src="{{asset('images/frontend/not_avail.png')}}" style="height:auto" >
 							</div>
@@ -32,22 +34,16 @@
 									<li class="article-category"><a href="#">News</a></li>
 									<li class="article-type"><i class="fa fa-file-text"></i></li>
 								</ul>
-								<h1 class="article-title">Duis urbanitas eam in, tempor consequat.</h1>
+								<h1 class="article-title">{{$listData->title}}</h1>
 								<ul class="article-meta">
-									<li><i class="fa fa-clock-o"></i> April 04, 2017</li> |
-									<li><i class="fa fa-comments"></i>By Soni Setiabudi </li>
+									<li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li> |
+									<li>By {{$listData->updated_by}}</li>
 								</ul>
-								<p>Facilisi complectitur eos eu. Est tritani argumentum in, ei suas ignota admodum vim, ipsum choro has ut. Ei vim noluisse luptatum, nominavi mandamus qui ut. Ne usu lucilius mnesarchum, vim ex nisl summo expetenda, in dicta appareat usu. Ea cum altera fuisset adipisci, in sed eius tacimates, eu duo magna numquam placerat.</p>
-								<p>Sea at dolorum nominavi adipiscing, ei eam mundi legimus, sit deleniti definiebas et. Pri dicit latine reformidans ne, offendit rationibus incorrupte an qui, eum populo molestie tacimates te. Nec ea facer vituperatoribus, cu pro feugiat minimum platonem. Elit accusam ei per. Duis illum est ut.</p>
-								<p>Ex eos esse sale eligendi. Eos ut exerci audire nostrum, at pro dolores tacimates voluptaria. Facete disputando at quo, omittantur philosophia id qui. Ad labore facete suscipiantur sed. Cu iisque sanctus inciderint has, per quodsi liberavisse ea.</p>
-								<p>Sit falli nonumes atomorum ex, ipsum populo iisque eum at. Sumo solet omnium eum ad, quis omnium ut ius, volumus splendide sed ad. Mea vide dicta ne, appareat patrioque has an. Wisi sale delectus eum eu, corpora salutatus no sit. Sale interesset eu per.</p>
-								<h4>Sit falli nonumes atomorum ex, ipsum populo iisque eum at</h4>
-								<p>Facilisi complectitur eos eu. Est tritani argumentum in, ei suas ignota admodum vim, ipsum choro has ut. Ei vim noluisse luptatum, nominavi mandamus qui ut. Ne usu lucilius mnesarchum, vim ex nisl summo expetenda, in dicta appareat usu. Ea cum altera fuisset adipisci, in sed eius tacimates, eu duo magna numquam placerat.</p>
-								<p>Sea at dolorum nominavi adipiscing, ei eam mundi legimus, sit deleniti definiebas et. Pri dicit latine reformidans ne, offendit rationibus incorrupte an qui, eum populo molestie tacimates te. Nec ea facer vituperatoribus, cu pro feugiat minimum platonem. Elit accusam ei per. Duis illum est ut.</p>
-								<p>Ex eos esse sale eligendi. Eos ut exerci audire nostrum, at pro dolores tacimates voluptaria. Facete disputando at quo, omittantur philosophia id qui. Ad labore facete suscipiantur sed. Cu iisque sanctus inciderint has, per quodsi liberavisse ea.</p>
-								<p>Sit falli nonumes atomorum ex, ipsum populo iisque eum at. Sumo solet omnium eum ad, quis omnium ut ius, volumus splendide sed ad. Mea vide dicta ne, appareat patrioque has an. Wisi sale delectus eum eu, corpora salutatus no sit. Sale interesset eu per.</p>
+								{!! $listData->konten !!}
 							</div>
+
 						</article>
+							@endforeach
 						<!-- /ARTICLE POST -->
 
 						<!-- widget tags -->

@@ -13,20 +13,22 @@
 
 // Route::group(['middleware' => ['auth']],function () {
     // Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home.index']);
-    Route::get('/', function () {
-        return view('frontend.main');
-    });
+    // Route::get('/', function () {
+    //     return view('frontend.main');
+    // });
+    Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
     Route::group([
             'prefix'=>'admin'
         ],function () {
             Route::get('/', ['uses' => 'AdminController@index', 'as' => 'admin.index']);
+            Route::get('/login', ['uses' => 'AdminController@login', 'as' => 'admin.login']);
             Route::get('improvement', ['uses' => 'HomeController@improvement', 'as' => 'home.improvement']);
     });
     Route::group([
             'prefix'=>'news'
         ],function () {
             Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
-            Route::get('/detail', ['uses' => 'NewsController@detail', 'as' => 'frontend.detail']);
+            Route::get('/detail/{id}', ['uses' => 'NewsController@detail', 'as' => 'frontend.detail']);
     });
     Route::group([
             'prefix'=>'data'

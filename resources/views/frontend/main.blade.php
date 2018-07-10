@@ -18,11 +18,12 @@
 									<h2 class="title">Roaming</h2>
 								</div>
 								<!-- /section title -->
-
+								@foreach(json_decode($dataAll) as $listData)
 								<!-- ARTICLE -->
+								 @if($loop->first)
 								<article class="article">
 									<div class="article-img">
-										<a href="#">
+										<a href="{{url('news/detail', ['id' => $listData->id])}}">
 											<img src="{{asset('images/frontend/not_avail.png')}}" style="height:auto" alt="">
 										</a>
 										<ul class="article-info">
@@ -30,36 +31,39 @@
 										</ul>
 									</div>
 									<div class="article-body">
-										<h3 class="article-title"><a href="{{url('news/detail')}}">Penambahan Roaming Partner January 2017</a></h3>
+										<h3 class="article-title"><a href="{{url('news/detail', ['id' => $listData->id])}}">{{$listData->title}}</a></h3>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li> |
-											<li><span>By Soni Setiabudi</span></li>
+											<li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li> |
+											<li><span>By {{$listData->updated_by}}</span></li>
 										</ul>
-										<p>Selama Bulan January 2017 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai February 2017 adalah sebagai berikut :</p>
+										<p>{{$listData->slug}}</p>
 									</div>
 								</article>
+								@else
 								<!-- /ARTICLE -->
 
 								<!-- ARTICLE -->
 								<article class="article widget-article">
 									<div class="article-img">
-										<a href="#">
+										<a href="{{url('news/detail', ['id' => $listData->id])}}">
 											<img src="{{asset('images/frontend/no_image.jpg')}}" alt="">
 										</a>
 									</div>
 									<div class="article-body">
-										<h4 class="article-title"><a href="#">Penambahan Roaming Partner November 2016</a></h4>
+										<h4 class="article-title"><a href="{{url('news/detail', ['id' => $listData->id])}}">{{$listData->title}}</a></h4>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li> |
-											<li><span>By Soni Setiabudi</span></li>
+											<li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li> |
+											<li><span>By {{$listData->updated_by}}</span></li>
 										</ul>
-											<p>Selama Bulan January 2016 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai February 2016 adalah sebagai berikut :</p>
+											<p>{{$listData->slug}}</p>
 									</div>
 								</article>
+								@endif
 								<!-- /ARTICLE -->
 
+								@endforeach
 								<!-- ARTICLE -->
-								<article class="article widget-article">
+								<!-- <article class="article widget-article">
 									<div class="article-img">
 										<a href="#">
 											<img src="{{asset('images/frontend/no_image.jpg')}}" alt="">
@@ -73,9 +77,9 @@
 										</ul>
 											<p>Selama Bulan Mei 2016 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai Mei 2016 adalah sebagai berikut :</p>
 									</div>
-								</article>
+								</article> -->
 								<!-- /ARTICLE -->
-								<article class="article widget-article">
+								<!-- <article class="article widget-article">
 									<div class="article-img">
 										<a href="#">
 											<img src="{{asset('images/frontend/no_image.jpg')}}" alt="">
@@ -149,7 +153,7 @@
 										</ul>
 											<p>Selama Bulan Mei 2016 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai Mei 2016 adalah sebagai berikut :</p>
 									</div>
-								</article>
+								</article> -->
 							</div>
 							<!-- /Column 1 -->
 
