@@ -27,7 +27,7 @@
 							</div> -->
 
 							<div class="article-main-img">
-								<img src="{{asset('images/frontend/not_avail.png')}}" style="height:auto" >
+								<img src="{{asset('images/frontend/'.$listData->img)}}" style="height:auto" >
 							</div>
 							<div class="article-body">
 								<ul class="article-info">
@@ -37,7 +37,7 @@
 								<h1 class="article-title">{{$listData->title}}</h1>
 								<ul class="article-meta">
 									<li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li> |
-									<li>By {{$listData->updated_by}}</li>
+									<li>By {{$listData->name}}</li>
 								</ul>
 								{!! $listData->konten !!}
 							</div>

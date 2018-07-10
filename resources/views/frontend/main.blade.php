@@ -24,7 +24,7 @@
 								<article class="article">
 									<div class="article-img">
 										<a href="{{url('news/detail', ['id' => $listData->id])}}">
-											<img src="{{asset('images/frontend/not_avail.png')}}" style="height:auto" alt="">
+											<img src="{{asset('images/frontend/'.$listData->img)}}" style="height:auto" alt="">
 										</a>
 										<ul class="article-info">
 											<li class="article-type"><i class="fa fa-camera"></i></li>
@@ -34,7 +34,7 @@
 										<h3 class="article-title"><a href="{{url('news/detail', ['id' => $listData->id])}}">{{$listData->title}}</a></h3>
 										<ul class="article-meta">
 											<li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li> |
-											<li><span>By {{$listData->updated_by}}</span></li>
+											<li><span>By {{$listData->name}}</span></li>
 										</ul>
 										<p>{{$listData->slug}}</p>
 									</div>
@@ -46,14 +46,14 @@
 								<article class="article widget-article">
 									<div class="article-img">
 										<a href="{{url('news/detail', ['id' => $listData->id])}}">
-											<img src="{{asset('images/frontend/no_image.jpg')}}" alt="">
+											<img src="{{asset('images/frontend/'.$listData->img)}}" alt="">
 										</a>
 									</div>
 									<div class="article-body">
 										<h4 class="article-title"><a href="{{url('news/detail', ['id' => $listData->id])}}">{{$listData->title}}</a></h4>
 										<ul class="article-meta">
 											<li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li> |
-											<li><span>By {{$listData->updated_by}}</span></li>
+											<li><span>By {{$listData->name}}</span></li>
 										</ul>
 											<p>{{$listData->slug}}</p>
 									</div>
