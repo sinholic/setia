@@ -32,8 +32,8 @@
 									<div class="article-body">
 										<h3 class="article-title"><a href="{{url('news/detail')}}">Penambahan Roaming Partner January 2017</a></h3>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
+											<li><i class="fa fa-clock-o"></i> January 31, 2017</li> |
+											<li><span>By Soni Setiabudi</span></li>
 										</ul>
 										<p>Selama Bulan January 2017 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai February 2017 adalah sebagai berikut :</p>
 									</div>
@@ -50,8 +50,8 @@
 									<div class="article-body">
 										<h4 class="article-title"><a href="#">Penambahan Roaming Partner November 2016</a></h4>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
+											<li><i class="fa fa-clock-o"></i> January 31, 2017</li> |
+											<li><span>By Soni Setiabudi</span></li>
 										</ul>
 											<p>Selama Bulan January 2016 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai February 2016 adalah sebagai berikut :</p>
 									</div>
@@ -68,8 +68,8 @@
 									<div class="article-body">
 										<h4 class="article-title"><a href="#">Penambahan Roaming Partner Mei 2016</a></h4>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
+											<li><i class="fa fa-clock-o"></i> January 31, 2017</li> |
+											<li><span>By Soni Setiabudi</span></li>
 										</ul>
 											<p>Selama Bulan Mei 2016 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai Mei 2016 adalah sebagai berikut :</p>
 									</div>
@@ -84,8 +84,8 @@
 									<div class="article-body">
 										<h4 class="article-title"><a href="#">Penambahan Roaming Partner Mei 2016</a></h4>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
+											<li><i class="fa fa-clock-o"></i> January 31, 2017</li> |
+											<li><span>By Soni Setiabudi</span></li>
 										</ul>
 											<p>Selama Bulan Mei 2016 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai Mei 2016 adalah sebagai berikut :</p>
 									</div>
@@ -99,8 +99,8 @@
 									<div class="article-body">
 										<h4 class="article-title"><a href="#">Penambahan Roaming Partner Mei 2016</a></h4>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
+											<li><i class="fa fa-clock-o"></i> January 31, 2017</li> |
+											<li><span>By Soni Setiabudi</span></li>
 										</ul>
 											<p>Selama Bulan Mei 2016 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai Mei 2016 adalah sebagai berikut :</p>
 									</div>
@@ -114,8 +114,8 @@
 									<div class="article-body">
 										<h4 class="article-title"><a href="#">Penambahan Roaming Partner Mei 2016</a></h4>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
+											<li><i class="fa fa-clock-o"></i> January 31, 2017</li> |
+											<li><span>By Soni Setiabudi</span></li>
 										</ul>
 											<p>Selama Bulan Mei 2016 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai Mei 2016 adalah sebagai berikut :</p>
 									</div>
@@ -129,8 +129,8 @@
 									<div class="article-body">
 										<h4 class="article-title"><a href="#">Penambahan Roaming Partner Mei 2016</a></h4>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
+											<li><i class="fa fa-clock-o"></i> January 31, 2017</li> |
+											<li><span>By Soni Setiabudi</span></li>
 										</ul>
 											<p>Selama Bulan Mei 2016 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai Mei 2016 adalah sebagai berikut :</p>
 									</div>
@@ -144,8 +144,8 @@
 									<div class="article-body">
 										<h4 class="article-title"><a href="#">Penambahan Roaming Partner Mei 2016</a></h4>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
+											<li><i class="fa fa-clock-o"></i> January 31, 2017</li> |
+											<li><span>By Soni Setiabudi</span></li>
 										</ul>
 											<p>Selama Bulan Mei 2016 terjadi penambahan kerja sama dengan Mitra Operator untuk International Roaming sehingga posisi sampai Mei 2016 adalah sebagai berikut :</p>
 									</div>

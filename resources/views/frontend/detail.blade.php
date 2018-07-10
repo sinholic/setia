@@ -34,8 +34,8 @@
 								</ul>
 								<h1 class="article-title">Duis urbanitas eam in, tempor consequat.</h1>
 								<ul class="article-meta">
-									<li><i class="fa fa-clock-o"></i> April 04, 2017</li>
-									<li><i class="fa fa-comments"></i> 33</li>
+									<li><i class="fa fa-clock-o"></i> April 04, 2017</li> |
+									<li><i class="fa fa-comments"></i>By Soni Setiabudi </li>
 								</ul>
 								<p>Facilisi complectitur eos eu. Est tritani argumentum in, ei suas ignota admodum vim, ipsum choro has ut. Ei vim noluisse luptatum, nominavi mandamus qui ut. Ne usu lucilius mnesarchum, vim ex nisl summo expetenda, in dicta appareat usu. Ea cum altera fuisset adipisci, in sed eius tacimates, eu duo magna numquam placerat.</p>
 								<p>Sea at dolorum nominavi adipiscing, ei eam mundi legimus, sit deleniti definiebas et. Pri dicit latine reformidans ne, offendit rationibus incorrupte an qui, eum populo molestie tacimates te. Nec ea facer vituperatoribus, cu pro feugiat minimum platonem. Elit accusam ei per. Duis illum est ut.</p>
