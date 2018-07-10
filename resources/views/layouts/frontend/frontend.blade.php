@@ -67,7 +67,8 @@
 							<a href="#" class="logo"><img src="./img/logo-alt.png" alt=""></a>
 						</div>
 						<ul class="main-nav nav navbar-nav">
-							<li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{url('/')}}">Home</a></li>
+							<li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i>
+ Home</a></li>
               <li {{{ (Request::is('data/handset') ? 'class=active' : '') }}}><a href="{{url('data/handset')}}">Handset Display</a></li>
 							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Operator Code</a></li>
 							<li {{{ (Request::is('roaminger') ? 'class=active' : '') }}}><a href="#">Roaming Exchange Rate</a></li>

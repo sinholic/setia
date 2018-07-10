@@ -39,6 +39,7 @@
 										<p>{{$listData->slug}}</p>
 									</div>
 								</article>
+								<hr>
 								@else
 								<!-- /ARTICLE -->
 
@@ -58,6 +59,7 @@
 											<p>{{$listData->slug}}</p>
 									</div>
 								</article>
+								<hr>
 								@endif
 								<!-- /ARTICLE -->
 
@@ -201,63 +203,69 @@
 							</form>
 						</div> -->
 						<!-- /subscribe widget -->
-
+						<div class="widget">
+							<div class="section-title">
+								<h2 class="title">Menu Analisys</h2>
+							</div>
+							<article class="article widget-article">
+							<div class="article-body">
+									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
+<a href="{{url('data/handset')}}">Handset Display</a></h4>
+							</div>
+							</article>
+							<article class="article widget-article">
+								<div class="article-body">
+									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
+<a href="#">Operator Code</a></h4>
+							</div>
+							</article>
+							<article class="article widget-article">
+								<div class="article-body">
+									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
+<a href="#">Roaming Exchange Rate</a></h4>
+							</div>
+							</article>
+							<article class="article widget-article">
+								<div class="article-body">
+									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
+<a href="#">Roaming Partner</a></h4>
+							</div>
+						</article>
+							<article class="article widget-article">
+								<div class="article-body">
+									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
+<a href="{{url('data/roaming')}}">Roaming Partner Map</a></h4>
+							</div>
+							</article>
+						</div>
 						<!-- article widget -->
 						<div class="widget">
 							<div class="section-title">
 								<h2 class="title">Most Featured</h2>
 							</div>
-
+							@foreach(json_decode($dataAll) as $index => $listData)
 							<!-- ARTICLE -->
+
+							@if($index< 4)
+
 							<article class="article widget-article">
 								<div class="article-img">
 									<a href="#">
-										<img src="{{asset('images/frontend/no_image.jpg')}}" alt="">
+										<img src="{{asset('images/frontend/'.$listData->img)}}" alt="">
 									</a>
 								</div>
 								<div class="article-body">
-									<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
+									<h4 class="article-title"><a href="#">{{$listData->title}}</a></h4>
 									<ul class="article-meta">
-										<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-										<li><i class="fa fa-comments"></i> 33</li>
+										<li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li>
+										<li>By {{$listData->name}}</li>
 									</ul>
 								</div>
 							</article>
 							<!-- /ARTICLE -->
+							@endif
+							@endforeach
 
-							<!-- ARTICLE -->
-							<article class="article widget-article">
-								<div class="article-img">
-									<a href="#">
-										<img src="{{asset('images/frontend/no_image.jpg')}}" alt="">
-									</a>
-								</div>
-								<div class="article-body">
-									<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-									<ul class="article-meta">
-										<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-										<li><i class="fa fa-comments"></i> 33</li>
-									</ul>
-								</div>
-							</article>
-							<!-- /ARTICLE -->
-
-							<!-- ARTICLE -->
-							<article class="article widget-article">
-								<div class="article-img">
-									<a href="#">
-										<img src="{{asset('images/frontend/no_image.jpg')}}" alt="">
-									</a>
-								</div>
-								<div class="article-body">
-									<h4 class="article-title"><a href="#">Duis urbanitas eam in, tempor consequat.</a></h4>
-									<ul class="article-meta">
-										<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-										<li><i class="fa fa-comments"></i> 33</li>
-									</ul>
-								</div>
-							</article>
-							<!-- /ARTICLE -->
 						</div>
 						<!-- /article widget -->
 					</div>
