@@ -8,6 +8,6 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin.main', compact('activities'));
+        return view('admin.dashboard.index', compact('activities'));
     }
 }
