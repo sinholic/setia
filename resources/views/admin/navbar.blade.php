@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
             </a>
             <a class="brand" href="{{ route('admin.index') }}">
-                <!-- <img src="{{asset('images/frontend/setialogo2.png')}}" alt="" height="50px"> -->
+                <!-- <img src="{{asset('images/frontend/setialogo2.png')}}" alt="" style="height:30px;"> -->
             </a>
             <div class="nav-collapse">
                 <ul class="nav pull-right">

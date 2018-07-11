@@ -4,7 +4,8 @@
 <div class="account-container">
 
     <div class="content clearfix">
-        <h1>Login</h1>
+        <!-- <h1>Login</h1> -->
+        <img src="{{asset('images/frontend/setialogo2.png')}}" alt="" style="height:80px;margin-bottom:10px;">
         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
             @csrf
             <div class="login-fields">
