@@ -13,6 +13,7 @@ class AdminController extends Controller
                 ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
                 ->where('a_news.is_publish', '1')
                 ->orderBy('id', 'DESC')
+                ->limit(5)
                 ->get();
         return view('admin.dashboard.index', compact('news'));
     }
