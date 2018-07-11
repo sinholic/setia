@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\News;
 
 class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin.dashboard.index', compact('activities'));
-    }
-    public function login(Request $request)
-    {
-        //tinggal ubah pointer page nya ya @mahar
-        return view('admin.main', compact('activities'));
+        $news = News::select('a_news.*', 'xuser.name')
+                ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
+                ->where('a_news.is_publish', '1')
+                ->orderBy('id', 'DESC')
+                ->get();
+        return view('admin.dashboard.index', compact('news'));
     }
 }
