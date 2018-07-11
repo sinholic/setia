@@ -74,7 +74,12 @@
 							<li {{{ (Request::is('roaminger') ? 'class=active' : '') }}}><a href="#">Roaming Exchange Rate</a></li>
 							<li {{{ (Request::is('roamingp') ? 'class=active' : '') }}}><a href="#">Roaming Partner</a></li>
 							<li {{{ (Request::is('data/roaming') ? 'class=active' : '') }}}><a href="{{url('data/roaming')}}">Roaming Partner Map</a></li>
+							@guest
 							<li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
+							@endguest
+							@auth
+							<li><a href="{{ route('admin.index') }}"><i class="fa fa-sign-in"></i> Admin</a></li>
+							@endauth
 						</ul>
 					</nav>
 					<!-- <div class="button-nav">
