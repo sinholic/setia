@@ -5,15 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 
 Class Counter extends Model
 {
+    protected $table = "a_counter";
 
-    {
-        
-
-        protected $table = "a_counter";
-
-        protected $fillable = [
-            "counter"
-        ];
-
-    }
+    protected $fillable = [
+        "counter"
+    ];
 }

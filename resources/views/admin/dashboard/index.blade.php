@@ -221,7 +221,7 @@
 
                             <div class="news-item-date"> <span class="news-item-day">{{ $berita->created_at->format('d') }}</span> <span class="news-item-month">{{ $berita->created_at->format('M') }}</span> </div>
                             <div class="news-item-detail"> <a href="{{url('news/detail', ['id' => $berita->id])}}" class="news-item-title" target="_blank">{{ $berita->title }}</a>
-                                <p class="news-item-preview"> This is our web design and development news series where we share our favorite design/development related articles, resources, tutorials and awesome freebies. </p>
+                                <p class="news-item-preview">{!! substr(strip_tags($berita->konten), 0, 200) !!}</p>
                             </div>
 
                         </li>

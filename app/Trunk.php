@@ -11,7 +11,6 @@ use App\Helpers\JQSelect;
 Class Trunk extends Model
 {
     protected $table = "a_trunk";
-    $this->field_desc = "nama_msc";
 
     protected $fillable = [
         "id_msc",
@@ -24,5 +23,5 @@ Class Trunk extends Model
         "end_date",
         "notes",
     ];
-    $this->timestamps = true;
+
 }
