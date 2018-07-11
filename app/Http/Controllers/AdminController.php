@@ -10,4 +10,9 @@ class AdminController extends Controller
     {
         return view('admin.dashboard.index', compact('activities'));
     }
+    public function login(Request $request)
+    {
+        //tinggal ubah pointer page nya ya @mahar
+        return view('admin.main', compact('activities'));
+    }
 }
