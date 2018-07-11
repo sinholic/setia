@@ -16,7 +16,7 @@ Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
 Route::group([
         'prefix'=>'news'
     ],function () {
-        Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
+        // Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
         Route::get('/detail/{id}', ['uses' => 'NewsController@detail', 'as' => 'frontend.detail']);
 });
 

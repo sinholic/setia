@@ -6,8 +6,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="{{ route('admin.index') }}">
-                <!-- <img src="{{asset('images/frontend/setialogo2.png')}}" alt="" style="height:30px;"> -->
+            <a class="brand" href="{{ route('frontend.index') }}">
+                <img src="{{asset('images/frontend/setialogo2.png')}}" alt="" style="height:25px;">
             </a>
             <div class="nav-collapse">
                 <ul class="nav pull-right">
@@ -25,15 +25,15 @@
 					</li>
                     @endguest
                     @auth
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                    <!-- <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                         class="icon-cog"></i> Account <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="javascript:;">Settings</a></li>
                             <li><a href="javascript:;">Help</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                        class="icon-user"></i> EGrappler.com <b class="caret"></b></a>
+                        class="icon-user"></i> {{ Auth::user()->name }} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="javascript:;">Profile</a></li>
                             <li>

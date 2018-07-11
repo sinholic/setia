@@ -48,7 +48,12 @@
         <!-- /subnavbar-inner -->
     </div>
     <!-- /subnavbar -->
-    @yield('content')
+    <div class="main">
+        <div class="main-inner">
+            @yield('content')
+        </div>
+        <!-- /main-inner -->
+    </div>
     <!-- /main -->
     <div class="extra">
         <div class="extra-inner">
