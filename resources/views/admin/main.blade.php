@@ -7,15 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="{{ asset('css/admin/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/admin/bootstrap-responsive.min.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/admin/bootstrap.min.css') }}" rel="stylesheet"> -->
+    <!-- <link href="{{ asset('css/admin/bootstrap-responsive.min.css') }}" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
-    <link href="{{ asset('css/admin/font-awesome.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="{{ asset('css/admin/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/pages/dashboard.css') }}" rel="stylesheet">
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -25,13 +28,13 @@
         <div class="subnavbar-inner">
             <div class="container">
                 <ul class="mainnav">
-                    <li class="active"><a href="index.html"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-                    <li><a href="reports.html"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
-                    <li><a href="guidely.html"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
-                    <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
-                    <li><a href="shortcodes.html"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
+                    <li class="active"><a href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span> </a> </li>
+                    <li><a href="reports.html"><i class="fas fa-list-alt"></i><span>Reports</span> </a> </li>
+                    <li><a href="guidely.html"><i class="fas fa-video"></i><span>App Tour</span> </a></li>
+                    <li><a href="charts.html"><i class="fas fa-signal"></i><span>Charts</span> </a> </li>
+                    <li><a href="shortcodes.html"><i class="fas fa-code"></i><span>Shortcodes</span> </a> </li>
                     <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Drops</span> <b class="caret"></b></a>
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="fas fa-long-arrow-alt-down"></i><span>Drops</span> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="icons.html">Icons</a></li>
                             <li><a href="faq.html">FAQ</a></li>
@@ -59,7 +62,7 @@
         <div class="extra-inner">
             <div class="container">
                 <div class="row">
-                    <div class="span3">
+                    <div class="col-3">
                         <h4>
                                             About Free Admin Template</h4>
                         <ul>
@@ -69,8 +72,8 @@
                             <li><a href="javascript:;">Free Resources and Scripts</a></li>
                         </ul>
                     </div>
-                    <!-- /span3 -->
-                    <div class="span3">
+                    <!-- /col-3 -->
+                    <div class="col-3">
                         <h4>
                                                 Support</h4>
                         <ul>
@@ -80,8 +83,8 @@
                             <li><a href="javascript:;">Feedback</a></li>
                         </ul>
                     </div>
-                    <!-- /span3 -->
-                    <div class="span3">
+                    <!-- /col-3 -->
+                    <div class="col-3">
                         <h4>
                                                     Something Legal</h4>
                         <ul>
@@ -90,8 +93,8 @@
                             <li><a href="javascript:;">Privacy Policy</a></li>
                         </ul>
                     </div>
-                    <!-- /span3 -->
-                    <div class="span3">
+                    <!-- /col-3 -->
+                    <div class="col-3">
                         <h4>
                                                         Open Source jQuery Plugins</h4>
                         <ul>
@@ -101,7 +104,7 @@
                             <li><a href="">Flat UI PSD</a></li>
                         </ul>
                     </div>
-                    <!-- /span3 -->
+                    <!-- /col-3 -->
                 </div>
                 <!-- /row -->
             </div>
@@ -126,12 +129,18 @@
     <!-- /footer -->
     <!-- Le javascript ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ asset('js/admin/jquery-1.7.2.min.js') }}"></script>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="{{ asset('js/admin/excanvas.min.js') }}"></script>
     <script src="{{ asset('js/admin/chart.min.js') }}"></script>
     <script src="{{ asset('js/admin/full-calendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/admin/base.js') }}"></script>
-    <script src="{{ asset('js/admin/bootstrap.js') }}"></script>
+    <!-- <script src="{{ asset('js/admin/bootstrap.js') }}"></script> -->
+    <!-- DataTables -->
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <!-- App scripts -->
+    @stack('scripts')
     <script>
         var lineChartData = {
             labels: ["January", "February", "March", "April", "May", "June", "July"],
