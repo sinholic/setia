@@ -19,6 +19,12 @@ Route::group([
         // Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
         Route::get('/detail/{id}', ['uses' => 'NewsController@detail', 'as' => 'frontend.detail']);
 });
+Route::group([
+        'prefix'=>'datatables'
+    ],function () {
+        // Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
+        Route::get('continent', ['uses' => 'DatatablesController@getContinentList', 'as' => 'datatables.continent']);
+});
 
 Route::group(['middleware' => ['auth']],function () {
     // Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home.index']);
