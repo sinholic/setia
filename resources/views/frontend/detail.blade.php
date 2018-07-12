@@ -1,7 +1,7 @@
 @extends('layouts.frontend.frontend')
 @section('body')
 <!-- SECTION -->
-		<div class="section" style="background:#ddd;padding:0 0 0 0">
+		<div class="section" style="background:#f1f1f1;padding:0 0 0 0">
 			<!-- CONTAINER -->
 			<div class="container" style="background:#fff;">
 				<!-- ROW -->

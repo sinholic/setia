@@ -322,7 +322,12 @@ textarea.input {
 	#header #top-header {
 		text-align:center;
 	}
-
+	#trapezoid{
+		display:none;
+	}
+	.header-logo{
+		float:none !important;
+	}
 	.header-links, .header-social {
 		float:none;
 	}

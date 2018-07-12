@@ -2,7 +2,7 @@
 @section('body')
 
 		<!-- SECTION -->
-		<div class="section" style="background:#ddd;padding:0 0 0 0">
+		<div class="section" style="background:#f1f1f1;padding:0 0 0 0">
 			<!-- CONTAINER -->
 			<div class="container" style="background:#fff;">
 				<!-- ROW -->
@@ -36,7 +36,7 @@
 											<li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li> |
 											<li><span>By {{$listData->name}}</span></li>
 										</ul>
-										<p>{{$listData->slug}}</p>
+										<p>{!! substr(strip_tags($listData->konten),0,140) !!}...</p>
 									</div>
 								</article>
 								<hr>
@@ -56,7 +56,7 @@
 											<li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li> |
 											<li><span>By {{$listData->name}}</span></li>
 										</ul>
-											<p>{{$listData->slug}}</p>
+											<p>{!! substr(strip_tags($listData->konten),0,140) !!}...</p>
 									</div>
 								</article>
 								<hr>
