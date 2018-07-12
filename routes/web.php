@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth']],function () {
             'prefix'=>'admin'
         ],function () {
             Route::get('dashboard', ['uses' => 'AdminController@index', 'as' => 'admin.index']);
-            Route::get('improvement', ['uses' => 'HomeController@improvement', 'as' => 'home.improvement']);
+            Route::resource('continent', 'ContinentController');
     });
 
 });
