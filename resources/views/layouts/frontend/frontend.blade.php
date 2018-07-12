@@ -37,30 +37,54 @@
 		/* #center-header{
 			background: #f7f7f7;
 		} */
+		#trapezoid {
+
+    border-bottom: 90px solid red;
+    border-left: 50px solid transparent;
+    border-right: 0px solid transparent;
+    width: 100%;
+		height:30px;
+		margin:0;
+		padding:0;
+		}
+		#center-header{
+			margin:0 !important;
+			padding:0 !important;
+		}
 		</style>
 	<body>
 
 		<!-- Header -->
-		<header id="header">
+		<header id="header" >
 			<!-- Top Header -->
 
 			<!-- /Top Header -->
 
 			<!-- Center Header -->
 			<div id="center-header">
-				<div class="container">
+				<!-- <div class="col-lg-4 col-md-4 col-sm-4" style="background:#fff"> -->
+				<div class="container" style="background:#fff;">
+
 					<div class="header-logo">
 						<a href="#" class="logo"><img src="{{asset('images/frontend/setialogo2.png')}}" alt=""></a>
 					</div>
+
+
 					<!-- <div class="header-ads">
 						<img class="center-block" src="./img/ad-2.jpg" alt="">
 					</div> -->
 				</div>
+				<!-- </div> -->
+				<!-- <div class="col-lg-8 col-md-8 col-sm-8" style="background:#fff;">
+						<div class="container" style="background:#fff">
+								<div id="trapezoid"></div>
+				</div>
+				</div> -->
 			</div>
 			<!-- /Center Header -->
 
 			<!-- Nav Header -->
-			<div id="nav-header">
+			<div id="nav-header" style="box-shadow:5px 5px 5px #999;">
 				<div class="container">
 					<nav id="main-nav">
 						<div class="nav-logo">
@@ -69,10 +93,15 @@
 						<ul class="main-nav nav navbar-nav">
 							<li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i>
  Home</a></li>
-              <li {{{ (Request::is('data/handset') ? 'class=active' : '') }}}><a href="{{url('data/handset')}}">Handset Display</a></li>
-							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Operator Code</a></li>
-							<li {{{ (Request::is('roaminger') ? 'class=active' : '') }}}><a href="#">Roaming Exchange Rate</a></li>
+              <li {{{ (Request::is('data/handset') ? 'class=active' : '') }}}><a href="{{url('data/handset')}}">Roaming</a></li>
+							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Handset</a></li>
+							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Operator</a></li>
+							<!-- <li {{{ (Request::is('roaminger') ? 'class=active' : '') }}}><a href="#">Roaming Exchange Rate</a></li>
 							<li {{{ (Request::is('roamingp') ? 'class=active' : '') }}}><a href="#">Roaming Partner</a></li>
+<<<<<<< HEAD
+							<li {{{ (Request::is('data/roaming') ? 'class=active' : '') }}}><a href="{{url('data/roaming')}}">Roaming Partner Map</a></li> -->
+							<!-- <li></li> -->
+=======
 							<li {{{ (Request::is('data/roaming') ? 'class=active' : '') }}}><a href="{{url('data/roaming')}}">Roaming Partner Map</a></li>
 							@guest
 							<li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
@@ -80,17 +109,18 @@
 							@auth
 							<li><a href="{{ route('admin.index') }}"><i class="fa fa-sign-in"></i> Admin</a></li>
 							@endauth
+>>>>>>> 8f299600cd7c88152e8467174635d3ec6d0f85bd
 						</ul>
 					</nav>
-					<!-- <div class="button-nav">
-						<button class="search-collapse-btn"><i class="fa fa-search"></i></button>
+					<div class="button-nav">
+						<button class="search-collapse-btn" onclick="login('{{ route('login') }}');" ><a style="color:#fff !important;"><i class="fa fa-sign-in"></i> Login</a></button>
 						<button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
-						<div class="search-form">
+						<!-- <div class="search-form">
 							<form>
 								<input class="input" type="text" name="search" placeholder="Search">
 							</form>
-						</div>
-					</div> -->
+						</div> -->
+					</div>
 				</div>
 			</div>
 			<!-- /Nav Header -->
@@ -136,6 +166,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{{ asset('js/frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/frontend/js/main.js') }}"></script>
-
+		<script>
+			function login(obj){
+				window.location = obj;
+			}
+		</script>
   </body>
 </html>
