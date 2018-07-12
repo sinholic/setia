@@ -1,61 +1,49 @@
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="{{ route('admin.index') }}">
-                <!-- <img src="{{asset('images/frontend/setialogo2.png')}}" alt="" height="50px"> -->
-            </a>
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                    @guest
-                    <li class="">
-						<a href="signup.html" class="">
-							Don't have an account?
-						</a>
-					</li>
-					<li class="">
-						<a href="{{ route('frontend.index') }}" class="">
-							<i class="icon-chevron-left"></i>
-							Back to Homepage
-						</a>
-					</li>
-                    @endguest
-                    @auth
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                        class="icon-cog"></i> Account <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:;">Settings</a></li>
-                            <li><a href="javascript:;">Help</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                        class="icon-user"></i> EGrappler.com <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:;">Profile</a></li>
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"
-                                    data-toggle="tooltip" data-placement="top" title="Logout"
-                                    >
-                                    Logout
-                                </a>
-                                <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                    @endauth
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
+<div class="navbar navbar-fixed-top navbar-expand-lg navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="{{ route('frontend.index') }}">
+            <img src="{{asset('images/frontend/setialogo2.png')}}" alt="" style="height:25px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                @guest
+                <!-- <li class="nav-item">
+					<a href="signup.html" class="nav-link">
+						Don't have an account?
+					</a>
+				</li> -->
+				<li class="nav-item">
+					<a href="{{ route('frontend.index') }}" class="nav-link">
+						<i class="icon-chevron-left"></i>
+						Back to Homepage
+					</a>
+				</li>
+                @endguest
+                @auth
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> {{ Auth::user()->name }} <b class="caret"></b>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="javascript:;">Profile</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"
+                            data-toggle="tooltip" data-placement="top" title="Logout"
+                            >
+                            Logout
+                        </a>
+                        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </div>
+                </li>
+                @endauth
+            </ul>
         </div>
-        <!-- /container -->
+        <!--/.navbar-collapse -->
     </div>
-    <!-- /navbar-inner -->
+    <!-- /container -->
 </div>
 <!-- /navbar -->

@@ -98,8 +98,18 @@
 							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Operator</a></li>
 							<!-- <li {{{ (Request::is('roaminger') ? 'class=active' : '') }}}><a href="#">Roaming Exchange Rate</a></li>
 							<li {{{ (Request::is('roamingp') ? 'class=active' : '') }}}><a href="#">Roaming Partner</a></li>
+<<<<<<< HEAD
 							<li {{{ (Request::is('data/roaming') ? 'class=active' : '') }}}><a href="{{url('data/roaming')}}">Roaming Partner Map</a></li> -->
 							<!-- <li></li> -->
+=======
+							<li {{{ (Request::is('data/roaming') ? 'class=active' : '') }}}><a href="{{url('data/roaming')}}">Roaming Partner Map</a></li>
+							@guest
+							<li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
+							@endguest
+							@auth
+							<li><a href="{{ route('admin.index') }}"><i class="fa fa-sign-in"></i> Admin</a></li>
+							@endauth
+>>>>>>> 8f299600cd7c88152e8467174635d3ec6d0f85bd
 						</ul>
 					</nav>
 					<div class="button-nav">

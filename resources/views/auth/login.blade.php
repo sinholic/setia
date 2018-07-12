@@ -1,65 +1,16 @@
 @extends('admin.app')
 
 @section('content')
-<div class="account-container">
-
-    <div class="content clearfix">
-        <h1>Login</h1>
-        <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-            @csrf
-            <div class="login-fields">
-
-                <p>Please provide your details</p>
-
-                <div class="field">
-                    <label for="username">Username</label>
-                    <input id="email" placeholder="E-mail" type="email" class="login username-field {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                    @if ($errors->has('email'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
-                </div> <!-- /field -->
-
-                <div class="field">
-                    <label for="password">Password:</label>
-                    <input id="password" placeholder="Password" type="password" class="login password-field {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                    @if ($errors->has('password'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                    @endif
-                </div> <!-- /password -->
-
-            </div> <!-- /login-fields -->
-
-            <div class="login-actions">
-
-                <span class="login-checkbox">
-                    <input class="field login-checkbox" type="checkbox" name="remember" id="Field" {{ old('remember') ? 'checked' : '' }}>
-                    <label class="choice" for="Field">Keep me signed in</label>
-                </span>
-
-                <button class="button btn btn-success btn-large">Sign In</button>
-
-            </div> <!-- .actions -->
-
-
-
-        </form>
-
-    </div> <!-- /content -->
-
-</div> <!-- /account-container -->
-<!-- <div class="container">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    <p style="text-align:center;">
+                        <img src="{{asset('images/frontend/setialogo2.png')}}" alt="" style="height:80px;margin-bottom:10px;margin:0 auto;">
+                    </p>
                     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                         @csrf
 
@@ -119,5 +70,5 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 @endsection
