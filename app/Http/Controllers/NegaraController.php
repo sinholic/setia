@@ -1,22 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\DataTables\NegaraDataTable;
 
 use Illuminate\Http\Request;
-use App\DataTables\ContinentDataTable;
 
-class ContinentController extends Controller
+class NegaraController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ContinentDataTable $dataTable)
-    {
-        $title = 'Continent';
-        return $dataTable->render('admin.crud.index', ['title' => $title]);
-    }
+     public function index(NegaraDataTable $dataTable)
+     {
+         $title = 'Negara';
+         return $dataTable->render('admin.crud.index', ['title' => $title]);
+     }
 
     /**
      * Show the form for creating a new resource.

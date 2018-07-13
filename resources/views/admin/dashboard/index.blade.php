@@ -69,7 +69,7 @@
                             <i class="shortcut-icon fas fa-globe"></i>
                             <span class="shortcut-label">Continent</span>
                         </a>
-                        <a href="javascript:;" class="shortcut">
+                        <a href="{{ route('negara.index') }}" class="shortcut">
                             <i class="shortcut-icon fas fa-flag"></i>
                             <span class="shortcut-label">Negara</span>
                         </a>
@@ -249,19 +249,6 @@
 </script>
 <!-- /Calendar -->
 <script>
-$(function() {
-    $('#continent-table').DataTable({
-        processing: true,
-        serverSide: true,
-        searching: false,
-        bLengthChange: false,
-        pageLength: 5,
-        ajax: '{!! route('datatables.continent') !!}',
-        columns: [
-            { data: 'id', name: 'id' },
-            { data: 'nama', name: 'nama' }
-        ]
-    });
-});
+
 </script>
 @endpush
