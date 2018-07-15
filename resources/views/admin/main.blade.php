@@ -5,13 +5,35 @@
         <div class="subnavbar-inner">
             <div class="container">
                 <ul class="mainnav">
-                    <li {{{ (Request::is('admin/dashboard') ? 'class=active' : '') }}} ><a href="{{ route('admin.index') }}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span> </a> </li>
-                    <li><a href="reports.html"><i class="fas fa-list-alt"></i><span>Reports</span> </a> </li>
+                    <li {{{ (Request::is('*dashboard') ? 'class=active' : '') }}} ><a href="{{ route('admin.index') }}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span> </a> </li>
+                    <!-- <li  ><a href="{{ route('admin.master') }}"><i class="fas fa-list-alt"></i><span>Master Data</span> </a> </li> -->
+                    <li class="nav-item dropdown {{{ (Request::is('*master*') ? 'active' : '') }}}">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-list-alt"></i><span>Master Data</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">News</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('continent.index') }}">Continent</a>
+                            <a class="dropdown-item" href="{{ route('negara.index') }}">Negara</a>
+                            <a class="dropdown-item" href="{{ route('kota.index') }}">Kota</a>
+                            <a class="dropdown-item" href="{{ route('msc.index') }}">MSC</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('operator.index') }}">Operator</a>
+                            <a class="dropdown-item" href="{{ route('groupoperator.index') }}">Group Operator</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Telin Tariff</a>
+                            <a class="dropdown-item" href="#">Exchange Rate</a>
+                        </div>
+                    </li>
                     <li><a href="guidely.html"><i class="fas fa-video"></i><span>App Tour</span> </a></li>
                     <li><a href="charts.html"><i class="fas fa-signal"></i><span>Charts</span> </a> </li>
                     <li><a href="shortcodes.html"><i class="fas fa-code"></i><span>Shortcodes</span> </a> </li>
+
                     <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="fas fa-long-arrow-alt-down"></i><span>Drops</span> <b class="caret"></b></a>
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fas fa-long-arrow-alt-down"></i><span>Drops</span> <b class="caret"></b>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="icons.html">Icons</a></li>
                             <li><a href="faq.html">FAQ</a></li>
@@ -30,7 +52,13 @@
     <!-- /subnavbar -->
     <div class="main">
         <div class="main-inner">
-            @yield('content')
+            <div class="container-fluid">
+                <div class="row">
+                    @yield('content')
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
         </div>
         <!-- /main-inner -->
     </div>

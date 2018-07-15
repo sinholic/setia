@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Operator;
+use App\RoamingExchangeRate;
 use Yajra\DataTables\Services\DataTable;
 
-class OperatorDataTable extends DataTable
+class ExchangerateDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,12 +16,12 @@ class OperatorDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->addColumn('action', function ($operators) {
+        ->addColumn('action', function ($exchangerates) {
             return '
-            <a href="'. route('negara.edit', $operators->id).'" class="btn btn-sm btn-primary">
+            <a href="'. route('exchangerate.edit', $exchangerates->id).'" class="btn btn-sm btn-primary">
                 <i class="fas fa-edit"></i> Edit
             </a>
-            <form method="POST" action="'.route('negara.destroy', $operators->id).'" accept-charset="UTF-8" style="display:inline">
+            <form method="POST" action="'.route('exchangerate.destroy', $exchangerates->id).'" accept-charset="UTF-8" style="display:inline">
                 <input name="_method" value="DELETE" type="hidden">
                 <input name="_token" value="'.csrf_token().'" type="hidden">
                 <input class="btn btn-sm btn-danger" value="Delete" type="submit">
@@ -33,15 +33,12 @@ class OperatorDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Operator $model
+     * @param \App\RoamingExchangeRate $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Operator $model)
+    public function query(RoamingExchangeRate $model)
     {
-        return $model->newQuery()
-            ->leftjoin('a_negara', 'a_operator.id_negara', '=', 'a_negara.id')
-            ->leftjoin('a_tipe_organisasi', 'a_operator.id_tipe_organisasi', '=', 'a_tipe_organisasi.id')
-            ->select('a_operator.id', 'a_operator.nama', 'a_operator.kode', 'mnc', 'network_display', 'a_negara.nama as negara', 'a_tipe_organisasi.nama as tipe_organisasi');
+        return $model->newQuery()->select('id', \DB::raw('kode1 as kode_1'), \DB::raw('kode2 as kode_2'), \DB::raw('kode3 as kode_3'), \DB::raw('nilai as rate'), 'ymd', 'created_at', 'updated_at');
     }
 
     /**
@@ -67,12 +64,11 @@ class OperatorDataTable extends DataTable
     {
         return [
             'id',
-            'nama',
-            'kode',
-            'mnc',
-            'network_display',
-            'negara',
-            'tipe_organisasi'
+            'kode_1',
+            'kode_2',
+            'kode_3',
+            'rate',
+            'ymd'
         ];
     }
 
@@ -83,6 +79,6 @@ class OperatorDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Operator_' . date('YmdHis');
+        return 'Exchangerate_' . date('YmdHis');
     }
 }

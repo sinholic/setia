@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Operator;
+use App\Kota;
 use Yajra\DataTables\Services\DataTable;
 
-class OperatorDataTable extends DataTable
+class KotaDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,12 +16,12 @@ class OperatorDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->addColumn('action', function ($operators) {
+        ->addColumn('action', function ($kotas) {
             return '
-            <a href="'. route('negara.edit', $operators->id).'" class="btn btn-sm btn-primary">
+            <a href="'. route('kota.edit', $kotas->id).'" class="btn btn-sm btn-primary">
                 <i class="fas fa-edit"></i> Edit
             </a>
-            <form method="POST" action="'.route('negara.destroy', $operators->id).'" accept-charset="UTF-8" style="display:inline">
+            <form method="POST" action="'.route('kota.destroy', $kotas->id).'" accept-charset="UTF-8" style="display:inline">
                 <input name="_method" value="DELETE" type="hidden">
                 <input name="_token" value="'.csrf_token().'" type="hidden">
                 <input class="btn btn-sm btn-danger" value="Delete" type="submit">
@@ -33,15 +33,14 @@ class OperatorDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Operator $model
+     * @param \App\Kota $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Operator $model)
+    public function query(Kota $model)
     {
         return $model->newQuery()
-            ->leftjoin('a_negara', 'a_operator.id_negara', '=', 'a_negara.id')
-            ->leftjoin('a_tipe_organisasi', 'a_operator.id_tipe_organisasi', '=', 'a_tipe_organisasi.id')
-            ->select('a_operator.id', 'a_operator.nama', 'a_operator.kode', 'mnc', 'network_display', 'a_negara.nama as negara', 'a_tipe_organisasi.nama as tipe_organisasi');
+            ->join('a_regional', 'a_kota.id_regional', '=', 'a_regional.id')
+            ->select('a_kota.id', \DB::raw('a_regional.nama as regional'), \DB::raw('a_kota.nama as kota'));
     }
 
     /**
@@ -67,12 +66,8 @@ class OperatorDataTable extends DataTable
     {
         return [
             'id',
-            'nama',
-            'kode',
-            'mnc',
-            'network_display',
-            'negara',
-            'tipe_organisasi'
+            'regional',
+            'kota'
         ];
     }
 
@@ -83,6 +78,6 @@ class OperatorDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Operator_' . date('YmdHis');
+        return 'Kota_' . date('YmdHis');
     }
 }

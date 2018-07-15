@@ -101,20 +101,18 @@
 <<<<<<< HEAD
 							<li {{{ (Request::is('data/roaming') ? 'class=active' : '') }}}><a href="{{url('data/roaming')}}">Roaming Partner Map</a></li> -->
 							<!-- <li></li> -->
-=======
-							<li {{{ (Request::is('data/roaming') ? 'class=active' : '') }}}><a href="{{url('data/roaming')}}">Roaming Partner Map</a></li>
-							@guest
-							<li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
-							@endguest
-							@auth
-							<li><a href="{{ route('admin.index') }}"><i class="fa fa-sign-in"></i> Admin</a></li>
-							@endauth
->>>>>>> 8f299600cd7c88152e8467174635d3ec6d0f85bd
 						</ul>
 					</nav>
 					<div class="button-nav">
+						@guest
 						<button class="search-collapse-btn" onclick="login('{{ route('login') }}');" ><a style="color:#fff !important;"><i class="fa fa-sign-in"></i> Login</a></button>
 						<button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
+						@endguest
+						@auth
+						<button class="search-collapse-btn" onclick="login('{{ route('login') }}');" ><a style="color:#fff !important;"><i class="fa fa-sign-in"></i> Admin</a></button>
+						<button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
+						@endauth
+
 						<!-- <div class="search-form">
 							<form>
 								<input class="input" type="text" name="search" placeholder="Search">

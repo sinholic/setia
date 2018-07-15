@@ -2,7 +2,6 @@
 
 namespace App;
 
-use function foo\func;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
