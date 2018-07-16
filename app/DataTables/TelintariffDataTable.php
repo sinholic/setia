@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\User;
+use App\TelinTarif;
 use Yajra\DataTables\Services\DataTable;
 
 class TelintariffDataTable extends DataTable
@@ -16,18 +16,32 @@ class TelintariffDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('action', 'telintariff.action');
+        ->addColumn('action', function ($telintarifs) {
+            return '
+            <a href="'. route('telintarif.show', $telintarifs->id).'" class="btn btn-sm btn-info">
+                <i class="fas fa-eye"></i> Log
+            </a>
+            <a href="'. route('telintarif.edit', $telintarifs->id).'" class="btn btn-sm btn-primary">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+            <form method="POST" action="'.route('telintarif.destroy', $telintarifs->id).'" accept-charset="UTF-8" style="display:inline">
+                <input name="_method" value="DELETE" type="hidden">
+                <input name="_token" value="'.csrf_token().'" type="hidden">
+                <input class="btn btn-sm btn-danger" value="Delete" type="submit">
+            </form>
+            ';
+        });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\User $model
+     * @param \App\TelinTarif $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(TelinTarif $model)
     {
-        return $model->newQuery()->select('id', 'add-your-columns-here', 'created_at', 'updated_at');
+        return $model->newQuery()->select('id', 'nama', 'tarif', 'tgl_berlaku', 'created_at', 'updated_at');
     }
 
     /**
@@ -40,7 +54,7 @@ class TelintariffDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->addAction(['width' => '80px'])
+                    ->addAction(['width' => '180px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -53,9 +67,9 @@ class TelintariffDataTable extends DataTable
     {
         return [
             'id',
-            'add your columns',
-            'created_at',
-            'updated_at'
+            'nama',
+            'tarif',
+            'tgl_berlaku'
         ];
     }
 

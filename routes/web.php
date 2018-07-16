@@ -35,12 +35,13 @@ Route::group(['middleware' => ['auth']],function () {
             ],function () {
                 Route::get('/', ['uses' => 'AdminController@index', 'as' => 'admin.master']);
                 Route::resource('continent', 'ContinentController');
-                Route::resource('exchangerate', 'NegaraController');
+                Route::resource('exchangerate', 'ExchangerateController');
                 Route::resource('groupoperator', 'GroupoperatorController');
                 Route::resource('kota', 'KotaController');
                 Route::resource('msc', 'MscController');
                 Route::resource('negara', 'NegaraController');
                 Route::resource('operator', 'OperatorController');
+                Route::resource('telintarif', 'TelintariffController');
         });
     });
 

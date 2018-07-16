@@ -18,10 +18,10 @@ class OperatorDataTable extends DataTable
         return datatables($query)
         ->addColumn('action', function ($operators) {
             return '
-            <a href="'. route('negara.edit', $operators->id).'" class="btn btn-sm btn-primary">
+            <a href="'. route('operator.edit', $operators->id).'" class="btn btn-sm btn-primary">
                 <i class="fas fa-edit"></i> Edit
             </a>
-            <form method="POST" action="'.route('negara.destroy', $operators->id).'" accept-charset="UTF-8" style="display:inline">
+            <form method="POST" action="'.route('operator.destroy', $operators->id).'" accept-charset="UTF-8" style="display:inline">
                 <input name="_method" value="DELETE" type="hidden">
                 <input name="_token" value="'.csrf_token().'" type="hidden">
                 <input class="btn btn-sm btn-danger" value="Delete" type="submit">

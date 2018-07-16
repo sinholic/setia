@@ -22,8 +22,8 @@
                             <a class="dropdown-item" href="{{ route('operator.index') }}">Operator</a>
                             <a class="dropdown-item" href="{{ route('groupoperator.index') }}">Group Operator</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Telin Tariff</a>
-                            <a class="dropdown-item" href="#">Exchange Rate</a>
+                            <a class="dropdown-item" href="{{ route('telintarif.index') }}">Telin Tariff</a>
+                            <a class="dropdown-item" href="{{ route('exchangerate.index') }}">Exchange Rate</a>
                         </div>
                     </li>
                     <li><a href="guidely.html"><i class="fas fa-video"></i><span>App Tour</span> </a></li>
