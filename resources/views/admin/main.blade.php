@@ -12,18 +12,18 @@
                             <i class="fas fa-list-alt"></i><span>Master Data</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">News</a>
+                            <a class="dropdown-item {{{ (Request::is('*/news*') ? 'active' : '') }}} " href="#">News</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('continent.index') }}">Continent</a>
-                            <a class="dropdown-item" href="{{ route('negara.index') }}">Negara</a>
-                            <a class="dropdown-item" href="{{ route('kota.index') }}">Kota</a>
-                            <a class="dropdown-item" href="{{ route('msc.index') }}">MSC</a>
+                            <a class="dropdown-item {{{ (Request::is('*/continent*') ? 'active' : '') }}} " href="{{ route('continent.index') }}">Continent</a>
+                            <a class="dropdown-item {{{ (Request::is('*/negara*') ? 'active' : '') }}} " href="{{ route('negara.index') }}">Negara</a>
+                            <a class="dropdown-item {{{ (Request::is('*/kota*') ? 'active' : '') }}} " href="{{ route('kota.index') }}">Kota</a>
+                            <a class="dropdown-item {{{ (Request::is('*/msc*') ? 'active' : '') }}} " href="{{ route('msc.index') }}">MSC</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('operator.index') }}">Operator</a>
-                            <a class="dropdown-item" href="{{ route('groupoperator.index') }}">Group Operator</a>
+                            <a class="dropdown-item {{{ (Request::is('*/operator*') ? 'active' : '') }}} " href="{{ route('operator.index') }}">Operator</a>
+                            <a class="dropdown-item {{{ (Request::is('*/groupoperator*') ? 'active' : '') }}} " href="{{ route('groupoperator.index') }}">Group Operator</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('telintarif.index') }}">Telin Tariff</a>
-                            <a class="dropdown-item" href="{{ route('exchangerate.index') }}">Exchange Rate</a>
+                            <a class="dropdown-item {{{ (Request::is('*/telintarif*') ? 'active' : '') }}} " href="{{ route('telintarif.index') }}">Telin Tariff</a>
+                            <a class="dropdown-item {{{ (Request::is('*/exchangerate*') ? 'active' : '') }}} " href="{{ route('exchangerate.index') }}">Exchange Rate</a>
                         </div>
                     </li>
                     <li><a href="guidely.html"><i class="fas fa-video"></i><span>App Tour</span> </a></li>
