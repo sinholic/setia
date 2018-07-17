@@ -17,18 +17,21 @@ class ContinentDataTable extends DataTable
     {
         // dd($query);
         return datatables($query)
-                ->addColumn('action', function ($continents) {
-                    return '
-                    <a href="'. route('continent.edit', $continents->id).'" class="btn btn-sm btn-primary">
-                        <i class="fas fa-edit"></i> Edit
-                    </a>
-                    <form method="POST" action="'.route('continent.destroy', $continents->id).'" accept-charset="UTF-8" style="display:inline">
-                        <input name="_method" value="DELETE" type="hidden">
-                        <input name="_token" value="'.csrf_token().'" type="hidden">
-                        <input class="btn btn-sm btn-danger" value="Delete" type="submit">
-                    </form>
-                    ';
-                });
+            ->addColumn('action', function ($continents) {
+                return '
+                <a href="'. route('continent.show', $continents->id).'" class="btn btn-sm btn-secondary">
+                    <i class="fas fa-eye"></i> Detail
+                </a>
+                <a href="'. route('continent.edit', $continents->id).'" class="btn btn-sm btn-primary">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <form class="delete-me" method="POST" action="'.route('continent.destroy', $continents->id).'" accept-charset="UTF-8" style="display:inline">
+                    <input name="_method" value="DELETE" type="hidden">
+                    <input name="_token" value="'.csrf_token().'" type="hidden">
+                    <input class="btn btn-sm btn-danger" value="Delete" type="submit">
+                </form>
+                ';
+            });
             // ->addColumn('intro', 'Hi '.);
     }
 
@@ -40,7 +43,7 @@ class ContinentDataTable extends DataTable
      */
     public function query(Continent $model)
     {
-        return $model->newQuery()->select('id', 'nama', 'created_at', 'updated_at');
+        return $model->newQuery()->select('id',\DB::raw(' ROW_NUMBER () OVER (ORDER BY id DESC) as no'), 'nama', 'created_at', 'updated_at');
     }
 
     /**
@@ -65,10 +68,10 @@ class ContinentDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
+            'no',
             'nama',
-            'created_at',
-            'updated_at'
+            // 'created_at',
+            // 'updated_at'
         ];
     }
 

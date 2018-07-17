@@ -15,7 +15,7 @@ class OperatorController extends Controller
      public function index(OperatorDataTable $dataTable)
     {
         $title = 'Operator';
-        return $dataTable->render('admin.crud.index', ['title' => $title]);
+        return $dataTable->render('admin.crud.lists', ['title' => $title]);
     }
 
     /**

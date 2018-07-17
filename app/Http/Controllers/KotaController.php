@@ -15,7 +15,7 @@ class KotaController extends Controller
     public function index(KotaDataTable $dataTable)
     {
         $title = 'Kota';
-        return $dataTable->render('admin.crud.index', ['title' => $title]);
+        return $dataTable->render('admin.crud.lists', ['title' => $title]);
     }
 
     /**

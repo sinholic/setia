@@ -15,7 +15,7 @@ class GroupoperatorController extends Controller
      public function index(GroupoperatorDataTable $dataTable)
      {
          $title = 'Group Operator';
-         return $dataTable->render('admin.crud.index', ['title' => $title]);
+         return $dataTable->render('admin.crud.lists', ['title' => $title]);
      }
 
     /**

@@ -21,7 +21,7 @@ class GroupoperatorDataTable extends DataTable
             <a href="'. route('groupoperator.edit', $groupoperators->id).'" class="btn btn-sm btn-primary">
                 <i class="fas fa-edit"></i> Edit
             </a>
-            <form method="POST" action="'.route('groupoperator.destroy', $groupoperators->id).'" accept-charset="UTF-8" style="display:inline">
+            <form class="delete-me" method="POST" action="'.route('groupoperator.destroy', $groupoperators->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
                 <input name="_method" value="DELETE" type="hidden">
                 <input name="_token" value="'.csrf_token().'" type="hidden">
                 <input class="btn btn-sm btn-danger" value="Delete" type="submit">
@@ -38,7 +38,7 @@ class GroupoperatorDataTable extends DataTable
      */
     public function query(GroupOperator $model)
     {
-        return $model->newQuery()->select('id', 'nama', 'created_at', 'updated_at');
+        return $model->newQuery()->select('id', \DB::raw('ROW_NUMBER () OVER (ORDER BY id DESC) as no'), 'nama', 'created_at', 'updated_at');
     }
 
     /**
@@ -63,7 +63,7 @@ class GroupoperatorDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
+            'no',
             'nama'
         ];
     }

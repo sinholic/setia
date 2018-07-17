@@ -109,7 +109,7 @@
 						<button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
 						@endguest
 						@auth
-						<button class="search-collapse-btn" onclick="login('{{ route('login') }}');" ><a style="color:#fff !important;"><i class="fa fa-sign-in"></i> Admin</a></button>
+						<button class="search-collapse-btn" onclick="login('{{ route('admin.index') }}');" ><a style="color:#fff !important;"><i class="fa fa-sign-in"></i> Admin</a></button>
 						<button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
 						@endauth
 

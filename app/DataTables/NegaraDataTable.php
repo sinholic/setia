@@ -21,7 +21,7 @@ class NegaraDataTable extends DataTable
                 <a href="'. route('negara.edit', $negaras->id).'" class="btn btn-sm btn-primary">
                     <i class="fas fa-edit"></i> Edit
                 </a>
-                <form method="POST" action="'.route('negara.destroy', $negaras->id).'" accept-charset="UTF-8" style="display:inline">
+                <form class="delete-me" method="POST" action="'.route('negara.destroy', $negaras->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
                     <input name="_method" value="DELETE" type="hidden">
                     <input name="_token" value="'.csrf_token().'" type="hidden">
                     <input class="btn btn-sm btn-danger" value="Delete" type="submit">
@@ -38,11 +38,12 @@ class NegaraDataTable extends DataTable
      */
     public function query(Negara $model)
     {
-        // \DB::statement(\DB::raw('DECLARE rownum integer DEFAULT 0'));
+        // \DB::statement(\DB::raw('DECLARE no integer DEFAULT 0'));
         return $model->newQuery()
             ->join('a_continent', 'a_negara.id_continent', '=', 'a_continent.id')
             ->select(
                 'a_negara.id',
+                \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_negara.id DESC) as no'),
                 \DB::raw('a_negara.nama as nama_negara'),
                 \DB::raw('a_continent.nama as nama_continent'),
                 'mcc',
@@ -74,7 +75,7 @@ class NegaraDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
+            'no',
             'nama_negara',
             'nama_continent',
             'mcc',

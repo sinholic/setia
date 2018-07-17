@@ -15,7 +15,7 @@ class ExchangerateController extends Controller
      public function index(ExchangerateDataTable $dataTable)
     {
         $title = 'Roaming Exchange Rate';
-        return $dataTable->render('admin.crud.index', ['title' => $title]);
+        return $dataTable->render('admin.crud.lists', ['title' => $title]);
     }
 
     /**

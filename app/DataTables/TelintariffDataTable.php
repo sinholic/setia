@@ -24,7 +24,7 @@ class TelintariffDataTable extends DataTable
             <a href="'. route('telintarif.edit', $telintarifs->id).'" class="btn btn-sm btn-primary">
                 <i class="fas fa-edit"></i> Edit
             </a>
-            <form method="POST" action="'.route('telintarif.destroy', $telintarifs->id).'" accept-charset="UTF-8" style="display:inline">
+            <form class="delete-me" method="POST" action="'.route('telintarif.destroy', $telintarifs->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
                 <input name="_method" value="DELETE" type="hidden">
                 <input name="_token" value="'.csrf_token().'" type="hidden">
                 <input class="btn btn-sm btn-danger" value="Delete" type="submit">
@@ -41,7 +41,7 @@ class TelintariffDataTable extends DataTable
      */
     public function query(TelinTarif $model)
     {
-        return $model->newQuery()->select('id', 'nama', 'tarif', 'tgl_berlaku', 'created_at', 'updated_at');
+        return $model->newQuery()->select('id', \DB::raw(' ROW_NUMBER () OVER (ORDER BY id DESC) as no'), 'nama', 'tarif', 'tgl_berlaku', 'created_at', 'updated_at');
     }
 
     /**
@@ -66,7 +66,7 @@ class TelintariffDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
+            'no',
             'nama',
             'tarif',
             'tgl_berlaku'

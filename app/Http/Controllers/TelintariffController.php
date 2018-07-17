@@ -15,7 +15,7 @@ class TelintariffController extends Controller
      public function index(TelintariffDataTable $dataTable)
     {
         $title = 'Telin Tarif';
-        return $dataTable->render('admin.crud.index', ['title' => $title]);
+        return $dataTable->render('admin.crud.lists', ['title' => $title]);
     }
 
     /**

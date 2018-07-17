@@ -21,7 +21,7 @@ class MscDataTable extends DataTable
             <a href="'. route('msc.edit', $mscs->id).'" class="btn btn-sm btn-primary">
                 <i class="fas fa-edit"></i> Edit
             </a>
-            <form method="POST" action="'.route('msc.destroy', $mscs->id).'" accept-charset="UTF-8" style="display:inline">
+            <form class="delete-me" method="POST" action="'.route('msc.destroy', $mscs->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
                 <input name="_method" value="DELETE" type="hidden">
                 <input name="_token" value="'.csrf_token().'" type="hidden">
                 <input class="btn btn-sm btn-danger" value="Delete" type="submit">
@@ -40,7 +40,7 @@ class MscDataTable extends DataTable
     {
         return $model->newQuery()
         ->join('a_kota', 'a_msc.id_kota', '=', 'a_kota.id')
-        ->select('a_msc.id', \DB::raw('a_kota.nama as kota'), \DB::raw('a_msc.nama as msc'));
+        ->select('id', \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_msc.id DESC) as no'), \DB::raw('a_kota.nama as kota'), \DB::raw('a_msc.nama as msc'));
     }
 
     /**
@@ -65,7 +65,7 @@ class MscDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
+            'no',
             'kota',
             'msc',
         ];

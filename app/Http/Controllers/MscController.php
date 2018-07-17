@@ -15,7 +15,7 @@ class MscController extends Controller
     public function index(MscDataTable $dataTable)
     {
         $title = 'MSC';
-        return $dataTable->render('admin.crud.index', ['title' => $title]);
+        return $dataTable->render('admin.crud.lists', ['title' => $title]);
     }
 
     /**

@@ -21,7 +21,7 @@ class KotaDataTable extends DataTable
             <a href="'. route('kota.edit', $kotas->id).'" class="btn btn-sm btn-primary">
                 <i class="fas fa-edit"></i> Edit
             </a>
-            <form method="POST" action="'.route('kota.destroy', $kotas->id).'" accept-charset="UTF-8" style="display:inline">
+            <form class="delete-me" method="POST" action="'.route('kota.destroy', $kotas->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
                 <input name="_method" value="DELETE" type="hidden">
                 <input name="_token" value="'.csrf_token().'" type="hidden">
                 <input class="btn btn-sm btn-danger" value="Delete" type="submit">
@@ -40,7 +40,7 @@ class KotaDataTable extends DataTable
     {
         return $model->newQuery()
             ->join('a_regional', 'a_kota.id_regional', '=', 'a_regional.id')
-            ->select('a_kota.id', \DB::raw('a_regional.nama as regional'), \DB::raw('a_kota.nama as kota'));
+            ->select('id', \DB::raw('ROW_NUMBER () OVER (ORDER BY a_kota.id DESC) as no'), \DB::raw('a_regional.nama as regional'), \DB::raw('a_kota.nama as kota'));
     }
 
     /**
@@ -65,7 +65,7 @@ class KotaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
+            'no',
             'regional',
             'kota'
         ];

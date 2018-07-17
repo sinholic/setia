@@ -21,7 +21,7 @@ class OperatorDataTable extends DataTable
             <a href="'. route('operator.edit', $operators->id).'" class="btn btn-sm btn-primary">
                 <i class="fas fa-edit"></i> Edit
             </a>
-            <form method="POST" action="'.route('operator.destroy', $operators->id).'" accept-charset="UTF-8" style="display:inline">
+            <form class="delete-me" method="POST" action="'.route('operator.destroy', $operators->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
                 <input name="_method" value="DELETE" type="hidden">
                 <input name="_token" value="'.csrf_token().'" type="hidden">
                 <input class="btn btn-sm btn-danger" value="Delete" type="submit">
@@ -41,7 +41,10 @@ class OperatorDataTable extends DataTable
         return $model->newQuery()
             ->leftjoin('a_negara', 'a_operator.id_negara', '=', 'a_negara.id')
             ->leftjoin('a_tipe_organisasi', 'a_operator.id_tipe_organisasi', '=', 'a_tipe_organisasi.id')
-            ->select('a_operator.id', 'a_operator.nama', 'a_operator.kode', 'mnc', 'network_display', 'a_negara.nama as negara', 'a_tipe_organisasi.nama as tipe_organisasi');
+            ->select(
+                'a_operator.id',
+                \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_operator.id DESC) as no'),
+                'a_operator.nama', 'a_operator.kode', 'mnc', 'network_display', 'a_negara.nama as negara', 'a_tipe_organisasi.nama as tipe_organisasi');
     }
 
     /**
@@ -66,7 +69,7 @@ class OperatorDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
+            'no',
             'nama',
             'kode',
             'mnc',

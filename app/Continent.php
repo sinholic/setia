@@ -9,6 +9,8 @@ Class Continent extends Model
 
     protected $fillable = [
         "nama",
-        "notes"
+        "notes",
+        "created_by",
+        "updated_by"
     ];
 }

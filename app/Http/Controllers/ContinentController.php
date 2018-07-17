@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataTables\ContinentDataTable;
+use App\Continent;
 
 class ContinentController extends Controller
 {
+    private $title = 'Continent';
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +16,7 @@ class ContinentController extends Controller
      */
     public function index(ContinentDataTable $dataTable)
     {
-        $title = 'Continent';
-        return $dataTable->render('admin.crud.index', ['title' => $title]);
+        return $dataTable->render('admin.crud.lists', ['title' => $this->title]);
     }
 
     /**
@@ -25,7 +26,8 @@ class ContinentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.crud.continent.add', compact('fields'))
+            ->with('title', $this->title);
     }
 
     /**
@@ -36,7 +38,13 @@ class ContinentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required',
+        ]);
+        Continent::create($request->all());
+
+        return redirect(route('continent.index'))
+                        ->with('message','Continent added successfully');
     }
 
     /**
@@ -47,7 +55,9 @@ class ContinentController extends Controller
      */
     public function show($id)
     {
-        //
+        $continent = Continent::find($id);
+        return view('admin.crud.continent.show',compact('continent'))
+            ->with('title', $continent->nama);
     }
 
     /**
@@ -58,7 +68,8 @@ class ContinentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $continent = Continent::find($id);
+        return view('admin.crud.continent.edit', compact('continent'))->with('title', $this->title);
     }
 
     /**
@@ -70,7 +81,12 @@ class ContinentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required',
+        ]);
+        Continent::find($id)->update($request->all());
+        return redirect()->route('continent.index')
+                ->with('message','Continent updated successfully');
     }
 
     /**
@@ -81,6 +97,8 @@ class ContinentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Continent::find($id)->delete();
+        return redirect()->route('continent.index')
+                        ->with('message','Continent deleted successfully');
     }
 }

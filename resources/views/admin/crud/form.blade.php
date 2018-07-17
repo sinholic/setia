@@ -17,14 +17,20 @@
             </div>
         </div>
         <div class="card-body">
-            {!! $dataTable->table() !!}
+            @yield('content_input')
+                <div class="form-group row">
+                    {{ Form::hidden('created_by', Auth::user()->id) }}
+                    {{ Form::hidden('updated_by', Auth::user()->id) }}
+                    <div class="col-sm-4 offset-sm-3">
+                        {{ link_to(url()->previous(), 'Cancel', ['class' => 'btn btn-secondary']) }}
+                        {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
+                    </div>
+                </div>
+            {{ Form::close() }}
         </div>
     </div>
 </div>
 @endsection
 @push('scripts')
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
-<script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
-<script src="/vendor/datatables/buttons.server-side.js"></script>
-{!! $dataTable->scripts() !!}
+
 @endpush
