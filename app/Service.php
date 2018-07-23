@@ -6,11 +6,12 @@ Class Service extends Model
 {
     protected $table = "a_service";
 
-    protected $fillable = [
-        "nama",
-        "is_opsi_unit_service",
-        "default_unit",
-        "notes",
+    protected $guarded = [
+
     ];
-    
+
+    public function rateinterkoneksinegaras()
+    {
+        return $this->hasMany('App\RateInterkoneksiNegara', 'id_service');
+    }
 }

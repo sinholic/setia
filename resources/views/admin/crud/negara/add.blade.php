@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="form-group row">
-        {{ Form::label('iso3', 'MCC', ['class' => 'col-sm-3 form-control-label']) }}
+        {{ Form::label('iso3', 'ISO3', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
             <input id="iso3" type="iso3" class="form-control{{ $errors->has('iso3') ? ' is-invalid' : '' }}" name="iso3" value="{{ old('iso3') }}" required autofocus>
             @if ($errors->has('iso3'))
@@ -57,6 +57,15 @@
             @endif
         </div>
     </div>
+    <div class="form-group row">
+        {{ Form::hidden('created_by', Auth::user()->id) }}
+        {{ Form::hidden('updated_by', Auth::user()->id) }}
+        <div class="col-sm-4 offset-sm-3">
+            {{ link_to(url()->previous(), 'Cancel', ['class' => 'btn btn-secondary']) }}
+            {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
+        </div>
+    </div>
+{{ Form::close() }}
 @endsection
 @push('scripts')
 

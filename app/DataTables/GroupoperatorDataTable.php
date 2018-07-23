@@ -16,17 +16,8 @@ class GroupoperatorDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->addColumn('action', function ($groupoperators) {
-            return '
-            <a href="'. route('groupoperator.edit', $groupoperators->id).'" class="btn btn-sm btn-primary">
-                <i class="fas fa-edit"></i> Edit
-            </a>
-            <form class="delete-me" method="POST" action="'.route('groupoperator.destroy', $groupoperators->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
-                <input name="_method" value="DELETE" type="hidden">
-                <input name="_token" value="'.csrf_token().'" type="hidden">
-                <input class="btn btn-sm btn-danger" value="Delete" type="submit">
-            </form>
-            ';
+        ->addColumn('action', function ($items) {
+            return view('admin.crud.buttons', compact('items'))->render();
         });
     }
 
@@ -51,7 +42,7 @@ class GroupoperatorDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->addAction(['width' => '180px'])
+                    ->addAction(['width' => '80px'])
                     ->parameters($this->getBuilderParameters());
     }
 

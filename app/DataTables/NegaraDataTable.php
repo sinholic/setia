@@ -16,18 +16,18 @@ class NegaraDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('action', function ($negaras) {
-                return '
-                <a href="'. route('negara.edit', $negaras->id).'" class="btn btn-sm btn-primary">
-                    <i class="fas fa-edit"></i> Edit
-                </a>
-                <form class="delete-me" method="POST" action="'.route('negara.destroy', $negaras->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
-                    <input name="_method" value="DELETE" type="hidden">
-                    <input name="_token" value="'.csrf_token().'" type="hidden">
-                    <input class="btn btn-sm btn-danger" value="Delete" type="submit">
-                </form>
-                ';
-            });
+        ->filterColumn('nama_negara', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_negara.nama) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('nama_continent', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_continent.nama) like ?", ["%$keyword%"]);
+        })
+        ->addColumn('action', function ($items) {
+            return view('admin.crud.buttons', compact('items'))->render();
+        })
+        ->addColumn('details_url', function($items) {
+            return route('api.admin.negara.detail', $items->id);
+        });
     }
 
     /**
@@ -63,7 +63,7 @@ class NegaraDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->addAction(['width' => '180px'])
+                    ->addAction(['width' => '80px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -75,7 +75,20 @@ class NegaraDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'no',
+            [
+                "className"         => 'details-control',
+                "orderable"         => false,
+                "searchable"        => false,
+                "data"              => null,
+                "defaultContent"    => '<i class="fas fa-plus font-blue" style="cursor: pointer; font-size: 16px;"></i>',
+                "title"             => '',
+                "width"             => '0px',
+            ],
+            [
+                "searchable"    => false,
+                "data"          => 'no',
+                "title"         => 'No',
+            ],
             'nama_negara',
             'nama_continent',
             'mcc',

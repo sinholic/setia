@@ -16,17 +16,8 @@ class MscDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->addColumn('action', function ($mscs) {
-            return '
-            <a href="'. route('msc.edit', $mscs->id).'" class="btn btn-sm btn-primary">
-                <i class="fas fa-edit"></i> Edit
-            </a>
-            <form class="delete-me" method="POST" action="'.route('msc.destroy', $mscs->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
-                <input name="_method" value="DELETE" type="hidden">
-                <input name="_token" value="'.csrf_token().'" type="hidden">
-                <input class="btn btn-sm btn-danger" value="Delete" type="submit">
-            </form>
-            ';
+        ->addColumn('action', function ($items) {
+            return view('admin.crud.buttons', compact('items'))->render();
         });
     }
 

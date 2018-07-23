@@ -13,4 +13,9 @@ Class Continent extends Model
         "created_by",
         "updated_by"
     ];
+
+    public function negaras()
+    {
+        return $this->hasMany('App\Negara', 'id_continent');
+    }
 }

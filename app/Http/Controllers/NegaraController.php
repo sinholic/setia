@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use App\DataTables\NegaraDataTable;
 use App\Continent;
 use App\Negara;
+use App\RateInterkoneksiNegara;
+use App\Service;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class NegaraController extends Controller
 {
@@ -16,7 +19,23 @@ class NegaraController extends Controller
      */
     public function index(NegaraDataTable $dataTable)
     {
-        return $dataTable->render('admin.crud.lists', ['title' => $this->title]);
+        $handlebars = '
+        <script id="details-template" type="text/x-handlebars-template">
+            <div class="label label-info">{{ nama }} Rate Interkoneksi</div>
+            <table class="table details-table" id="detail-{{id}}">
+                <thead>
+                <tr>
+                    <th>Nama Service</th>
+                    <th>Unit</th>
+                    <th>Nilai Unit</th>
+                    <th>Rate</th>
+                    <th>Start</th>
+                </tr>
+                </thead>
+            </table>
+        </script>
+        ';
+        return $dataTable->render('admin.crud.negara.index', ['title' => $this->title, 'handlebars' => $handlebars]);
     }
 
     /**
@@ -40,9 +59,7 @@ class NegaraController extends Controller
     {
         $this->validate($request, [
             'id_continent'  => 'required',
-            'nama'          => 'required',
-            'iso3'          => 'required',
-            'mcc'           => 'required'
+            'nama'          => 'required'
         ]);
         Negara::create($request->all());
 
@@ -58,7 +75,11 @@ class NegaraController extends Controller
      */
     public function show($id)
     {
-        //
+        $negara         = Negara::find($id);
+        $continents     = Continent::pluck('nama','id');
+        $rates          = RateInterkoneksiNegara::where('id_negara', $id)->get();
+        $services       = Service::pluck('nama', 'id');
+        return view('admin.crud.negara.show', compact('negara', 'continents', 'rates', 'services'))->with('title', $negara->nama);
     }
 
     /**
@@ -69,7 +90,11 @@ class NegaraController extends Controller
      */
     public function edit($id)
     {
-        //
+        $negara         = Negara::find($id);
+        $continents     = Continent::pluck('nama','id');
+        $rates          = RateInterkoneksiNegara::where('id_negara', $id)->get();
+        $services       = Service::pluck('nama', 'id');
+        return view('admin.crud.negara.edit', compact('negara', 'continents', 'rates', 'services'))->with('title', $negara->nama);
     }
 
     /**
@@ -81,7 +106,45 @@ class NegaraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        // $this->validate($request, [
+        //     'nama' => 'required',
+        // ]);
+        $data_negara = array(
+            'nama'          => $request->nama,
+            'id_continent'  => $request->id_continent,
+            'mcc'           => $request->mcc,
+            'iso3'          => $request->iso3,
+            'notes'         => $request->notes,
+            'updated_by'    => $request->updated_by
+        );
+        Negara::find($id)->update($data_negara);
+        if (isset($request->rates)) {
+            foreach ($request->rates as $key => $rate) {
+                if (isset($rate['delete']) && $rate['delete'] == 'yes') {
+                    RateInterkoneksiNegara::find($rate['id_rate'])->delete();
+                }else {
+                    $data_rate = array(
+                        'id_negara'             => $id,
+                        'id_service'            => $rate['id_service'],
+                        'id_opsi_unit_service'  => 2,
+                        'nilai_unit'            => 1,
+                        'nilai_rate'            => $rate['nilai_rate'],
+                        'tgl_berlaku'           => $rate['tgl_berlaku'],
+                        'notes'                 => null,
+                        'updated_by'            => $request->updated_by
+                    );
+                    if (isset($rate['id_rate'])) {
+                        RateInterkoneksiNegara::updateOrCreate(['id' => $rate['id_rate']],$data_rate);
+                    }else {
+                        $data_rate['created_by'] = $request->created_by;
+                        RateInterkoneksiNegara::create($data_rate);
+                    }
+                }
+            }
+        }
+        return redirect()->route('negara.index')
+                ->with('message','Negara updated successfully');
     }
 
     /**
@@ -92,6 +155,15 @@ class NegaraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        RateInterkoneksiNegara::where('id_negara', $id)->delete();
+        Negara::find($id)->delete();
+        return redirect()->route('negara.index')
+                        ->with('message','Negara deleted successfully');
+    }
+
+    public function detailNegara(Request $request, $id)
+    {
+        $rates = Negara::find($id)->rateinterkoneksinegaras()->with('negara','service', 'unit_service');
+        return Datatables::of($rates)->make(true);
     }
 }

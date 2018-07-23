@@ -3,20 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\TelintariffDataTable;
-use App\TelinTarif;
 
-class TelintariffController extends Controller
+class RateInterkoneksiNegaraController extends Controller
 {
-    private $title = 'Telin Tarif';
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function index(TelintariffDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('admin.crud.lists', ['title' => $this->title]);
+        //
     }
 
     /**
@@ -26,7 +23,7 @@ class TelintariffController extends Controller
      */
     public function create()
     {
-        return view('admin.crud.telintarif.add', compact('continents'))->with('title', $this->title);
+        //
     }
 
     /**
@@ -37,15 +34,7 @@ class TelintariffController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'nama'          => 'required',
-            'tarif'         => 'required',
-            'tgl_berlaku'   => 'required'
-        ]);
-        TelinTarif::create($request->all());
-
-        return redirect(route('telintarif.index'))
-                        ->with('message','Tarif added successfully');
+        //
     }
 
     /**

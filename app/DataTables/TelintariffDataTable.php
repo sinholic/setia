@@ -16,20 +16,8 @@ class TelintariffDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->addColumn('action', function ($telintarifs) {
-            return '
-            <a href="'. route('telintarif.show', $telintarifs->id).'" class="btn btn-sm btn-info">
-                <i class="fas fa-eye"></i> Log
-            </a>
-            <a href="'. route('telintarif.edit', $telintarifs->id).'" class="btn btn-sm btn-primary">
-                <i class="fas fa-edit"></i> Edit
-            </a>
-            <form class="delete-me" method="POST" action="'.route('telintarif.destroy', $telintarifs->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
-                <input name="_method" value="DELETE" type="hidden">
-                <input name="_token" value="'.csrf_token().'" type="hidden">
-                <input class="btn btn-sm btn-danger" value="Delete" type="submit">
-            </form>
-            ';
+        ->addColumn('action', function ($items) {
+            return view('admin.crud.buttons', compact('items'))->render();
         });
     }
 
@@ -54,7 +42,7 @@ class TelintariffDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->addAction(['width' => '180px'])
+                    ->addAction(['width' => '80px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -66,7 +54,11 @@ class TelintariffDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'no',
+            [
+                "searchable"    => false,
+                "data"          => 'no',
+                "title"         => 'No',
+            ],
             'nama',
             'tarif',
             'tgl_berlaku'

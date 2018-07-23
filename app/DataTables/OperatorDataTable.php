@@ -16,17 +16,8 @@ class OperatorDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->addColumn('action', function ($operators) {
-            return '
-            <a href="'. route('operator.edit', $operators->id).'" class="btn btn-sm btn-primary">
-                <i class="fas fa-edit"></i> Edit
-            </a>
-            <form class="delete-me" method="POST" action="'.route('operator.destroy', $operators->id).'" accept-charset="UTF-8" style="display:inline" onsubmit="return ConfirmDelete()">
-                <input name="_method" value="DELETE" type="hidden">
-                <input name="_token" value="'.csrf_token().'" type="hidden">
-                <input class="btn btn-sm btn-danger" value="Delete" type="submit">
-            </form>
-            ';
+        ->addColumn('action', function ($items) {
+            return view('admin.crud.buttons', compact('items'))->render();
         });
     }
 
@@ -57,7 +48,7 @@ class OperatorDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->addAction(['width' => '180px'])
+                    ->addAction(['width' => '80px'])
                     ->parameters($this->getBuilderParameters());
     }
 

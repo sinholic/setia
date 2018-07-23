@@ -6,10 +6,6 @@ Class TelinTarif extends Model
 {
     protected $table = "a_telin_tarif";
 
-    protected $fillable = [
-        "nama",
-        "tarif",
-        "tgl_berlaku",
-        "notes",
+    protected $guarded = [
     ];
 }
