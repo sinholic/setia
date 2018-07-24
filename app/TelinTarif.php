@@ -8,4 +8,9 @@ Class TelinTarif extends Model
 
     protected $guarded = [
     ];
+
+    public function logs()
+    {
+        return $this->hasMany('App\TelinTarifLog', 'id_telin_tarif');
+    }
 }

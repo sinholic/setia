@@ -12,8 +12,12 @@ Class TipeOrganisasi extends Model
     protected $table = "a_tipe_organisasi";
 
     protected $fillable = [
-        "nama",
-        "notes",
+
     ];
+
+    public function operators()
+    {
+        return $this->hasMany('App\Operator', 'id_tipe_organisasi');
+    }
 
 }

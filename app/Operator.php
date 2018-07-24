@@ -26,9 +26,37 @@ Class Operator extends Model
         "id_tipe_organisasi",
         "id_negara",
         "notes",
-        "_GroupOperator",
 		"mnc",
 		"network_display",
+        "created_by",
+        "updated_by"
     ];
 
+    public function groups()
+    {
+        return $this->belongsToMany('App\GroupOperator', 'a_operator_and_group_operator', 'id_operator', 'id_group_operator')
+            ->withPivot('notes', 'created_by', 'updated_by')
+            ->withTimestamps();
+    }
+
+    public function negara()
+    {
+        return $this->belongsTo('App\Negara', 'id_continent');
+    }
+
+    public function tipe_organisasi()
+    {
+        return $this->belongsTo('App\TipeOrganisasi', 'id_tipe_organisasi');
+    }
+
+    public function rateinterkoneksioperators()
+    {
+        return $this->hasMany('App\RateInterkoneksiOperator', 'id_operator');
+    }
+
+    public function roamingpartners()
+    {
+        return $this->belongsToMany('App\RoamingPartner', 'a_operator_roaming_partner', 'id_operator', 'id_roaming_partner')
+            ->withPivot('id_opsi_roaming_partner', 'launching_date_tsel', 'launching_date_rp');
+    }
 }

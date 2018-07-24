@@ -18,6 +18,9 @@ class TelintariffDataTable extends DataTable
         return datatables($query)
         ->addColumn('action', function ($items) {
             return view('admin.crud.buttons', compact('items'))->render();
+        })
+        ->addColumn('details_url', function($items) {
+            return route('api.admin.telintarif.detail', $items->id);
         });
     }
 
@@ -61,7 +64,16 @@ class TelintariffDataTable extends DataTable
             ],
             'nama',
             'tarif',
-            'tgl_berlaku'
+            'tgl_berlaku',
+            [
+                "className"         => 'details-control',
+                "orderable"         => false,
+                "searchable"        => false,
+                "data"              => null,
+                "defaultContent"    => '<button class="btn btn-sm btn-secondary"><i class="fas fa-plus font-blue" style="cursor: pointer; font-size: 16px;"></i> View Log</button>',
+                "title"             => '',
+                "width"             => '60px',
+            ],
         ];
     }
 

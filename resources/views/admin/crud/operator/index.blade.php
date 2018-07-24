@@ -1,13 +1,15 @@
 @extends('admin.crud.lists')
 @section('handlebars')
 <script id="details-template" type="text/x-handlebars-template">
-    <div class="label label-info">@{{ nama }} Tarif Log</div>
+    <div class="label label-info">@{{ nama }} Rate Interkoneksi</div>
     <table class="table details-table" id="detail-@{{id}}">
         <thead>
         <tr>
-            <th>No</th>
-            <th>Tarif</th>
-            <th>Tgl Berlaku</th>
+            <th>Nama Service</th>
+            <th>Unit</th>
+            <th>Nilai Unit</th>
+            <th>Rate</th>
+            <th>Start</th>
         </tr>
         </thead>
     </table>
@@ -20,8 +22,10 @@ function initTable(tableId, data) {
         serverSide: true,
         ajax: data.details_url,
         columns: [
-            { data: 'no', name: 'no' },
-            { data: 'tarif', name: 'tarif' },
+            { data: 'service.nama', name: 'service.nama' },
+            { data: 'unit_service.nama', name: 'unit_service.nama' },
+            { data: 'nilai_unit', name: 'nilai_unit' },
+            { data: 'nilai_rate', name: 'nilai_rate' },
             { data: 'tgl_berlaku', name: 'tgl_berlaku' }
         ]
     })

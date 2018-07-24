@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\GroupoperatorDataTable;
-use App\GroupOperator;
 
-class GroupoperatorController extends Controller
+class GroupUserController extends Controller
 {
-    private $title = 'Group Operator';
+    private $title = 'Group User';
     /**
     * Display a listing of the resource.
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(GroupoperatorDataTable $dataTable)
+    public function index(GroupuserDataTable $dataTable)
     {
         return $dataTable->render('admin.crud.lists', ['title' => $this->title]);
     }
@@ -26,7 +24,7 @@ class GroupoperatorController extends Controller
     */
     public function create()
     {
-        return view('admin.crud.groupoperator.add', compact('fields'))
+        return view('admin.crud.groupuser.add', compact('fields'))
         ->with('title', $this->title);
     }
 
@@ -43,7 +41,7 @@ class GroupoperatorController extends Controller
         ]);
         GroupOperator::create($request->all());
 
-        return redirect(route('groupoperator.index'))
+        return redirect(route('groupuser.index'))
         ->with('message','GroupOperator added successfully');
     }
 
@@ -55,9 +53,9 @@ class GroupoperatorController extends Controller
     */
     public function show($id)
     {
-        $groupoperator = GroupOperator::find($id);
-        return view('admin.crud.groupoperator.show',compact('groupoperator'))
-        ->with('title', $groupoperator->nama);
+        $groupuser = GroupOperator::find($id);
+        return view('admin.crud.groupuser.show',compact('groupuser'))
+        ->with('title', $groupuser->nama);
     }
 
     /**
@@ -68,8 +66,8 @@ class GroupoperatorController extends Controller
     */
     public function edit($id)
     {
-        $groupoperator = GroupOperator::find($id);
-        return view('admin.crud.groupoperator.edit', compact('groupoperator'))->with('title', $this->title);
+        $groupuser = GroupOperator::find($id);
+        return view('admin.crud.groupuser.edit', compact('groupuser'))->with('title', $this->title);
     }
 
     /**
@@ -85,7 +83,7 @@ class GroupoperatorController extends Controller
             'nama' => 'required',
         ]);
         GroupOperator::find($id)->update($request->all());
-        return redirect()->route('groupoperator.index')
+        return redirect()->route('groupuser.index')
         ->with('message','GroupOperator updated successfully');
     }
 
@@ -98,7 +96,7 @@ class GroupoperatorController extends Controller
     public function destroy($id)
     {
         GroupOperator::find($id)->delete();
-        return redirect()->route('groupoperator.index')
+        return redirect()->route('groupuser.index')
         ->with('message','GroupOperator deleted successfully');
     }
 }

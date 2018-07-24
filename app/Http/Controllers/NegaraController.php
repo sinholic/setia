@@ -19,23 +19,7 @@ class NegaraController extends Controller
      */
     public function index(NegaraDataTable $dataTable)
     {
-        $handlebars = '
-        <script id="details-template" type="text/x-handlebars-template">
-            <div class="label label-info">{{ nama }} Rate Interkoneksi</div>
-            <table class="table details-table" id="detail-{{id}}">
-                <thead>
-                <tr>
-                    <th>Nama Service</th>
-                    <th>Unit</th>
-                    <th>Nilai Unit</th>
-                    <th>Rate</th>
-                    <th>Start</th>
-                </tr>
-                </thead>
-            </table>
-        </script>
-        ';
-        return $dataTable->render('admin.crud.negara.index', ['title' => $this->title, 'handlebars' => $handlebars]);
+        return $dataTable->render('admin.crud.negara.index', ['title' => $this->title]);
     }
 
     /**
@@ -134,12 +118,13 @@ class NegaraController extends Controller
                         'notes'                 => null,
                         'updated_by'            => $request->updated_by
                     );
-                    if (isset($rate['id_rate'])) {
-                        RateInterkoneksiNegara::updateOrCreate(['id' => $rate['id_rate']],$data_rate);
-                    }else {
+                    if (!isset($rate['id_rate'])) {
                         $data_rate['created_by'] = $request->created_by;
-                        RateInterkoneksiNegara::create($data_rate);
                     }
+                    RateInterkoneksiNegara::updateOrCreate(
+                        ['id_negara' => $id, 'id_service' => $rate['id_service']],
+                        $data_rate
+                    );
                 }
             }
         }

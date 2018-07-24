@@ -11,4 +11,11 @@ Class GroupOperator extends Model
         "nama",
         "notes",
     ];
+
+    public function operators()
+    {
+        return $this->belongsToMany('App\Operator', 'a_operator_and_group_operator', 'id_operator', 'id_group_operator')
+            ->withPivot('notes', 'created_by', 'updated_by')
+            ->withTimestamps();
+    }
 }

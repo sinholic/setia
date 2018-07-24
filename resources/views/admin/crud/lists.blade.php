@@ -45,12 +45,20 @@ $('#dataTableBuilder tbody').on('click', 'td.details-control', function () {
     console.log(tableId);
     if (row.child.isShown()) {
         // This row is already open - close it
-        $(this).html('<i class="fas fa-plus font-blue" style="cursor: pointer; font-size: 16px;"></i>')
+        @if($title == "Telin Tarif")
+            $(this).html('<button class="btn btn-sm btn-secondary"><i class="fas fa-plus font-blue" style="cursor: pointer; font-size: 16px;"></i> View Log</button>')
+        @else
+            $(this).html('<i class="fas fa-plus font-blue" style="cursor: pointer; font-size: 16px;"></i>')
+        @endif
         row.child.hide();
         tr.removeClass('shown');
     } else {
         // Open this row
-        $(this).html('<i class="fas fa-minus font-blue" style="cursor: pointer; font-size: 16px;"></i>')
+        @if($title == "Telin Tarif")
+            $(this).html('<button class="btn btn-sm btn-secondary"><i class="fas fa-minus font-blue" style="cursor: pointer; font-size: 16px;"></i> View Log</button>')
+        @else
+            $(this).html('<i class="fas fa-minus font-blue" style="cursor: pointer; font-size: 16px;"></i>')
+        @endif
         row.child(template(row.data())).show();
         initTable(tableId, row.data());
         tr.addClass('shown');

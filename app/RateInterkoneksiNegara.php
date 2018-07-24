@@ -7,7 +7,6 @@ Class RateInterkoneksiNegara extends Model
 {
     protected $table = "a_rate_interkoneksi_negara";
 
-
     protected $guarded = [
     ];
 

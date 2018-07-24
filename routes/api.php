@@ -21,4 +21,6 @@ Route::group([
         'prefix'=>'admin'
     ],function () {
         Route::get('negara-detail/{id}', ['uses' => 'NegaraController@detailNegara', 'as' => 'api.admin.negara.detail']);
+        Route::get('telintarif-detail/{id}', ['uses' => 'TelintariffController@detailTarif', 'as' => 'api.admin.telintarif.detail']);
+        Route::get('operator-detail/{id}', ['uses' => 'OperatorController@detailOperator', 'as' => 'api.admin.operator.detail']);
 });

@@ -20,4 +20,9 @@ Class Negara extends Model
     {
         return $this->hasMany('App\RateInterkoneksiNegara', 'id_negara');
     }
+
+    public function operators()
+    {
+        return $this->hasMany('App\Operator', 'id_negara');
+    }
 }

@@ -16,8 +16,17 @@ class OperatorDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
+        ->filterColumn('nama_negara', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_negara.nama) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('tipe_organisasi', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_tipe_organisasi.nama) like ?", ["%$keyword%"]);
+        })
         ->addColumn('action', function ($items) {
             return view('admin.crud.buttons', compact('items'))->render();
+        })
+        ->addColumn('details_url', function($items) {
+            return route('api.admin.operator.detail', $items->id);
         });
     }
 
@@ -35,7 +44,12 @@ class OperatorDataTable extends DataTable
             ->select(
                 'a_operator.id',
                 \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_operator.id DESC) as no'),
-                'a_operator.nama', 'a_operator.kode', 'mnc', 'network_display', 'a_negara.nama as negara', 'a_tipe_organisasi.nama as tipe_organisasi');
+                'a_operator.nama',
+                'a_operator.kode',
+                'mnc',
+                'network_display',
+                'a_negara.nama as nama_negara',
+                'a_tipe_organisasi.nama as tipe_organisasi');
     }
 
     /**
@@ -60,12 +74,25 @@ class OperatorDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'no',
+            [
+                "className"         => 'details-control',
+                "orderable"         => false,
+                "searchable"        => false,
+                "data"              => null,
+                "defaultContent"    => '<i class="fas fa-plus font-blue" style="cursor: pointer; font-size: 16px;"></i>',
+                "title"             => '',
+                "width"             => '0px',
+            ],
+            [
+                "searchable"    => false,
+                "data"          => 'no',
+                "title"         => 'No',
+            ],
             'nama',
             'kode',
             'mnc',
             'network_display',
-            'negara',
+            'nama_negara',
             'tipe_organisasi'
         ];
     }

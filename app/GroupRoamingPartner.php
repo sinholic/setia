@@ -11,4 +11,9 @@ Class GroupRoamingPartner extends Model
         "nama",
         "notes",
     ];
+
+    public function roamingpartners()
+    {
+        return $this->hasMany('App\RoamingPartner', 'id_group_roaming_partner');
+    }
 }
