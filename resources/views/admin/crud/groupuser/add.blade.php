@@ -1,6 +1,6 @@
 @extends('admin.crud.form')
 @section('content_input')
-{{ Form::open(array('route' => 'continent.store', 'class' => 'form-horizontal')) }}
+{{ Form::open(array('route' => 'groupuser.store', 'class' => 'form-horizontal')) }}
     <div class="form-group row">
         {{ Form::label('nama', 'Name', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">

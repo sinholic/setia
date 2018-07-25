@@ -258,7 +258,7 @@
                             $class="";
                             $option=false;
                         @endphp
-                        @if($operator->roamingpartners[$key]->pivot->id_opsi_roaming_partner == $opsiroamingpartner->id)
+                        @if(isset($operator->roamingpartners[$key]) && $operator->roamingpartners[$key]->pivot->id_opsi_roaming_partner == $opsiroamingpartner->id)
                             @php
                                 $class="active";
                                 $option=true;
@@ -271,10 +271,10 @@
                 </div>
             </div>
             <div class="col-sm-2">
-                <input id="launching_date_tsel" type="text" class="datetimepicker-input datepicker-launching_date_tsel-{{ $key }} form-control form-control-sm{{ $errors->has('tgl_berlaku') ? ' is-invalid' : '' }}" name="partner[{{ $roamingpartner->id }}][launching_date_tsel]" value="{{ $operator->roamingpartners[$key]->pivot->launching_date_tsel }}" data-toggle="datetimepicker" data-target=".datepicker-launching_date_tsel-{{ $key }}">
+                <input id="launching_date_tsel" type="text" class="datetimepicker-input datepicker-launching_date_tsel-{{ $key }} form-control form-control-sm{{ $errors->has('tgl_berlaku') ? ' is-invalid' : '' }}" name="partner[{{ $roamingpartner->id }}][launching_date_tsel]" value="{{ (isset($operator->roamingpartners[$key]) ? $operator->roamingpartners[$key]->pivot->launching_date_tsel : '') }}" data-toggle="datetimepicker" data-target=".datepicker-launching_date_tsel-{{ $key }}">
             </div>
             <div class="col-sm-2">
-                <input id="launching_date_rp" type="text" class="datetimepicker-input datepicker-launching_date_rp-{{ $key }} form-control form-control-sm{{ $errors->has('tgl_berlaku') ? ' is-invalid' : '' }}" name="partner[{{ $roamingpartner->id }}][launching_date_rp]" value="{{ $operator->roamingpartners[$key]->pivot->launching_date_rp }}" data-toggle="datetimepicker" data-target=".datepicker-launching_date_rp-{{ $key }}">
+                <input id="launching_date_rp" type="text" class="datetimepicker-input datepicker-launching_date_rp-{{ $key }} form-control form-control-sm{{ $errors->has('tgl_berlaku') ? ' is-invalid' : '' }}" name="partner[{{ $roamingpartner->id }}][launching_date_rp]" value="{{ (isset($operator->roamingpartners[$key]) ? $operator->roamingpartners[$key]->pivot->launching_date_rp : '') }}" data-toggle="datetimepicker" data-target=".datepicker-launching_date_rp-{{ $key }}">
             </div>
         </div>
         @endforeach

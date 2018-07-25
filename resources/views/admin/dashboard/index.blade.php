@@ -1,6 +1,6 @@
 @extends('admin.main')
 @section('content')
-<div class="col-6">
+<div class="col-md-6">
     <div class="widget widget-nopad">
         <div class="widget-header"> <i class="icon-bookmark fas fa-list-alt"></i>
             <h3>Quick Post</h3>
@@ -55,7 +55,7 @@
     <!-- /widget -->
 </div>
 <!-- /col-6 -->
-<div class="col-6">
+<div class="col-md-6">
     <div class="widget">
         <div class="widget-header"> <i class="icon-bookmark fas fa-bookmark"></i>
             <h3>Shortcuts to Master Data</h3>

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -15,8 +16,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $table = 'xuser';
-    protected $fillable = [
-        'name', 'email', 'password',
+    protected $guarded = [
+
     ];
 
     /**
@@ -27,4 +28,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function group()
+    {
+        return $this->belongsTo('App\XGroupUser', 'id_group');
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        if(Hash::needsRehash($password)) $password = Hash::make($password);
+
+        $this->attributes['password'] = $password;
+    }
 }

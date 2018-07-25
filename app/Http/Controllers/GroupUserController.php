@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataTables\GroupUserDataTable;
+use App\XGroupUser;
 
 class GroupUserController extends Controller
 {
@@ -12,7 +14,7 @@ class GroupUserController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(GroupuserDataTable $dataTable)
+    public function index(GroupUserDataTable $dataTable)
     {
         return $dataTable->render('admin.crud.lists', ['title' => $this->title]);
     }
@@ -39,10 +41,10 @@ class GroupUserController extends Controller
         $this->validate($request, [
             'nama' => 'required',
         ]);
-        GroupOperator::create($request->all());
+        XGroupUser::create($request->all());
 
         return redirect(route('groupuser.index'))
-        ->with('message','GroupOperator added successfully');
+        ->with('message','Group user added successfully');
     }
 
     /**
@@ -53,7 +55,7 @@ class GroupUserController extends Controller
     */
     public function show($id)
     {
-        $groupuser = GroupOperator::find($id);
+        $groupuser = XGroupUser::find($id);
         return view('admin.crud.groupuser.show',compact('groupuser'))
         ->with('title', $groupuser->nama);
     }
@@ -66,7 +68,7 @@ class GroupUserController extends Controller
     */
     public function edit($id)
     {
-        $groupuser = GroupOperator::find($id);
+        $groupuser = XGroupUser::find($id);
         return view('admin.crud.groupuser.edit', compact('groupuser'))->with('title', $this->title);
     }
 
@@ -82,9 +84,9 @@ class GroupUserController extends Controller
         $this->validate($request, [
             'nama' => 'required',
         ]);
-        GroupOperator::find($id)->update($request->all());
+        XGroupUser::find($id)->update($request->all());
         return redirect()->route('groupuser.index')
-        ->with('message','GroupOperator updated successfully');
+        ->with('message','Group user updated successfully');
     }
 
     /**
@@ -95,8 +97,8 @@ class GroupUserController extends Controller
     */
     public function destroy($id)
     {
-        GroupOperator::find($id)->delete();
+        XGroupUser::find($id)->delete();
         return redirect()->route('groupuser.index')
-        ->with('message','GroupOperator deleted successfully');
+        ->with('message','Group user deleted successfully');
     }
 }

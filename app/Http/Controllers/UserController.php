@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataTables\UserDataTable;
+use App\User;
+use App\XGroupUser;
 
 class UserController extends Controller
 {
+    private $title = 'User';
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UserDataTable $dataTable)
     {
-        //
+        return $dataTable->render('admin.crud.lists', ['title' => $this->title]);
     }
 
     /**
@@ -23,7 +27,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $groups = XGroupUser::pluck('nama','id');
+        return view('admin.crud.user.add', compact('groups'))
+            ->with('title', $this->title);
     }
 
     /**
@@ -34,7 +40,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'id_group'  => 'required',
+            'name'      => 'required',
+            'email'     => 'required|email',
+            'password'  => 'required'
+        ]);
+        // $request->password = Hash::make($request->password);
+        User::create($request->all());
+
+        return redirect(route('user.index'))
+                        ->with('message','User added successfully');
     }
 
     /**
@@ -45,7 +61,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.crud.user.show',compact('user'))
+            ->with('title', $user->nama);
     }
 
     /**
@@ -56,7 +74,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $groups = XGroupUser::pluck('name','id');
+        return view('admin.crud.user.edit', compact('user', 'groups'))->with('title', $this->title);
     }
 
     /**
@@ -68,7 +88,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required',
+        ]);
+        User::find($id)->update($request->all());
+        return redirect()->route('user.index')
+                ->with('message','User updated successfully');
     }
 
     /**
@@ -79,6 +104,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return redirect()->route('user.index')
+                        ->with('message','User deleted successfully');
     }
 }

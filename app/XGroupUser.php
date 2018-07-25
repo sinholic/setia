@@ -11,8 +11,11 @@ class XGroupUser extends Model
 {
     protected $table = "xgroup_user";
 
-    protected $fillable = [
-        "nama",
-        "notes",
+    protected $guarded = [
     ];
+
+    public function users()
+    {
+        return $this->hasMany('App\User', 'id_group');
+    }
 }
