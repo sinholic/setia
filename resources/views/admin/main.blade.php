@@ -36,23 +36,6 @@
                             <a class="dropdown-item {{{ (Request::is('*/groupuser*') ? 'active' : '') }}} " href="{{ route('groupuser.index') }}">Users Group</a>
                         </div>
                     </li>
-                    <li><a href="guidely.html"><i class="fas fa-video"></i><span>App Tour</span> </a></li>
-                    <li><a href="charts.html"><i class="fas fa-signal"></i><span>Charts</span> </a> </li>
-                    <li><a href="shortcodes.html"><i class="fas fa-code"></i><span>Shortcodes</span> </a> </li>
-
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fas fa-long-arrow-alt-down"></i><span>Drops</span> <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="icons.html">Icons</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="pricing.html">Pricing Plans</a></li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="signup.html">Signup</a></li>
-                            <li><a href="error.html">404</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
             <!-- /container -->

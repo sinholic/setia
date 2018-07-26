@@ -27,7 +27,7 @@
                         <i class="fas fa-user"></i> {{ Auth::user()->name }} <b class="caret"></b>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="javascript:;">Profile</a>
+                        <!-- <a class="dropdown-item" href="javascript:;">Profile</a> -->
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"
                             data-toggle="tooltip" data-placement="top" title="Logout"
