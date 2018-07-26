@@ -296,6 +296,44 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    {{ Form::label('opsi_unit', 'Opsi Unit Service', ['class' => 'col-sm-3 form-control-label']) }}
+                    <div class="col-sm-7">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            @foreach($opsiunitservices as $opsiunitservice)
+                                @php
+                                    $class="";
+                                    $option=false;
+                                @endphp
+                                @if(isset($rate->id_opsi_unit_service) && $rate->id_opsi_unit_service == $opsiunitservice->id)
+                                    @php
+                                        $class="active";
+                                        $option=true;
+                                    @endphp
+                                @endif
+                                <label class="btn btn-sm btn-outline-primary {{ $class }}">
+                                    {{ Form::radio('rates['.$key.'][id_opsi_unit_service]', $opsiunitservice->id, $option) }} {{ $opsiunitservice->nama }}
+                                </label>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    {{ Form::label('nilai_unit', 'Unit', ['class' => 'col-sm-3 form-control-label']) }}
+                    <div class="col-sm-7">
+                        <input id="nilai_unit" type="text" class="form-control{{ $errors->has('nilai_unit') ? ' is-invalid' : '' }}" name="rates[{{ $key }}][nilai_unit]" value="{{ $rate->nilai_unit }}" required autofocus>
+                        @if ($errors->has('nilai_unit'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('nilai_unit') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn-remove btn btn-sm btn-outline-danger" data-remove="rate-{{ $rate->id }}" href="#">
+                            <i class="fas fa-times-circle"></i> Remove
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group row">
                     {{ Form::label('nilai_rate', 'Rate', ['class' => 'col-sm-3 form-control-label']) }}
                     <div class="col-sm-7">
                         <input id="nilai_rate" type="text" class="form-control{{ $errors->has('nilai_rate') ? ' is-invalid' : '' }}" name="rates[{{ $key }}][nilai_rate]" value="{{ $rate->nilai_rate }}" required autofocus>
@@ -366,15 +404,33 @@
                         </select>\
                     </div>\
                 </div>\
-                <div id="" class="form-group row rate-new">\
-                    {{ Form::label('nilai_rate', 'Rate', ['class' => 'col-sm-3 form-control-label']) }}\
+                <div class="form-group row">\
+                    {{ Form::label('opsi_unit', 'Opsi Unit Service', ['class' => 'col-sm-3 form-control-label']) }}\
                     <div class="col-sm-7">\
-                        <input id="nilai_rate" type="nilai_rate" class="form-control" name="rates['+count+'][nilai_rate]" value="" required autofocus>\
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">\
+                            @foreach($opsiunitservices as $opsiunitservice)\
+                                <label class="btn btn-sm btn-outline-primary">\
+                                    <input name="rates['+count+'][id_opsi_unit_service]" value="{{ $opsiunitservice->id }}" type="radio"> {{ $opsiunitservice->nama }}\
+                                </label>\
+                            @endforeach\
+                        </div>\
+                    </div>\
+                </div>\
+                <div class="form-group row">\
+                    {{ Form::label('nilai_unit', 'Unit', ['class' => 'col-sm-3 form-control-label']) }}\
+                    <div class="col-sm-7">\
+                        <input id="nilai_unit" type="text" class="form-control{{ $errors->has('nilai_unit') ? ' is-invalid' : '' }}" name="rates['+count+'][nilai_unit]" value="" required autofocus>\
                     </div>\
                     <div class="col-sm-2">\
                         <a class="btn-remove btn btn-sm btn-outline-danger" data-remove="rate-new-'+count+'" href="#">\
                             <i class="fas fa-times-circle"></i> Remove\
                         </a>\
+                    </div>\
+                </div>\
+                <div id="" class="form-group row rate-new">\
+                    {{ Form::label('nilai_rate', 'Rate', ['class' => 'col-sm-3 form-control-label']) }}\
+                    <div class="col-sm-7">\
+                        <input id="nilai_rate" type="nilai_rate" class="form-control" name="rates['+count+'][nilai_rate]" value="" required autofocus>\
                     </div>\
                 </div>\
                 <div id="" class="form-group row rate-new">\

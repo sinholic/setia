@@ -1,17 +1,50 @@
 @extends('admin.crud.form')
 @section('content_input')
 {{ Form::model($user, ['method' => 'PATCH', 'route' => ['user.update', $user->id], 'class' => 'form-horizontal']) }}
-    <div class="form-group row">
-        {{ Form::label('nama', 'Name', ['class' => 'col-sm-3 form-control-label']) }}
-        <div class="col-sm-9">
-            <input id="nama" type="nama" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" value="{{ $user->nama }}" required autofocus>
-            @if ($errors->has('nama'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('nama') }}</strong>
-                </span>
-            @endif
-        </div>
+<div class="form-group row">
+    {{ Form::label('user', 'Group User *', ['class' => 'col-sm-3 form-control-label']) }}
+    <div class="col-sm-9">
+        {{ Form::select('id_group', $groups, $user->id_group, ['class' => 'form-control'.($errors->has('id_group') ? ' is-invalid' : ''), 'placeholder' => 'Pilih group ...']) }}
+        @if ($errors->has('id_group'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('id_group') }}</strong>
+            </span>
+        @endif
     </div>
+</div>
+<div class="form-group row">
+    {{ Form::label('name', 'Name *', ['class' => 'col-sm-3 form-control-label']) }}
+    <div class="col-sm-9">
+        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required autofocus>
+        @if ($errors->has('name'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('name') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+<div class="form-group row">
+    {{ Form::label('email', 'E-mail *', ['class' => 'col-sm-3 form-control-label']) }}
+    <div class="col-sm-9">
+        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" required autofocus>
+        @if ($errors->has('email'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+<div class="form-group row">
+    {{ Form::label('password', 'Password', ['class' => 'col-sm-3 form-control-label']) }}
+    <div class="col-sm-9">
+        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="" placeholder="Empty = No Edit">
+        @if ($errors->has('password'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('password') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
     <div class="form-group row">
         {{ Form::label('remark', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">

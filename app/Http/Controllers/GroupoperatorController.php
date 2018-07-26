@@ -44,7 +44,7 @@ class GroupoperatorController extends Controller
         GroupOperator::create($request->all());
 
         return redirect(route('groupoperator.index'))
-        ->with('message','GroupOperator added successfully');
+        ->with('message','Group Operator added successfully');
     }
 
     /**
@@ -86,7 +86,7 @@ class GroupoperatorController extends Controller
         ]);
         GroupOperator::find($id)->update($request->all());
         return redirect()->route('groupoperator.index')
-        ->with('message','GroupOperator updated successfully');
+        ->with('message','Group Operator updated successfully');
     }
 
     /**
@@ -99,6 +99,6 @@ class GroupoperatorController extends Controller
     {
         GroupOperator::find($id)->delete();
         return redirect()->route('groupoperator.index')
-        ->with('message','GroupOperator deleted successfully');
+        ->with('message','Group Operator deleted successfully');
     }
 }

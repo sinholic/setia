@@ -75,7 +75,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $groups = XGroupUser::pluck('name','id');
+        $groups = XGroupUser::pluck('nama','id');
         return view('admin.crud.user.edit', compact('user', 'groups'))->with('title', $this->title);
     }
 
@@ -89,7 +89,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nama' => 'required',
+            'id_group'  => 'required',
+            'name'      => 'required',
+            'email'     => 'required|email'
         ]);
         User::find($id)->update($request->all());
         return redirect()->route('user.index')

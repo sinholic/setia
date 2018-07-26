@@ -6,6 +6,7 @@ use App\Continent;
 use App\Negara;
 use App\RateInterkoneksiNegara;
 use App\Service;
+use App\OpsiUnitService;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
@@ -74,11 +75,12 @@ class NegaraController extends Controller
      */
     public function edit($id)
     {
-        $negara         = Negara::find($id);
-        $continents     = Continent::pluck('nama','id');
-        $rates          = RateInterkoneksiNegara::where('id_negara', $id)->get();
-        $services       = Service::pluck('nama', 'id');
-        return view('admin.crud.negara.edit', compact('negara', 'continents', 'rates', 'services'))->with('title', $negara->nama);
+        $negara             = Negara::find($id);
+        $continents         = Continent::pluck('nama','id');
+        $rates              = RateInterkoneksiNegara::where('id_negara', $id)->get();
+        $services           = Service::pluck('nama', 'id');
+        $opsiunitservices   = OpsiUnitService::all();
+        return view('admin.crud.negara.edit', compact('negara', 'continents', 'rates', 'services', 'opsiunitservices'))->with('title', $negara->nama);
     }
 
     /**
@@ -111,8 +113,8 @@ class NegaraController extends Controller
                     $data_rate = array(
                         'id_negara'             => $id,
                         'id_service'            => $rate['id_service'],
-                        'id_opsi_unit_service'  => 2,
-                        'nilai_unit'            => 1,
+                        'id_opsi_unit_service'  => $rate['id_opsi_unit_service'],
+                        'nilai_unit'            => $rate['nilai_unit'],
                         'nilai_rate'            => $rate['nilai_rate'],
                         'tgl_berlaku'           => $rate['tgl_berlaku'],
                         'notes'                 => null,

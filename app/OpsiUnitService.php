@@ -14,4 +14,9 @@ Class OpsiUnitService extends Model
     {
         return $this->hasMany('App\RateInterkoneksiNegara', 'id_opsi_unit_service');
     }
+
+    public function rateinterkoneksioperators()
+    {
+        return $this->hasMany('App\RateInterkoneksiOperator', 'id_opsi_unit_service');
+    }
 }

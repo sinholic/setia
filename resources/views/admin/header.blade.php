@@ -17,6 +17,11 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
     <link href="{{ asset('css/admin/style.css') }}" rel="stylesheet">
+    <style media="screen">
+        .select2-container--bootstrap {
+            width: 100% !important;
+        }
+    </style>
     <link href="{{ asset('css/admin/pages/dashboard.css') }}" rel="stylesheet">
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>

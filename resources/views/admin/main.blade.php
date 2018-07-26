@@ -27,13 +27,13 @@
                             <a class="dropdown-item {{{ (Request::is('*/exchangerate*') ? 'active' : '') }}} " href="{{ route('exchangerate.index') }}">Exchange Rate</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown {{{ (Request::is('*users*') ? 'active' : '') }}}">
+                    <li class="nav-item dropdown {{{ (Request::is('*user*') ? 'active' : '') }}}">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i><span>Users</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item {{{ (Request::is('*/user*') ? 'active' : '') }}} " href="{{ route('user.index') }}">Users List</a>
-                            <a class="dropdown-item {{{ (Request::is('*/groupuser*') ? 'active' : '') }}} " href="{{ route('groupuser.index') }}">Users Group</a> 
+                            <a class="dropdown-item {{{ (Request::is('*/groupuser*') ? 'active' : '') }}} " href="{{ route('groupuser.index') }}">Users Group</a>
                         </div>
                     </li>
                     <li><a href="guidely.html"><i class="fas fa-video"></i><span>App Tour</span> </a></li>
