@@ -45,10 +45,19 @@
                             <a class="dropdown-item {{{ (Request::is('*/groupmenu*') ? 'active' : '') }}} " href="{{ route('groupmenu.index') }}">Menu Group</a>
                         </div>
                     </li>
-                    <li><a href="charts.html"><i class="fas fa-signal"></i><span>Charts</span> </a> </li>
-                    <li><a href="shortcodes.html"><i class="fas fa-code"></i><span>Shortcodes</span> </a> </li>
+                    <li class="nav-item dropdown {{{ (Request::is('*menu*') ? 'active' : '') }}}">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-signal"></i><span>Data BI</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item {{{ (Request::is('*/menu*') ? 'active' : '') }}} " href="{{ route('menu.index') }}">Menu List</a>
+                            <a class="dropdown-item {{{ (Request::is('*/groupmenu*') ? 'active' : '') }}} " href="{{ route('groupmenu.index') }}">Menu Group</a>
+                        </div>
+                    </li>
+                    <!-- <li><a href="charts.html"><i class="fas fa-signal"></i><span>Charts</span> </a> </li> -->
+                    <!-- <li><a href="shortcodes.html"><i class="fas fa-code"></i><span>Shortcodes</span> </a> </li> -->
 
-                    <li class="dropdown">
+                    <!-- <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fas fa-long-arrow-alt-down"></i><span>Drops</span> <b class="caret"></b>
                         </a>
@@ -60,7 +69,7 @@
                             <li><a href="signup.html">Signup</a></li>
                             <li><a href="error.html">404</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- /container -->
