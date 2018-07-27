@@ -16,8 +16,15 @@ class MscDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
+        ->filterColumn('kota', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_kota.nama) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('msc', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_msc.nama) like ?", ["%$keyword%"]);
+        })
         ->addColumn('action', function ($items) {
             return view('admin.crud.buttons', compact('items'))->render();
+
         });
     }
 
@@ -31,7 +38,7 @@ class MscDataTable extends DataTable
     {
         return $model->newQuery()
         ->join('a_kota', 'a_msc.id_kota', '=', 'a_kota.id')
-        ->select('id', \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_msc.id DESC) as no'), \DB::raw('a_kota.nama as kota'), \DB::raw('a_msc.nama as msc'));
+        ->select('a_msc.id', \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_msc.id DESC) as no'), \DB::raw('a_kota.nama as kota'), \DB::raw('a_msc.nama as msc'));
     }
 
     /**
@@ -56,7 +63,11 @@ class MscDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'no',
+          [
+              "searchable"    => false,
+              "data"          => 'no',
+              "title"         => 'No',
+          ],
             'kota',
             'msc',
         ];

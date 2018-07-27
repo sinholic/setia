@@ -9,8 +9,16 @@ Class Kota extends Model
 {
     protected $table = "a_kota";
 
-    protected $fillable = [
-        "nama",
-        "id_regional",
+    protected $guarded = [
     ];
+
+    public function regional()
+    {
+        return $this->belongsTo('App\Regional', 'id_regional');
+    }
+
+    public function msc_a()
+    {
+        return $this->hasMany('App\MSC', 'id_kota');
+    }
 }

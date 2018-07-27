@@ -6,8 +6,8 @@
         <thead>
         <tr>
             <th>No</th>
-            <th>Nama</th>
             <th>Regional</th>
+            <th>Kota</th>
         </tr>
         </thead>
     </table>
@@ -21,8 +21,8 @@ function initTable(tableId, data) {
         ajax: data.details_url,
         columns: [
             { data: 'no', name: 'no' },
-            { data: 'nama', name: 'nama' },
             { data: 'regional', name: 'regional' },
+            { data: 'kota', name: 'kota' },
 
         ]
     })

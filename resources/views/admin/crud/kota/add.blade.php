@@ -1,24 +1,25 @@
 @extends('admin.crud.form')
 @section('content_input')
 {{ Form::open(array('route' => 'kota.store', 'class' => 'form-horizontal')) }}
+
     <div class="form-group row">
-        {{ Form::label('nama', 'Name', ['class' => 'col-sm-3 form-control-label']) }}
+        {{ Form::label('regional', 'Regional', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="nama" type="nama" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" value="{{ old('nama') }}" required autofocus>
-            @if ($errors->has('nama'))
+            {{ Form::select('id_regional', $regional, old('id_regional'), ['class' => 'form-control'.($errors->has('id_regional') ? ' is-invalid' : ''), 'placeholder' => 'Pilih Kota ...']) }}
+            @if ($errors->has('id_regional'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('nama') }}</strong>
+                    <strong>{{ $errors->first('id_regional') }}</strong>
                 </span>
             @endif
         </div>
     </div>
     <div class="form-group row">
-        {{ Form::label('kota', 'Kota', ['class' => 'col-sm-3 form-control-label']) }}
+        {{ Form::label('nama', 'Kota', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            {{ Form::select('id_kota', $kota, old('id_kota'), ['class' => 'form-control'.($errors->has('id_kota') ? ' is-invalid' : ''), 'placeholder' => 'Pilih Kota ...']) }}
-            @if ($errors->has('id_kota'))
+            <input id="kota" type="text" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" value="{{ old('nama') }}" required autofocus>
+            @if ($errors->has('nama'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('id_kota') }}</strong>
+                    <strong>{{ $errors->first('nama') }}</strong>
                 </span>
             @endif
         </div>

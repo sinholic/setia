@@ -13,7 +13,6 @@ class NewsController extends Controller
         $dataAll=News::select('a_news.*', 'xuser.name')
                 ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
                 ->where('a_news.is_publish', '1')
-                ->orderby('id','DESC')
                 ->get()->toJson();
         return view('frontend.main', compact('dataAll'));
     }

@@ -63,7 +63,7 @@ return [
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
-            'schema' => 'portal',
+            'schema' => env('DB_SCHEMA','portal'),
             'sslmode' => 'prefer',
         ],
 

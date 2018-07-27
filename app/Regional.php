@@ -17,5 +17,8 @@ Class Regional extends Model
         "nama",
         "notes",
     ];
-    
+    public function kotas()
+    {
+        return $this->hasMany('App\Kota', 'id_regional');
+    }
 }

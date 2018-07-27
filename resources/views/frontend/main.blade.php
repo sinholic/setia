@@ -2,9 +2,9 @@
 @section('body')
 
 		<!-- SECTION -->
-		<div class="section" style="background:#f1f1f1;padding:0 0 0 0">
+		<div class="section" style="background:#fafafa;padding:0 0 0 0">
 			<!-- CONTAINER -->
-			<div class="container" style="background:#fff;">
+			<div class="container" >
 				<!-- ROW -->
 				<div class="row" style="padding:20px;">
 					<!-- Main Column -->
@@ -210,7 +210,7 @@
 							<article class="article widget-article">
 							<div class="article-body">
 									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
-<a href="{{url('data/handset')}}">Handset Display</a></h4>
+<a href="{{ route('frontend.handset') }}">Handset Display</a></h4>
 							</div>
 						</article>
 							<article class="article widget-article">
@@ -234,7 +234,7 @@
 							<article class="article widget-article">
 								<div class="article-body">
 									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
-<a href="{{url('data/roaming')}}">Roaming Partner Map</a></h4>
+<a href="{{ route('frontend.roaming') }}">Roaming Partner Map</a></h4>
 							</div>
 							</article>
 						</div>

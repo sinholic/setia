@@ -16,6 +16,15 @@ class KotaDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
+        ->filterColumn('regional', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_regional.nama) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('no', function ($query, $keyword) {
+           $query->whereRaw("(a_kota.id) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('kota', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_kota.nama) like ?", ["%$keyword%"]);
+        })
         ->addColumn('action', function ($items) {
             return view('admin.crud.buttons', compact('items'))->render();
         });
@@ -31,7 +40,7 @@ class KotaDataTable extends DataTable
     {
         return $model->newQuery()
             ->join('a_regional', 'a_kota.id_regional', '=', 'a_regional.id')
-            ->select('id', \DB::raw('ROW_NUMBER () OVER (ORDER BY a_kota.id DESC) as no'), \DB::raw('a_regional.nama as regional'), \DB::raw('a_kota.nama as kota'));
+            ->select('a_kota.id', \DB::raw('ROW_NUMBER () OVER (ORDER BY a_kota.id DESC) as no'), \DB::raw('a_regional.nama as regional'), \DB::raw('a_kota.nama as kota'));
     }
 
     /**
@@ -56,7 +65,11 @@ class KotaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'no',
+          [
+              "searchable"    => false,
+              "data"          => 'no',
+              "title"         => 'No',
+          ],
             'regional',
             'kota'
         ];
