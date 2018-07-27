@@ -5,7 +5,7 @@
     <div class="form-group row">
         {{ Form::label('regional', 'Regional', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            {{ Form::select('id_regional', $regional, old('id_regional'), ['class' => 'form-control'.($errors->has('id_regional') ? ' is-invalid' : ''), 'placeholder' => 'Pilih Kota ...']) }}
+            {{ Form::select('id_regional', $regional, old('id_regional'), ['class' => 'form-control'.($errors->has('id_regional') ? ' is-invalid' : ''), 'placeholder' => 'Pilih Regional ...']) }}
             @if ($errors->has('id_regional'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('id_regional') }}</strong>

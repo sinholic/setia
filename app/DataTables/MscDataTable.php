@@ -37,8 +37,10 @@ class MscDataTable extends DataTable
     public function query(MSC $model)
     {
         return $model->newQuery()
-        ->join('a_kota', 'a_msc.id_kota', '=', 'a_kota.id')
-        ->select('a_msc.id', \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_msc.id DESC) as no'), \DB::raw('a_kota.nama as kota'), \DB::raw('a_msc.nama as msc'));
+        ->join('a_regional', 'a_regional.id', '=', 'a_msc.id_regional')
+        ->join('a_kota', 'a_kota.id', '=', 'a_msc.id_kota')
+        ->join('a_status_data_switch', 'a_status_data_switch.id', '=', 'a_msc.id_status')
+        ->select('a_msc.id', \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_msc.id DESC) as no'), \DB::raw('a_msc.recentity as recentity'), \DB::raw('a_msc.gt as gt'),\DB::raw('a_msc.nama as nama'),\DB::raw('a_regional.nama as regional'),\DB::raw('a_kota.nama as namakota'),\DB::raw('a_msc.filename as filename'),\DB::raw('a_status_data_switch.nama as status'));
     }
 
     /**
@@ -68,8 +70,13 @@ class MscDataTable extends DataTable
               "data"          => 'no',
               "title"         => 'No',
           ],
-            'kota',
-            'msc',
+            'recentity',
+            'gt',
+            'nama',
+            'regional',
+            'namakota',
+            'filename',
+            'status',
         ];
     }
 

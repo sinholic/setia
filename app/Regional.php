@@ -21,4 +21,8 @@ Class Regional extends Model
     {
         return $this->hasMany('App\Kota', 'id_regional');
     }
+    public function msc_data()
+    {
+        return $this->hasMany('App\MSC', 'id_regional');
+    }
 }

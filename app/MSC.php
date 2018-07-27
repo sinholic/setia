@@ -17,4 +17,12 @@ Class MSC extends Model
     {
         return $this->belongsTo('App\Kota', 'id_kota');
     }
+    public function regionals()
+    {
+        return $this->belongsTo('App\Regional', 'id_regional');
+    }
+    public function status()
+    {
+        return $this->belongsTo('App\StatusDataSwitch', 'id_status');
+    }
 }

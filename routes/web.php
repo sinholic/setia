@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth']],function () {
         });
         Route::resource('user', 'UserController');
         Route::resource('groupuser', 'GroupUserController');
+        Route::resource('menu', 'MenuController');
+        Route::resource('groupmenu', 'GroupMenuController');
     });
 
 });
