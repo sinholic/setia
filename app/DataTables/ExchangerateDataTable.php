@@ -16,6 +16,21 @@ class ExchangerateDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
+        ->filterColumn('kode_1', function ($query, $keyword) {
+           $query->whereRaw("LOWER(t_roaming_exchange_rate.kode1) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('kode_2', function ($query, $keyword) {
+           $query->whereRaw("LOWER(t_roaming_exchange_rate.kode2) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('kode_3', function ($query, $keyword) {
+           $query->whereRaw("LOWER(t_roaming_exchange_rate.kode3) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('rate', function ($query, $keyword) {
+           $query->whereRaw("CAST(t_roaming_exchange_rate.nilai as CHAR(50)) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('ymd', function ($query, $keyword) {
+           $query->whereRaw("(t_roaming_exchange_rate.ymd) like ?", ["%$keyword%"]);
+        })
         ->addColumn('action', function ($items) {
             return view('admin.crud.buttons', compact('items'))->render();
         });
@@ -54,7 +69,11 @@ class ExchangerateDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'no',
+          [
+              "searchable"    => false,
+              "data"          => 'no',
+              "title"         => 'No',
+          ],
             'kode_1',
             'kode_2',
             'kode_3',
