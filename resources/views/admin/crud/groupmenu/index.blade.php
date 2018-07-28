@@ -1,13 +1,14 @@
 @extends('admin.crud.lists')
 @section('handlebars')
 <script id="details-template" type="text/x-handlebars-template">
-    <div class="label label-info">@{{ nama }} Kota</div>
+    <div class="label label-info">@{{ nama }}</div>
     <table class="table details-table" id="detail-@{{id}}">
         <thead>
         <tr>
             <th>No</th>
-            <th>Regional</th>
-            <th>Kota</th>
+            <th>Nama</th>
+            <th>Show On Sidebar</th>
+
         </tr>
         </thead>
     </table>
@@ -21,8 +22,8 @@ function initTable(tableId, data) {
         ajax: data.details_url,
         columns: [
             { data: 'no', name: 'no' },
-            { data: 'regional', name: 'regional' },
-            { data: 'kota', name: 'kota' },
+            { data: 'nama', name: 'nama' },
+            { data: 'is_show_on_sidebar', name: 'is_show_on_sidebar' },
 
         ]
     })

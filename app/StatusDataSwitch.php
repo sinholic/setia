@@ -15,5 +15,10 @@ Class StatusDataSwitch extends Model
         "nama",
         "notes",
     ];
-    
+
+    public function msc_data()
+    {
+        return $this->hasMany('App\MSC', 'id_status');
+    }
+
 }

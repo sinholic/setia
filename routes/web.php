@@ -18,6 +18,8 @@ Route::group([
     ],function () {
         // Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
         Route::get('/detail/{id}', ['uses' => 'NewsController@detail', 'as' => 'frontend.detail']);
+        Route::get('/handset', ['uses' => 'DataBIController@handset', 'as' => 'frontend.handset']);
+        Route::get('/roaming', ['uses' => 'DataBIController@index', 'as' => 'frontend.roaming']);
 });
 
 Route::group(['middleware' => ['auth']],function () {
@@ -47,6 +49,8 @@ Route::group(['middleware' => ['auth']],function () {
         });
         Route::resource('user', 'UserController');
         Route::resource('groupuser', 'GroupUserController');
+        Route::resource('menu', 'MenuController');
+        Route::resource('groupmenu', 'GroupMenuController');
     });
 
 });

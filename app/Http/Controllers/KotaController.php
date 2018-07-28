@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DataTables\KotaDataTable;
 use App\Kota;
+use App\Regional;
 class KotaController extends Controller
 {
+    private $title = 'Kota';
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +16,8 @@ class KotaController extends Controller
      */
     public function index(KotaDataTable $dataTable)
     {
-        $title = 'Kota';
-        return $dataTable->render('admin.crud.lists', ['title' => $title]);
+        // $title = 'Kota';
+        return $dataTable->render('admin.crud.lists', ['title' => $this->title]);
     }
 
     /**
@@ -25,8 +27,9 @@ class KotaController extends Controller
      */
      public function create()
      {
-         $kota = Kota::pluck('nama','id');
-         return view('admin.crud.kota.add', compact('kota'))->with('title', $this->title);
+         // $title = 'Kota';
+         $regional = Regional::pluck('nama','id');
+         return view('admin.crud.kota.add', compact('regional'))->with('title', $this->title);
      }
 
     /**
@@ -38,7 +41,7 @@ class KotaController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-          'id_kota'          => 'required',
+          'id_regional'          => 'required',
           'nama'         => 'required',
 
       ]);
@@ -56,7 +59,13 @@ class KotaController extends Controller
      */
     public function show($id)
     {
-        //
+      $kota             = Kota::find($id);
+      $regionals        = Regional::pluck('nama','id');
+      // $continents     = Continent::pluck('nama','id');
+      // $rates          = RateInterkoneksiNegara::where('id_negara', $id)->get();
+      // $services       = Service::pluck('nama', 'id');
+      return view('admin.crud.kota.show', compact('kota','regionals'))->with('title',$kota->nama)->with('notes',$kota->notes);
+
     }
 
     /**
@@ -67,11 +76,12 @@ class KotaController extends Controller
      */
     public function edit($id)
     {
-      $kota         = Kota::find($id);
+      $kota             = Kota::find($id);
+      $regional         = Regional::pluck('nama','id');
       // $continents     = Continent::pluck('nama','id');
       // $rates          = RateInterkoneksiNegara::where('id_negara', $id)->get();
       // $services       = Service::pluck('nama', 'id');
-      return view('admin.crud.kota.edit', compact('kota'))->with('title', $kota->nama);
+      return view('admin.crud.kota.edit', compact('kota','regional'))->with('title',$kota->nama)->with('notes',$kota->notes);
     }
 
     /**
@@ -83,7 +93,15 @@ class KotaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $data_kota = array(
+          'nama'          => $request->nama,
+          'id_regional'   => $request->id_regional,
+          'notes'         => $request->notes,
+          'updated_by'    => $request->updated_by
+      );
+      Kota::find($id)->update($data_kota);
+      return redirect()->route('kota.index')
+              ->with('message','Kota updated successfully');
     }
 
     /**

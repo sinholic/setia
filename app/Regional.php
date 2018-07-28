@@ -17,5 +17,12 @@ Class Regional extends Model
         "nama",
         "notes",
     ];
-    
+    public function kotas()
+    {
+        return $this->hasMany('App\Kota', 'id_regional');
+    }
+    public function msc_data()
+    {
+        return $this->hasMany('App\MSC', 'id_regional');
+    }
 }
