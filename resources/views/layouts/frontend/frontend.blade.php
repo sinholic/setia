@@ -93,9 +93,12 @@
 						<ul class="main-nav nav navbar-nav">
 							<li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i>
  Home</a></li>
-              <li {{{ (Request::is('data/handset') ? 'class=active' : '') }}}><a href="{{url('data/handset')}}">Roaming</a></li>
+							@foreach($categorynews as $listData)
+							<li {{{ (Request::is('data/$listData->nama') ? 'class=active' : '') }}}><a href="{{url('data/$listData->nama')}}">{{$listData->nama}}</a></li>
+							@endforeach
+						  <!-- <li {{{ (Request::is('data/handset') ? 'class=active' : '') }}}><a href="{{url('data/handset')}}">Roaming</a></li>
 							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Handset</a></li>
-							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Operator</a></li>
+							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Operator</a></li> -->
 							<!-- <li {{{ (Request::is('roaminger') ? 'class=active' : '') }}}><a href="#">Roaming Exchange Rate</a></li>
 							<li {{{ (Request::is('roamingp') ? 'class=active' : '') }}}><a href="#">Roaming Partner</a></li>
 <<<<<<< HEAD

@@ -15,4 +15,8 @@ Class CategoryNews extends Model
     // ];
     protected $guarded = [
     ];
+    public function news_()
+    {
+        return $this->hasMany('App\News', 'id_category');
+    }
 }
