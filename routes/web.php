@@ -20,6 +20,7 @@ Route::group([
         Route::get('/detail/{id}', ['uses' => 'NewsController@detail', 'as' => 'frontend.detail']);
         Route::get('/handset', ['uses' => 'DataBIController@handset', 'as' => 'frontend.handset']);
         Route::get('/roaming', ['uses' => 'DataBIController@index', 'as' => 'frontend.roaming']);
+        Route::get('/category/{id}', ['uses' => 'NewsController@bycategory', 'as' => 'frontend.category']);
 });
 
 Route::group(['middleware' => ['auth']],function () {

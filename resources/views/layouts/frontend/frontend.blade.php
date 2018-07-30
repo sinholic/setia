@@ -94,7 +94,7 @@
 							<li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i>
  Home</a></li>
 							@foreach($categorynews as $listData)
-							<li {{{ (Request::is('data/$listData->nama') ? 'class=active' : '') }}}><a href="{{url('data/$listData->nama')}}">{{$listData->nama}}</a></li>
+							<li {{{ (Request::is('news/category/'.$listData->id) ? 'class=active' : '') }}}><a href="{{url('news/category', ['id' => $listData->id])}}">{{$listData->nama}}</a></li>
 							@endforeach
 						  <!-- <li {{{ (Request::is('data/handset') ? 'class=active' : '') }}}><a href="{{url('data/handset')}}">Roaming</a></li>
 							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Handset</a></li>

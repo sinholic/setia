@@ -26,4 +26,9 @@ class NewsController extends Controller
               ->get()->toJson();
         return view('frontend.detail', compact('dataDetail'));
     }
+    public function bycategory($id){
+      $categorynews = CategoryNews::get();
+      $datanews = News::where('a_news.id_category','=',$id)->get();
+        return view('frontend.category', compact('datanews','categorynews'));
+    }
 }

@@ -18,7 +18,7 @@
 									<h2 class="title">Roaming</h2>
 								</div>
 								<!-- /section title -->
-								@foreach(json_decode($dataAll) as $listData)
+								@foreach($datanews as $listData)
 								<!-- ARTICLE -->
 								 @if($loop->first)
 								<article class="article">
@@ -243,7 +243,7 @@
 							<div class="section-title">
 								<h2 class="title">Most Featured</h2>
 							</div>
-							@foreach(json_decode($dataAll) as $index => $listData)
+							@foreach($datanews as $index => $listData)
 							<!-- ARTICLE -->
 
 							@if($index< 4)
