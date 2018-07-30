@@ -2,7 +2,7 @@
 @section('body')
 
 		<!-- SECTION -->
-		<div class="section" style="background:#f9f6f1;padding:0 0 0 0">
+		<div class="section" style="background:#e4e5e6;padding:0 0 0 0">
 			<!-- CONTAINER -->
 			<div class="container" style="background:#fff;"">
 				<!-- ROW -->

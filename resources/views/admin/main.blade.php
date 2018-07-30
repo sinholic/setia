@@ -6,7 +6,15 @@
             <div class="container">
                 <ul class="mainnav">
                     <li {{{ (Request::is('*dashboard') ? 'class=active' : '') }}} ><a href="{{ route('admin.index') }}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span> </a> </li>
-                    <li {{{ (Request::is('*news*') ? 'class=active' : '') }}} ><a href="{{ route('admin.index') }}"><i class="fas fa-edit"></i><span>News</span> </a> </li>
+                    <li class="nav-item dropdown {{{ (Request::is('*categorynews*') ? 'active' : '') }}}">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-edit"></i><span>News</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item {{{ (Request::is('*/categorynews*') ? 'active' : '') }}} " href="{{ route('categorynews.index') }}">Category News List</a>
+                            <a class="dropdown-item {{{ (Request::is('*/newscrud*') ? 'active' : '') }}} " href="{{ route('newscrud.index') }}">News</a>
+                        </div>
+                    </li>
                     <!-- <li  ><a href="{{ route('admin.master') }}"><i class="fas fa-list-alt"></i><span>Master Data</span> </a> </li> -->
                     <li class="nav-item dropdown {{{ (Request::is('*master*') ? 'active' : '') }}}">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

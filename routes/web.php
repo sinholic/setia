@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth']],function () {
                     'telintarif'    => 'TelintariffController'
                 ]);
         });
+        Route::resource('categorynews', 'CategoryNewsController');
+        Route::resource('newscrud', 'NewsCrudController');
         Route::resource('user', 'UserController');
         Route::resource('groupuser', 'GroupUserController');
         Route::resource('menu', 'MenuController');
