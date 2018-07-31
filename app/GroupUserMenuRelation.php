@@ -12,6 +12,8 @@ Class GroupUserMenuRelation extends Model
     protected $fillable = [
         "id_menu",
         "id_group_user",
+        "created_by",
+        "updated_by"
 //            "notes",
     ];
 }

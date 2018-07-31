@@ -12,4 +12,8 @@ Class GroupMenu extends Model
         "is_show_on_sidebar",
         "notes",
     ];
+    public function menus()
+    {
+        return $this->hasMany('App\Menu', 'id_group_menu');
+    }
 }

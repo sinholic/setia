@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\UserDataTable;
+use App\DataTables\MenuDataTable;
 use App\Menu;
-use App\XGroupMenu;
+use App\GroupMenu;
+use App\XGroupUser;
+use App\GroupUserMenuRelation;
 
 class MenuController extends Controller
 {
@@ -15,7 +17,7 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UserDataTable $dataTable)
+    public function index(MenuDataTable $dataTable)
     {
         return $dataTable->render('admin.crud.lists', ['title' => $this->title]);
     }
@@ -27,8 +29,11 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $groups = XGroupUser::pluck('nama','id');
-        return view('admin.crud.user.add', compact('groups'))
+        $groups = GroupMenu::pluck('nama','id');
+        $groupusers = XGroupUser::get();
+      //  $menu = Menu::pluck('is_public','id','is_frame','link_url');
+
+        return view('admin.crud.menu.add', compact('groups','groupusers'))
             ->with('title', $this->title);
     }
 
@@ -41,16 +46,50 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'id_group'  => 'required',
-            'name'      => 'required',
-            'email'     => 'required|email',
-            'password'  => 'required'
-        ]);
-        // $request->password = Hash::make($request->password);
-        User::create($request->all());
+            'link_label'  => 'required',
+            'link_url'      => 'required',
 
-        return redirect(route('user.index'))
-                        ->with('message','User added successfully');
+        ]);
+        $data_menu= array(
+            "link_label"                  => $request->link_label,
+            "link_url"            => $request->link_url,
+            "link_desc"            => $request->link_desc,
+            "is_frame"            => $request->is_frame,
+            "is_public"            => $request->is_public,
+            "is_show_on_sidebar"            => $request->is_show_on_sidebar,
+            "id_group_menu"            => $request->id_group_menu,
+            "updated_by"               => $request->updated_by,
+            "created_by"               => $request->created_by
+        );
+        $menu=Menu::create($data_menu);
+        if (isset($request->group_user)) {
+            foreach ($request->group_user as $key=>$group_user) {
+              if($group_user!=0){
+                $data_group_menu_user = array(
+                    "id_menu"                  => $menu->id,
+                    "id_group_user"            => $group_user,
+                    "updated_by"               => $request->updated_by,
+                    "created_by"               => $request->created_by
+                );
+                 GroupUserMenuRelation::create($data_group_menu_user);
+             }
+            }
+
+            return redirect(route('menu.index'))
+                            ->with('message','Menu added successfully');
+                          }
+        //foreach ($request->id as $key) {
+          ///  print_r($request->group_user);
+        //  }
+        //}
+        // $data_group_menu_user = array(
+        //     "id_menu"                  => $menu->id,
+        //     "id_group_user"            => $request->id_group_user,
+        //     "updated_by"               => $request->updated_by
+        //     "created_by"               => $request->created_by
+        // );
+
+
     }
 
     /**
@@ -61,8 +100,19 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('admin.crud.user.show',compact('user'))
+        $menu = Menu::find($id);
+        $groups = GroupMenu::pluck('nama','id');
+        $groupusers = XGroupUser::join('a_menu_and_group_user','a_menu_and_group_user.id_group_user', '=', 'xgroup_user.id')
+                      ->join('a_menu_and_group_user','a_menu_and_group_user.id_group_user', '=', 'xgroup_user.id')
+                      ->select(
+                            \DB::raw('xgroup_user.id as id'),
+                            \DB::raw('xgroup_user.nama as nama'),
+                            \DB::raw('a_menu_and_group_user.id_group_user as group_user_ID')
+                          )
+                      ->where('a_menu_and_group_user.id_menu','=',$id)
+                      ->get();
+
+        return view('admin.crud.menu.show',compact('$menu','groups','groupusers'))
             ->with('title', $user->nama);
     }
 
@@ -74,9 +124,18 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $groups = XGroupUser::pluck('nama','id');
-        return view('admin.crud.user.edit', compact('user', 'groups'))->with('title', $this->title);
+        $menu = Menu::find($id);
+        $groups = GroupMenu::pluck('nama','id');
+        $groupusers = XGroupUser::leftjoin('a_menu_and_group_user','a_menu_and_group_user.id_group_user', '=', 'xgroup_user.id')
+                      ->select(
+                            \DB::raw('xgroup_user.id as id'),
+                            \DB::raw('xgroup_user.nama as nama'),
+                            \DB::raw('a_menu_and_group_user.id_group_user as group_user_ID')
+                          )
+                      ->get();
+                    //  return $groupusers;
+        //$groupuserrelat = GroupUserMenuRelation::get();
+       return view('admin.crud.menu.edit', compact('menu', 'groups','groupusers'))->with('title', $this->title);
     }
 
     /**
@@ -88,14 +147,41 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'id_group'  => 'required',
-            'name'      => 'required',
-            'email'     => 'required|email'
-        ]);
-        User::find($id)->update($request->all());
-        return redirect()->route('user.index')
-                ->with('message','User updated successfully');
+      $this->validate($request, [
+          'link_label'  => 'required',
+          'link_url'      => 'required',
+
+      ]);
+      $data_menu= array(
+          "link_label"                  => $request->link_label,
+          "link_url"            => $request->link_url,
+          "link_desc"            => $request->link_desc,
+          "is_frame"            => $request->is_frame,
+          "is_public"            => $request->is_public,
+          "is_show_on_sidebar"            => $request->is_show_on_sidebar,
+          "id_group_menu"            => $request->id_group_menu,
+          "updated_by"               => $request->updated_by,
+          "created_by"               => $request->created_by
+      );
+      $menu=Menu::find($id)->update($data_menu);
+      if (isset($request->group_user)) {
+          foreach ($request->group_user as $key=>$group_user) {
+            $select=GroupUserMenuRelation::where('id_menu', '=', $id)->where('id_group_user', '=', $group_user)->count();
+            $data_group_menu_user = array(
+                "id_menu"                  => $id,
+                "id_group_user"            => $group_user,
+                "updated_by"               => $request->updated_by,
+                "created_by"               => $request->created_by
+            );
+            if($select>0){
+               //GroupUserMenuRelation::where('id_menu', '=', $id)->update($data_group_menu_user);
+           }else{
+              GroupUserMenuRelation::create($data_group_menu_user);
+           }
+          }
+          return redirect(route('menu.index'))
+                          ->with('message','Menu update successfully');
+                        }
     }
 
     /**
@@ -106,8 +192,12 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect()->route('user.index')
-                        ->with('message','User deleted successfully');
+        $delete=Menu::find($id)->delete();
+        if($delete){
+            GroupUserMenuRelation::where('id_menu', $id)->delete();
+        }
+
+        return redirect()->route('menu.index')
+                        ->with('message','Menu deleted successfully');
     }
 }

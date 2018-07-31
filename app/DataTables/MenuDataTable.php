@@ -30,18 +30,20 @@ class MenuDataTable extends DataTable
      * @param \App\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(Menu $model)
     {
         return $model->newQuery()
-            ->join('xgroup_user', 'xgroup_user.id', '=', 'xuser.id_group')
+            ->join('a_group_menu', 'a_group_menu.id', '=', 'a_menu.id_group_menu')
             ->select(
-                'xuser.id',
-                \DB::raw(' ROW_NUMBER () OVER (ORDER BY xuser.id DESC) as no'),
-                'name',
-                'email',
-                'xgroup_user.nama as nama_group',
-                'xuser.created_at',
-                'xuser.updated_at'
+                'a_menu.id',
+                \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_menu.id DESC) as no'),
+                \DB::raw('a_menu.link_label as label'),
+                \DB::raw('a_menu.link_url as url'),
+                \DB::raw('a_menu.link_desc as desc'),
+                \DB::raw('a_group_menu.nama as nama'),
+                \DB::raw('a_menu.is_frame as frame'),
+                \DB::raw('a_menu.is_public as public'),
+                \DB::raw('a_menu.is_show_on_sidebar as sidebar')
             );
     }
 
@@ -72,9 +74,13 @@ class MenuDataTable extends DataTable
                 "data"          => 'no',
                 "title"         => 'No',
             ],
-            'nama_group',
-            'name',
-            'email',
+            'label',
+            'url',
+            'desc',
+            'nama',
+            'frame',
+            'public',
+            'sidebar',
         ];
     }
 
@@ -85,6 +91,6 @@ class MenuDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'User_' . date('YmdHis');
+        return 'Menu_' . date('YmdHis');
     }
 }

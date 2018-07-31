@@ -10,15 +10,22 @@ Class Menu extends Model
 {
     protected $table = "a_menu";
 
-    protected $fillable = [
-        "link_label",
-        "link_url",
-        "link_desc",
-        "is_frame",
-        "is_public",
-        "id_group_user",
-        "id_group_menu",
-        "is_show_on_sidebar",
-        "notes",
+    // protected $fillable = [
+    //     "link_label",
+    //     "link_url",
+    //     "link_desc",
+    //     "is_frame",
+    //     "is_public",
+    //     "id_group_user",
+    //     "id_group_menu",
+    //     "is_show_on_sidebar",
+    //     "notes",
+    // ];
+    protected $guarded = [
     ];
+
+    public function group_menu()
+    {
+        return $this->belongsTo('App\GroupMenu', 'id_group_menu');
+    }
 }
