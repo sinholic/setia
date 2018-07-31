@@ -54,7 +54,11 @@ class GroupoperatorDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'no',
+            [
+                "searchable"    => false,
+                "data"          => 'no',
+                "title"         => 'No',
+            ],
             'nama'
         ];
     }

@@ -12,9 +12,9 @@ class NewsController extends Controller
     {
         $categorynews = CategoryNews::get();
         $dataAll=News::select('a_news.*', 'xuser.name')
-                ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
-                ->where('a_news.is_publish', '1')
-                ->get()->toJson();
+        ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
+        ->where('a_news.is_publish', '1')
+        ->get()->toJson();
         return view('frontend.main', compact('dataAll','categorynews'));
     }
     public function detail($id)
@@ -28,8 +28,8 @@ class NewsController extends Controller
         return view('frontend.detail', compact('dataDetail','categorynews'));
     }
     public function bycategory($id){
-      $categorynews = CategoryNews::get();
-      $datanews = News::where('a_news.id_category','=',$id)->get();
+        $categorynews = CategoryNews::get();
+        $datanews = News::where('a_news.id_category','=',$id)->get();
         return view('frontend.category', compact('datanews','categorynews'));
     }
 }

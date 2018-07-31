@@ -16,11 +16,14 @@ class MscDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->filterColumn('kota', function ($query, $keyword) {
+        ->filterColumn('regional', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_regional.nama) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('namakota', function ($query, $keyword) {
            $query->whereRaw("LOWER(a_kota.nama) like ?", ["%$keyword%"]);
         })
-        ->filterColumn('msc', function ($query, $keyword) {
-           $query->whereRaw("LOWER(a_msc.nama) like ?", ["%$keyword%"]);
+        ->filterColumn('status', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_status_data_switch.nama) like ?", ["%$keyword%"]);
         })
         ->addColumn('action', function ($items) {
             return view('admin.crud.buttons', compact('items'))->render();
@@ -40,7 +43,16 @@ class MscDataTable extends DataTable
         ->join('a_regional', 'a_regional.id', '=', 'a_msc.id_regional')
         ->join('a_kota', 'a_kota.id', '=', 'a_msc.id_kota')
         ->join('a_status_data_switch', 'a_status_data_switch.id', '=', 'a_msc.id_status')
-        ->select('a_msc.id', \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_msc.id DESC) as no'), \DB::raw('a_msc.recentity as recentity'), \DB::raw('a_msc.gt as gt'),\DB::raw('a_msc.nama as nama'),\DB::raw('a_regional.nama as regional'),\DB::raw('a_kota.nama as namakota'),\DB::raw('a_msc.filename as filename'),\DB::raw('a_status_data_switch.nama as status'));
+        ->select(
+            'a_msc.id',
+            \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_msc.id DESC) as no'),
+            \DB::raw('a_msc.recentity as recentity'),
+            \DB::raw('a_msc.gt as gt'),
+            \DB::raw('a_msc.nama as nama'),
+            \DB::raw('a_regional.nama as regional'),
+            \DB::raw('a_kota.nama as namakota'),
+            \DB::raw('a_msc.filename as filename'),
+            \DB::raw('a_status_data_switch.nama as status'));
     }
 
     /**
@@ -65,11 +77,11 @@ class MscDataTable extends DataTable
     protected function getColumns()
     {
         return [
-          [
-              "searchable"    => false,
-              "data"          => 'no',
-              "title"         => 'No',
-          ],
+            [
+                "searchable"    => false,
+                "data"          => 'no',
+                "title"         => 'No',
+            ],
             'recentity',
             'gt',
             'nama',
