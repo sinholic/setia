@@ -19,12 +19,13 @@ class NewsController extends Controller
     }
     public function detail($id)
     {
+        $categorynews = CategoryNews::get();
       $dataDetail=News::select('a_news.*', 'xuser.name')
               ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
               ->where('a_news.is_publish', '1')
               ->where('a_news.id', $id)
               ->get()->toJson();
-        return view('frontend.detail', compact('dataDetail'));
+        return view('frontend.detail', compact('dataDetail','categorynews'));
     }
     public function bycategory($id){
       $categorynews = CategoryNews::get();
