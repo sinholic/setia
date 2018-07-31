@@ -6,7 +6,7 @@
             <div class="container">
                 <ul class="mainnav">
                     <li {{{ (Request::is('*dashboard') ? 'class=active' : '') }}} ><a href="{{ route('admin.index') }}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span> </a> </li>
-                    <li class="nav-item dropdown {{{ (Request::is('*categorynews*') ? 'active' : '') }}}">
+                    <li class="nav-item dropdown {{{ (Request::is('*news*') ? 'active' : '') }}}">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-edit"></i><span>News</span>
                         </a>
@@ -21,8 +21,6 @@
                             <i class="fas fa-list-alt"></i><span>Master Data</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item {{{ (Request::is('*/news*') ? 'active' : '') }}} " href="#">News</a>
-                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{{ (Request::is('*/continent*') ? 'active' : '') }}} " href="{{ route('continent.index') }}">Continent</a>
                             <a class="dropdown-item {{{ (Request::is('*/negara*') ? 'active' : '') }}} " href="{{ route('negara.index') }}">Negara</a>
                             <a class="dropdown-item {{{ (Request::is('*/kota*') ? 'active' : '') }}} " href="{{ route('kota.index') }}">Kota</a>
