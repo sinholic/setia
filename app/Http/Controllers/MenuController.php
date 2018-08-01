@@ -103,17 +103,16 @@ class MenuController extends Controller
         $menu = Menu::find($id);
         $groups = GroupMenu::pluck('nama','id');
         $groupusers = XGroupUser::join('a_menu_and_group_user','a_menu_and_group_user.id_group_user', '=', 'xgroup_user.id')
-                      ->join('a_menu_and_group_user','a_menu_and_group_user.id_group_user', '=', 'xgroup_user.id')
                       ->select(
                             \DB::raw('xgroup_user.id as id'),
                             \DB::raw('xgroup_user.nama as nama'),
-                            \DB::raw('a_menu_and_group_user.id_group_user as group_user_ID')
+                            \DB::raw('a_menu_and_group_user.id_group_user as group_user_id')
                           )
                       ->where('a_menu_and_group_user.id_menu','=',$id)
                       ->get();
 
-        return view('admin.crud.menu.show',compact('$menu','groups','groupusers'))
-            ->with('title', $user->nama);
+        return view('admin.crud.menu.show',compact('menu','groups','groupusers'))
+            ->with('title', $menu->nama);
     }
 
     /**
@@ -126,16 +125,19 @@ class MenuController extends Controller
     {
         $menu = Menu::find($id);
         $groups = GroupMenu::pluck('nama','id');
-        $groupusers = XGroupUser::leftjoin('a_menu_and_group_user','a_menu_and_group_user.id_group_user', '=', 'xgroup_user.id')
+        $groupusers = XGroupUser::leftjoin('a_menu_and_group_user','xgroup_user.id', '=', 'a_menu_and_group_user.id_group_user')
+                      ->leftjoin('a_menu','a_menu.id', '=', 'a_menu_and_group_user.id_menu')
                       ->select(
                             \DB::raw('xgroup_user.id as id'),
                             \DB::raw('xgroup_user.nama as nama'),
                             \DB::raw('a_menu_and_group_user.id_group_user as group_user_ID')
                           )
+                        ->where('a_menu_and_group_user.id_menu','=',$id)
                       ->get();
+        $groupuser_all= XGroupUser::get();
                     //  return $groupusers;
         //$groupuserrelat = GroupUserMenuRelation::get();
-       return view('admin.crud.menu.edit', compact('menu', 'groups','groupusers'))->with('title', $this->title);
+       return view('admin.crud.menu.edit', compact('menu', 'groups','groupusers','groupuser_all'))->with('title', $this->title);
     }
 
     /**
@@ -165,6 +167,7 @@ class MenuController extends Controller
       );
       $menu=Menu::find($id)->update($data_menu);
       if (isset($request->group_user)) {
+          GroupUserMenuRelation::where('id_menu', $id)->delete();
           foreach ($request->group_user as $key=>$group_user) {
             $select=GroupUserMenuRelation::where('id_menu', '=', $id)->where('id_group_user', '=', $group_user)->count();
             $data_group_menu_user = array(
@@ -174,14 +177,17 @@ class MenuController extends Controller
                 "created_by"               => $request->created_by
             );
             if($select>0){
-               //GroupUserMenuRelation::where('id_menu', '=', $id)->update($data_group_menu_user);
+
            }else{
               GroupUserMenuRelation::create($data_group_menu_user);
            }
           }
-          return redirect(route('menu.index'))
-                          ->with('message','Menu update successfully');
-                        }
+
+        }else{
+            GroupUserMenuRelation::where('id_menu', $id)->delete();
+          }
+        return redirect(route('menu.index'))
+                        ->with('message','Menu update successfully');
     }
 
     /**

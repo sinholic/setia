@@ -93,6 +93,7 @@
 						<ul class="main-nav nav navbar-nav">
 							<li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i>
  Home</a></li>
+
 							@foreach($categorynews as $listData)
 							<li {{{ (Request::is('news/category/'.$listData->id) ? 'class=active' : '') }}}><a href="{{url('news/category', ['id' => $listData->id])}}">{{$listData->nama}}</a></li>
 							@endforeach
@@ -163,10 +164,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Back to top -->
 
     <!-- jQuery Plugins -->
-    <script src="{{ asset('js/frontend/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/frontend/js/bootstrap.min.js') }}"></script>
+    <!-- <script src="{{ asset('js/frontend/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/js/bootstrap.min.js') }}"></script> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/frontend/js/main.js') }}"></script>
+		<!-- <script src="//code.jquery.com/jquery.js"></script> -->
+		  @yield('js')
 		<script>
 			function login(obj){
 				window.location = obj;
