@@ -1,10 +1,10 @@
 @extends('admin.crud.form')
 @section('content_input')
-{{ Form::model($settlementcninvoice, ['method' => 'PATCH', 'route' => ['settlementcndn.update', $settlementcninvoice->id], 'class' => 'form-horizontal']) }}
+{{ Form::model($settlementtapinvoice, ['method' => 'PATCH', 'route' => ['settlementtap.update', $settlementtapinvoice->id], 'class' => 'form-horizontal']) }}
     <div class="form-group row">
         {{ Form::label('tapcode', 'Tapcode', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="tapcode" type="text" class="form-control{{ $errors->has('tapcode') ? ' is-invalid' : '' }}" name="tapcode" value="{{ old('tapcode') }}">
+            <input id="tapcode" type="text" class="form-control{{ $errors->has('tapcode') ? ' is-invalid' : '' }}" name="tapcode" value="{{ $settlementtapinvoice->tapcode }}">
             @if ($errors->has('tapcode'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('tapcode') }}</strong>
@@ -15,7 +15,7 @@
     <div class="form-group row">
         {{ Form::label('periode', 'Periode', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="periode" type="text" class="form-control{{ $errors->has('periode') ? ' is-invalid' : '' }}" name="periode" value="{{ old('periode') }}">
+            <input id="periode" type="text" class="form-control{{ $errors->has('periode') ? ' is-invalid' : '' }}" name="periode" value="{{ $settlementtapinvoice->periode }}">
             @if ($errors->has('periode'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('periode') }}</strong>
@@ -24,23 +24,78 @@
         </div>
     </div>
     <div class="form-group row">
-        {{ Form::label('invoicetype', 'Type', ['class' => 'col-sm-3 form-control-label']) }}
+        {{ Form::label('nodindate', 'Nodin Date', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="invoicetype" type="text" class="form-control{{ $errors->has('invoicetype') ? ' is-invalid' : '' }}" name="invoicetype" value="{{ old('invoicetype') }}">
-            @if ($errors->has('invoicetype'))
+            <input id="nodindate" type="text" class="datetimepicker-input nodindate form-control{{ $errors->has('nodindate') ? ' is-invalid' : '' }}" name="nodindate" value="{{ $settlementtapinvoice->nodindate }}" data-toggle="datetimepicker" data-target=".nodindate">
+            @if ($errors->has('nodindate'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('invoicetype') }}</strong>
+                    <strong>{{ $errors->first('nodindate') }}</strong>
                 </span>
             @endif
         </div>
     </div>
     <div class="form-group row">
-        {{ Form::label('processdate', 'Process Date', ['class' => 'col-sm-3 form-control-label']) }}
+        {{ Form::label('receivedate', 'Receive Date', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="processdate" type="text" class="datetimepicker-input datepicker form-control{{ $errors->has('processdate') ? ' is-invalid' : '' }}" name="processdate" value="{{ old('processdate') }}" data-toggle="datetimepicker" data-target=".datepicker">
-            @if ($errors->has('processdate'))
+            <input id="receivedate" type="text" class="datetimepicker-input receivedate form-control{{ $errors->has('receivedate') ? ' is-invalid' : '' }}" name="receivedate" value="{{ $settlementtapinvoice->receivedate }}" data-toggle="datetimepicker" data-target=".receivedate">
+            @if ($errors->has('receivedate'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('processdate') }}</strong>
+                    <strong>{{ $errors->first('receivedate') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ Form::label('nodinno', 'Nodin No.', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <input id="nodinno" type="text" class="form-control{{ $errors->has('nodinno') ? ' is-invalid' : '' }}" name="nodinno" value="{{ $settlementtapinvoice->nodinno }}">
+            @if ($errors->has('nodinno'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('nodinno') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ Form::label('discrep', 'Discrep', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <input id="discrep" type="text" class="datetimepicker-input discrep form-control{{ $errors->has('discrep') ? ' is-invalid' : '' }}" name="discrep" value="{{ $settlementtapinvoice->discrep }}" data-toggle="datetimepicker" data-target=".discrep">
+            @if ($errors->has('discrep'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('discrep') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ Form::label('checkdate', 'Check Date', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <input id="checkdate" type="text" class="datetimepicker-input checkdate form-control{{ $errors->has('checkdate') ? ' is-invalid' : '' }}" name="checkdate" value="{{ $settlementtapinvoice->checkdate }}" data-toggle="datetimepicker" data-target=".checkdate">
+            @if ($errors->has('checkdate'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('checkdate') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ Form::label('sdrdiscrep', 'SDR Discrep', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <input id="sdrdiscrep" type="text" class="form-control{{ $errors->has('sdrdiscrep') ? ' is-invalid' : '' }}" name="sdrdiscrep" value="{{ $settlementtapinvoice->sdrdiscrep }}">
+            @if ($errors->has('sdrdiscrep'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('sdrdiscrep') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ Form::label('exp', 'EXP', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <input id="exp" type="text" class="datetimepicker-input exp form-control{{ $errors->has('exp') ? ' is-invalid' : '' }}" name="exp" value="{{ $settlementtapinvoice->exp }}" data-toggle="datetimepicker" data-target=".exp">
+            @if ($errors->has('exp'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('exp') }}</strong>
                 </span>
             @endif
         </div>
@@ -48,7 +103,7 @@
     <div class="form-group row">
         {{ Form::label('nodinreply', 'Nodin Reply', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="nodinreply" type="text" class="form-control{{ $errors->has('nodinreply') ? ' is-invalid' : '' }}" name="nodinreply" value="{{ old('nodinreply') }}">
+            <input id="nodinreply" type="text" class="form-control{{ $errors->has('nodinreply') ? ' is-invalid' : '' }}" name="nodinreply" value="{{ $settlementtapinvoice->nodinreply }}">
             @if ($errors->has('nodinreply'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('nodinreply') }}</strong>
@@ -59,7 +114,7 @@
     <div class="form-group row">
         {{ Form::label('notes', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <textarea id="remark" name="notes" rows="5" cols="50" class="form-control{{ $errors->has('notes') ? ' is-invalid' : '' }}" value="{{ $settlementcninvoice->notes }}">
+            <textarea id="remark" name="notes" rows="5" cols="50" class="form-control{{ $errors->has('notes') ? ' is-invalid' : '' }}" value="{{ $settlementtapinvoice->notes }}">
             </textarea>
             @if ($errors->has('notes'))
                 <span class="invalid-feedback" role="alert">

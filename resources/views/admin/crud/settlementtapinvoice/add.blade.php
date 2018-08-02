@@ -24,23 +24,78 @@
         </div>
     </div>
     <div class="form-group row">
-        {{ Form::label('invoicetype', 'Type', ['class' => 'col-sm-3 form-control-label']) }}
+        {{ Form::label('nodindate', 'Nodin Date', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="invoicetype" type="text" class="form-control{{ $errors->has('invoicetype') ? ' is-invalid' : '' }}" name="invoicetype" value="{{ old('invoicetype') }}">
-            @if ($errors->has('invoicetype'))
+            <input id="nodindate" type="text" class="datetimepicker-input nodindate form-control{{ $errors->has('nodindate') ? ' is-invalid' : '' }}" name="nodindate" value="{{ old('nodindate') }}" data-toggle="datetimepicker" data-target=".nodindate">
+            @if ($errors->has('nodindate'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('invoicetype') }}</strong>
+                    <strong>{{ $errors->first('nodindate') }}</strong>
                 </span>
             @endif
         </div>
     </div>
     <div class="form-group row">
-        {{ Form::label('processdate', 'Process Date', ['class' => 'col-sm-3 form-control-label']) }}
+        {{ Form::label('receivedate', 'Receive Date', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="processdate" type="text" class="datetimepicker-input datepicker form-control{{ $errors->has('processdate') ? ' is-invalid' : '' }}" name="processdate" value="{{ old('processdate') }}" data-toggle="datetimepicker" data-target=".datepicker">
-            @if ($errors->has('processdate'))
+            <input id="receivedate" type="text" class="datetimepicker-input receivedate form-control{{ $errors->has('receivedate') ? ' is-invalid' : '' }}" name="receivedate" value="{{ old('receivedate') }}" data-toggle="datetimepicker" data-target=".receivedate">
+            @if ($errors->has('receivedate'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('processdate') }}</strong>
+                    <strong>{{ $errors->first('receivedate') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ Form::label('nodinno', 'Nodin No.', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <input id="nodinno" type="text" class="form-control{{ $errors->has('nodinno') ? ' is-invalid' : '' }}" name="nodinno" value="{{ old('nodinno') }}">
+            @if ($errors->has('nodinno'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('nodinno') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ Form::label('discrep', 'Discrep', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <input id="discrep" type="text" class="datetimepicker-input discrep form-control{{ $errors->has('discrep') ? ' is-invalid' : '' }}" name="discrep" value="{{ old('discrep') }}" data-toggle="datetimepicker" data-target=".discrep">
+            @if ($errors->has('discrep'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('discrep') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ Form::label('checkdate', 'Check Date', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <input id="checkdate" type="text" class="datetimepicker-input checkdate form-control{{ $errors->has('checkdate') ? ' is-invalid' : '' }}" name="checkdate" value="{{ old('checkdate') }}" data-toggle="datetimepicker" data-target=".checkdate">
+            @if ($errors->has('checkdate'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('checkdate') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ Form::label('sdrdiscrep', 'SDR Discrep', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <input id="sdrdiscrep" type="text" class="form-control{{ $errors->has('sdrdiscrep') ? ' is-invalid' : '' }}" name="sdrdiscrep" value="{{ old('sdrdiscrep') }}">
+            @if ($errors->has('sdrdiscrep'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('sdrdiscrep') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ Form::label('exp', 'EXP', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <input id="exp" type="text" class="datetimepicker-input exp form-control{{ $errors->has('exp') ? ' is-invalid' : '' }}" name="exp" value="{{ old('exp') }}" data-toggle="datetimepicker" data-target=".exp">
+            @if ($errors->has('exp'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('exp') }}</strong>
                 </span>
             @endif
         </div>
@@ -59,7 +114,7 @@
     <div class="form-group row">
         {{ Form::label('notes', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <textarea id="remark" name="notes" rows="5" cols="50" class="form-control{{ $errors->has('notes') ? ' is-invalid' : '' }}" value="{{ odl('notes') }}">
+            <textarea id="remark" name="notes" rows="5" cols="50" class="form-control{{ $errors->has('notes') ? ' is-invalid' : '' }}" value="{{ old('notes') }}">
             </textarea>
             @if ($errors->has('notes'))
                 <span class="invalid-feedback" role="alert">
