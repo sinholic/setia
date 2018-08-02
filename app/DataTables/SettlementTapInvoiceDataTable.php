@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\User;
+use App\SettlementTapInvoice;
 use Yajra\DataTables\Services\DataTable;
 
 class SettlementTapInvoiceDataTable extends DataTable
@@ -16,18 +16,18 @@ class SettlementTapInvoiceDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->addColumn('details_url', function($items) {
-            return route('api.admin.operator.detail', $items->id);
+        ->addColumn('action', function ($items) {
+            return view('admin.crud.buttons', compact('items'))->render();
         });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\User $model
+     * @param \App\SettlementTapInvoice $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(SettlementTapInvoice $model)
     {
         return $model->newQuery()->select(
             'id',
@@ -41,7 +41,7 @@ class SettlementTapInvoiceDataTable extends DataTable
             "discrep",
             "sdrdiscrep",
             "exp",
-            "nodinreply",
+            "nodinreply"
         );
     }
 
@@ -81,7 +81,7 @@ class SettlementTapInvoiceDataTable extends DataTable
             "discrep",
             "sdrdiscrep",
             "exp",
-            "nodinreply",
+            "nodinreply"
         ];
     }
 

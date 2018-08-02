@@ -4,7 +4,7 @@
     <div class="form-group row">
         {{ Form::label('tapcode', 'Tapcode', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="tapcode" type="text" class="form-control{{ $errors->has('tapcode') ? ' is-invalid' : '' }}" name="tapcode" value="{{ $settlementcninvoice->tapcode }}">
+            <input id="tapcode" type="text" class="form-control{{ $errors->has('tapcode') ? ' is-invalid' : '' }}" name="tapcode" value="{{ old('tapcode') }}">
             @if ($errors->has('tapcode'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('tapcode') }}</strong>
@@ -15,7 +15,7 @@
     <div class="form-group row">
         {{ Form::label('periode', 'Periode', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="periode" type="text" class="form-control{{ $errors->has('periode') ? ' is-invalid' : '' }}" name="periode" value="{{ $settlementcninvoice->periode }}">
+            <input id="periode" type="text" class="form-control{{ $errors->has('periode') ? ' is-invalid' : '' }}" name="periode" value="{{ old('periode') }}">
             @if ($errors->has('periode'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('periode') }}</strong>
@@ -26,7 +26,7 @@
     <div class="form-group row">
         {{ Form::label('invoicetype', 'Type', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="invoicetype" type="text" class="form-control{{ $errors->has('invoicetype') ? ' is-invalid' : '' }}" name="invoicetype" value="{{ $settlementcninvoice->invoicetype }}">
+            <input id="invoicetype" type="text" class="form-control{{ $errors->has('invoicetype') ? ' is-invalid' : '' }}" name="invoicetype" value="{{ old('invoicetype') }}">
             @if ($errors->has('invoicetype'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('invoicetype') }}</strong>
@@ -37,7 +37,7 @@
     <div class="form-group row">
         {{ Form::label('processdate', 'Process Date', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="processdate" type="text" class="datetimepicker-input datepicker form-control{{ $errors->has('processdate') ? ' is-invalid' : '' }}" name="processdate" value="{{ $settlementcninvoice->processdate }}" data-toggle="datetimepicker" data-target=".datepicker">
+            <input id="processdate" type="text" class="datetimepicker-input datepicker form-control{{ $errors->has('processdate') ? ' is-invalid' : '' }}" name="processdate" value="{{ old('processdate') }}" data-toggle="datetimepicker" data-target=".datepicker">
             @if ($errors->has('processdate'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('processdate') }}</strong>
@@ -48,7 +48,7 @@
     <div class="form-group row">
         {{ Form::label('nodinreply', 'Nodin Reply', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="nodinreply" type="text" class="form-control{{ $errors->has('nodinreply') ? ' is-invalid' : '' }}" name="nodinreply" value="{{ $settlementcninvoice->nodinreply }}">
+            <input id="nodinreply" type="text" class="form-control{{ $errors->has('nodinreply') ? ' is-invalid' : '' }}" name="nodinreply" value="{{ old('nodinreply') }}">
             @if ($errors->has('nodinreply'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('nodinreply') }}</strong>

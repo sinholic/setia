@@ -16,8 +16,8 @@ class SettlementSmsiwInvoiceDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->addColumn('details_url', function($items) {
-            return route('api.admin.operator.detail', $items->id);
+        ->addColumn('action', function ($items) {
+            return view('admin.crud.buttons', compact('items'))->render();
         });
     }
 
@@ -39,7 +39,7 @@ class SettlementSmsiwInvoiceDataTable extends DataTable
             "nodinno",
             "discrep",
             "exp",
-            "nodinreply",
+            "nodinreply"
         );
     }
 
@@ -77,7 +77,7 @@ class SettlementSmsiwInvoiceDataTable extends DataTable
             "nodinno",
             "discrep",
             "exp",
-            "nodinreply",
+            "nodinreply"
         ];
     }
 

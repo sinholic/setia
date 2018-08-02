@@ -16,8 +16,8 @@ class SettlementCnInvoiceDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->addColumn('details_url', function($items) {
-            return route('api.admin.operator.detail', $items->id);
+        ->addColumn('action', function ($items) {
+            return view('admin.crud.buttons', compact('items'))->render();
         });
     }
 
@@ -37,7 +37,7 @@ class SettlementCnInvoiceDataTable extends DataTable
             "periode",
             "processdate",
             "status",
-            "nodinreply",
+            "nodinreply"
         );
     }
 
@@ -73,7 +73,7 @@ class SettlementCnInvoiceDataTable extends DataTable
             "periode",
             "processdate",
             "status",
-            "nodinreply",
+            "nodinreply"
         ];
     }
 

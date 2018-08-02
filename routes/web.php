@@ -54,6 +54,9 @@ Route::group(['middleware' => ['auth']],function () {
         Route::resource('groupuser', 'GroupUserController');
         Route::resource('menu', 'MenuController');
         Route::resource('groupmenu', 'GroupMenuController');
+        Route::resource('settlementcndn', 'SettlementCnInvoiceController');
+        Route::resource('settlementsmsiw', 'SettlementSmsiwInvoiceController');
+        Route::resource('settlementtap', 'SettlementTapInvoiceController');
     });
 
 });

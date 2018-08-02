@@ -38,13 +38,6 @@ class SettlementCnInvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'id_group'  => 'required',
-            'name'      => 'required',
-            'email'     => 'required|email',
-            'password'  => 'required'
-        ]);
-        // $request->password = Hash::make($request->password);
         SettlementCnInvoice::create($request->all());
 
         return redirect(route('settlementcninvoice.index'))
@@ -73,7 +66,6 @@ class SettlementCnInvoiceController extends Controller
     public function edit($id)
     {
         $settlementcninvoice = SettlementCnInvoice::find($id);
-        $groups = XGroupSettlementCnInvoice::pluck('nama','id');
         return view('admin.crud.settlementcninvoice.edit', compact('settlementcninvoice', 'groups'))->with('title', $this->title);
     }
 
@@ -86,11 +78,6 @@ class SettlementCnInvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'id_group'  => 'required',
-            'name'      => 'required',
-            'email'     => 'required|email'
-        ]);
         SettlementCnInvoice::find($id)->update($request->all());
         return redirect()->route('settlementcninvoice.index')
                 ->with('message','Settlement Cn Invoice updated successfully');

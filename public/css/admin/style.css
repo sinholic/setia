@@ -296,7 +296,7 @@ textarea {
 */
 
 .main {
-	padding-bottom: 2em;
+	padding-bottom: calc(2em + 50px);
 	/* border-bottom: 1px solid #000; */
 }
 
