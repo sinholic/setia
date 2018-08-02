@@ -1,14 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use \App\ClassHelper\Slug;
 use App\DataTables\NewsCrudDataTable;
 use App\News;
 use App\CategoryNews;
 class NewsCrudController extends Controller
 {
     private $title = 'News';
+
+    protected $slug;
+
+   public function __construct(Slug $slug) {
+       $this->slug = $slug;
+   }
     /**
      * Display a listing of the resource.
      *
@@ -43,8 +49,6 @@ class NewsCrudController extends Controller
       $this->validate($request, [
           'id_category'          => 'required',
           'title'                => 'required',
-
-
       ]);
       $name='';
 
@@ -58,9 +62,11 @@ class NewsCrudController extends Controller
         $image->move($destinationPath, $name);
 
       }
+      $slug=$this->slug->createSlug($request->title);
       $data_news = array(
           'title'          => $request->title,
           'id_category'   => $request->id_category,
+          'slug'          =>$slug,
           'konten'   => $request->konten,
           'img'       => $name,
           'is_publish'   => $request->is_publish,
@@ -125,15 +131,33 @@ class NewsCrudController extends Controller
         $image->move($destinationPath, $name);
 
       }
-      $data_news = array(
-          'title'          => $request->title,
-          'id_category'   => $request->id_category,
-          'konten'   => $request->konten,
-          'img'       => $name,
-          'is_publish'   => $request->is_publish,
-          'notes'         => $request->notes,
-          'updated_by'    => $request->updated_by
-      );
+      if($name==''){
+        $slug=$this->slug->createSlug(strtolower($request->title));
+        $data_news = array(
+            'title'          => $request->title,
+            'id_category'   => $request->id_category,
+            'slug'        =>$slug,
+            'konten'   => $request->konten,
+            'is_publish'   => $request->is_publish,
+            'notes'         => $request->notes,
+            'updated_by'    => $request->updated_by,
+            'updated_at'    => $request->updated_at
+        );
+      }else{
+        $slug=$this->slug->createSlug(strtolower($request->title));
+        $data_news = array(
+            'title'          => $request->title,
+            'id_category'   => $request->id_category,
+            'slug'        =>$slug,
+            'konten'   => $request->konten,
+            'img'       => $name,
+            'is_publish'   => $request->is_publish,
+            'notes'         => $request->notes,
+            'updated_by'    => $request->updated_by,
+            'updated_at'    => $request->updated_at
+        );
+      }
+
       News::find($id)->update($data_news);
       return redirect()->route('newscrud.index')
               ->with('message','News updated successfully');

@@ -17,7 +17,7 @@ Route::group([
         'prefix'=>'news'
     ],function () {
         // Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
-        Route::get('/detail/{id}', ['uses' => 'NewsController@detail', 'as' => 'frontend.detail']);
+        Route::get('/detail/{id}/{slug}', ['uses' => 'NewsController@detail', 'as' => 'frontend.detail']);
         Route::get('/pageBI/{id}', ['uses' => 'DataBIController@handset', 'as' => 'frontend.handset']);
         //Route::get('/roaming', ['uses' => 'DataBIController@index', 'as' => 'frontend.roaming']);
         Route::get('/category/{id}', ['uses' => 'NewsController@bycategory', 'as' => 'frontend.category']);

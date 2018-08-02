@@ -540,11 +540,13 @@ textarea.input {
 .article .article-img {
 	position:relative;
 	overflow:hidden;
+	height:140px;
+	width:140px;
 	margin-bottom:15px;
 }
 
 .article .article-img img {
-	width:100%;
+
 	-webkit-transition:0.5s -webkit-transform;
 	transition:0.5s -webkit-transform;
 	transition:0.5s transform;
@@ -614,9 +616,9 @@ textarea.input {
 
 .article .article-meta li {
 	display:inline-block;
-	color:#DDD;
+	color:#333;
 	font-weight:400;
-	font-size:12.5px;
+	font-size:11px;
 	text-transform:uppercase;
 }
 
@@ -681,7 +683,6 @@ textarea.input {
 
 .article.widget-article .article-img {
 	float:left;
-	width:80px;
 	margin-right:15px;
 	margin-bottom:0px;
 }
@@ -973,10 +974,14 @@ textarea.input {
 ===========================================================*/
 .article-post .article-main-img {
 	margin-bottom:15px;
+	width:100%;
+	height:500px;
+	margin:0px auto;
 }
 
 .article-post .article-main-img img {
-	width:100%;
+	height: 100%;
+
 }
 
 /*------------------------------------*\
