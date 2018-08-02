@@ -343,11 +343,6 @@
                             </span>
                         @endif
                     </div>
-                    <div class="col-sm-2">
-                        <a class="btn-remove btn btn-sm btn-outline-danger" data-remove="rate-{{ $rate->id }}" href="#">
-                            <i class="fas fa-times-circle"></i> Remove
-                        </a>
-                    </div>
                 </div>
                 <div class="form-group row">
                     {{ Form::label('tgl_berlaku', 'Start', ['class' => 'col-sm-3 form-control-label']) }}

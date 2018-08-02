@@ -7,10 +7,7 @@ Class GroupMenu extends Model
 {
     protected $table = "a_group_menu";
 
-    protected $fillable = [
-        "nama",
-        "is_show_on_sidebar",
-        "notes",
+    protected $guarded = [
     ];
     public function menus()
     {

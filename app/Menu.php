@@ -28,4 +28,11 @@ Class Menu extends Model
     {
         return $this->belongsTo('App\GroupMenu', 'id_group_menu');
     }
+
+    public function groupuser()
+    {
+        return $this->belongsToMany('App\XGroupUser', 'a_menu_and_group_user', 'id_menu', 'id_group_user')
+            ->withPivot('created_by', 'updated_by')
+            ->withTimestamps();
+    }
 }

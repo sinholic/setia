@@ -7,7 +7,7 @@
                 <ul class="mainnav">
                     <li {{{ (Request::is('*dashboard') ? 'class=active' : '') }}} ><a href="{{ route('admin.index') }}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span> </a> </li>
                     <li class="nav-item dropdown {{{ (Request::is('*news*') ? 'active' : '') }}}">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-edit"></i><span>News</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -17,7 +17,7 @@
                     </li>
                     <!-- <li  ><a href="{{ route('admin.master') }}"><i class="fas fa-list-alt"></i><span>Master Data</span> </a> </li> -->
                     <li class="nav-item dropdown {{{ (Request::is('*master*') ? 'active' : '') }}}">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-list-alt"></i><span>Master Data</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -34,7 +34,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown {{{ (Request::is('*user*') ? 'active' : '') }}}">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i><span>Users</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -43,12 +43,32 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown {{{ (Request::is('*menu*') ? 'active' : '') }}}">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-list-alt"></i><span>Menu</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item {{{ (Request::is('*/menu*') ? 'active' : '') }}} " href="{{ route('menu.index') }}">Menu List</a>
                             <a class="dropdown-item {{{ (Request::is('*/groupmenu*') ? 'active' : '') }}} " href="{{ route('groupmenu.index') }}">Menu Group</a>
+                        </div>
+                    </li>
+                    @inject('groupmenus', 'App\GroupMenu')
+                    <li class="nav-item dropdown {{{ (Request::is('*report*') ? 'active' : '') }}}">
+                        <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-list-alt"></i><span>Menu</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        @foreach($groupmenus->with('menus')->whereHas('menus')->get() as $groupmenu)
+                            <!-- <li> -->
+                                <a class="dropdown-item dropdown-toggle dropdown-dropright" href="#">{{ $groupmenu->nama }}</a>
+                                <div class="dropdown-menu dropright">
+                                    @foreach($groupmenu->menus as $menu)
+                                        <!-- <li> -->
+                                            <a class="dropdown-item " href="#">{{ $menu->link_label }}</a>
+                                        <!-- </li> -->
+                                    @endforeach
+                                </div>
+                            <!-- </li> -->
+                        @endforeach
                         </div>
                     </li>
                 </ul>
@@ -95,6 +115,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="{{ asset('js/admin/bootstrap-4-navbar.js') }}"></script>
     <script src="{{ asset('js/admin/excanvas.min.js') }}"></script>
     <script src="{{ asset('js/admin/chart.min.js') }}"></script>
     <script src="{{ asset('js/admin/full-calendar/fullcalendar.min.js') }}"></script>
