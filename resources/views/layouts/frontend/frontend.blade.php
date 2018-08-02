@@ -63,7 +63,7 @@
 			<!-- Center Header -->
 			<div id="center-header">
 				<!-- <div class="col-lg-4 col-md-4 col-sm-4" style="background:#fff"> -->
-				<div class="container" style="background:#fff;">
+				<div class="container" >
 
 					<div class="header-logo">
 						<a href="#" class="logo"><img src="{{asset('images/frontend/setialogo2.png')}}" alt=""></a>

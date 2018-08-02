@@ -63,7 +63,7 @@
     <div class="form-group row">
         {{ Form::label('remark', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <textarea name="notes" rows="5" cols="50" class="form-control{{ $errors->has('notes') ? ' is-invalid' : '' }}" value="" required autofocus>{{ $notes }}
+            <textarea name="notes" rows="5" cols="50" class="form-control{{ $errors->has('notes') ? ' is-invalid' : '' }}" value="" autofocus>{{ $notes }}
             </textarea>
             @if ($errors->has('notes'))
                 <span class="invalid-feedback" role="alert">

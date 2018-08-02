@@ -16,7 +16,15 @@ class NewsCrudDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-
+        ->filterColumn('title', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_news.title) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('category', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_category_news.nama) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('publish', function ($query, $keyword) {
+           $query->whereRaw("(a_news.is_publish) like ?", ["%$keyword%"]);
+        })
         ->addColumn('action', function ($items) {
             return view('admin.crud.buttons', compact('items'))->render();
         });

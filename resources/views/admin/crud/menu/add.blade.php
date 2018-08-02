@@ -27,7 +27,7 @@
     <div class="form-group row">
         {{ Form::label('url', 'URL', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="kota" type="text" class="form-control{{ $errors->has('link_url') ? ' is-invalid' : '' }}" name="link_url" value="{{ old('link_url') }}" required autofocus>
+            <input id="kota" type="url" class="form-control{{ $errors->has('link_url') ? ' is-invalid' : '' }}" name="link_url" value="{{ old('link_url') }}" required autofocus>
             <i>Tulis URL yang Anda inginkan</i>
             @if ($errors->has('link_url'))
                 <span class="invalid-feedback" role="alert">

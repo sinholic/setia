@@ -43,12 +43,15 @@ class NewsCrudController extends Controller
       $this->validate($request, [
           'id_category'          => 'required',
           'title'                => 'required',
-          'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
 
       ]);
       $name='';
 
       if ($request->hasFile('img')) {
+          $this->validate($request, [
+        'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          ]);
         $image = $request->file('img');
         $name = time().'.'.$image->getClientOriginalExtension();
         $destinationPath = public_path('/images');
@@ -110,11 +113,12 @@ class NewsCrudController extends Controller
     public function update(Request $request, $id)
     {
       $name='';
-      $this->validate($request, [
-        'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-      ]);
+
 
       if ($request->hasFile('img')) {
+        $this->validate($request, [
+          'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
         $image = $request->file('img');
         $name = time().'.'.$image->getClientOriginalExtension();
         $destinationPath = public_path('/images');

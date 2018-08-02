@@ -12,9 +12,9 @@ class NewsController extends Controller
 {
     public function index(Request $request)
     {
-        $menu_bi = Menu::select('a_group_menu.id','a_group_menu.nama', 'a_menu.link_label','a_menu.link_url')
+        $menu_bi = Menu::select('a_group_menu.id','a_group_menu.nama', 'a_menu.link_label','a_menu.id as id_menu','a_menu.link_url')
         ->where('a_menu.is_public', '1')
-        ->join('a_group_menu', 'a_group_menu.id', '=', 'a_menu.id_group_menu')->get();
+        ->leftjoin('a_group_menu', 'a_menu.id_group_menu', '=', 'a_group_menu.id')->get();
         $categorynews = CategoryNews::get();
         $dataAll=News::select('a_news.*', 'xuser.name')
         ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
@@ -25,7 +25,7 @@ class NewsController extends Controller
 
     public function detail($id)
     {
-        $categorynews = CategoryNews::get();
+      $categorynews = CategoryNews::get();
       $dataDetail=News::select('a_news.*', 'xuser.name')
               ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
               ->where('a_news.is_publish', '1')
@@ -34,9 +34,12 @@ class NewsController extends Controller
         return view('frontend.detail', compact('dataDetail','categorynews'));
     }
     public function bycategory($id){
+      $menu_bi = Menu::select('a_group_menu.id','a_group_menu.nama', 'a_menu.link_label','a_menu.id as id_menu','a_menu.link_url')
+      ->where('a_menu.is_public', '1')
+      ->join('a_group_menu', 'a_group_menu.id', '=', 'a_menu.id_group_menu')->get();
         $title = CategoryNews::find($id);
         $categorynews = CategoryNews::get();
         $datanews = News::where('a_news.id_category','=',$id)->get();
-        return view('frontend.category', compact('datanews','categorynews'))->with('title', $title->nama);
+        return view('frontend.category', compact('datanews','categorynews','menu_bi'))->with('title', $title->nama);
     }
 }

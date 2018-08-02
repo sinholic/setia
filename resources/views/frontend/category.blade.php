@@ -205,40 +205,35 @@
 							</form>
 						</div> -->
 						<!-- /subscribe widget -->
-						<div class="widget">
-							<div class="section-title">
+						<div class="widget" >
+							<div class="section-title" style="margin:0">
 								<h2 class="title">Menu Analisys</h2>
 							</div>
-							<article class="article widget-article">
+							<div style="background:#fff;padding:5px;border:solid 0.7px #ddd">
+								<?php $datamenu='a'; ?>
+								@foreach($menu_bi as $index_bi => $listData_bi)
+
+								<article class="article widget-article" style="margin-bottom:5px !important">
+								<ul class="article-body">
+									@if($listData_bi->nama!=$datamenu && $listData_bi->nama!='')
+										<h4 class="article-title" onclick='buttoncol({{$listData_bi->id}})' class="btn btn-info"><i class="fa fa-line-chart" aria-hidden="true"></i> {{$listData_bi->nama}}</h4>
+										@elseif($listData_bi->nama=='')
+										<a href="{{url('news/pageBI', ['id' => $listData_bi->id_menu])}}"><h4 class="article-title"  class="btn btn-info"><i class="fa fa-line-chart" aria-hidden="true"></i> {{$listData_bi->link_label}}</h4></a>
+										@endif
+								<li style="background:#ddd;padding:10px;margin-bottom:0;" class="collapse collapse_menu{{$listData_bi->id}}">
+							   <a href="{{url('news/pageBI', ['id' => $listData_bi->id_menu])}}">{{$listData_bi->link_label}}</a>
+							 </li>
+						 </ul>
+						</article>
+							<?php $datamenu=$listData_bi->nama; ?>
+							<!-- <article class="article widget-article">
 							<div class="article-body">
 									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
-<a href="{{ route('frontend.handset') }}">Handset Display</a></h4>
+											<a href="{{url('news/pageBI', ['id' => $listData_bi->id])}}">{{$listData_bi->nama}}</a></h4>
 							</div>
-						</article>
-							<article class="article widget-article">
-								<div class="article-body">
-									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
-<a href="#">Operator Code</a></h4>
-							</div>
-							</article>
-							<article class="article widget-article">
-								<div class="article-body">
-									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
-<a href="#">Roaming Exchange Rate</a></h4>
-							</div>
-							</article>
-							<article class="article widget-article">
-								<div class="article-body">
-									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
-<a href="#">Roaming Partner</a></h4>
-							</div>
-						</article>
-							<article class="article widget-article">
-								<div class="article-body">
-									<h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
-<a href="{{ route('frontend.roaming') }}">Roaming Partner Map</a></h4>
-							</div>
-							</article>
+						</article> -->
+							@endforeach
+						</div>
 						</div>
 						<!-- article widget -->
 						<div class="widget">
@@ -286,4 +281,13 @@
 		<!-- /AD SECTION -->
 
 
+@endsection
+@section('js')
+<script>
+function buttoncol(id){
+
+        $(".collapse_menu"+id).collapse('toggle');
+
+	}
+	</script>
 @endsection

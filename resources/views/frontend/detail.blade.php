@@ -36,8 +36,8 @@
 								</ul>
 								<h1 class="article-title">{{$listData->title}}</h1>
 								<ul class="article-meta">
-									<li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li> |
-									<li>By {{$listData->name}}</li>
+									<li style="color:#333"><i class="fa fa-clock-o"></i><span > {{$listData->updated_at}}</span></li> |
+									<li style="color:#333"><span>By {{$listData->name}}</span></li>
 								</ul>
 								{!! $listData->konten !!}
 							</div>
