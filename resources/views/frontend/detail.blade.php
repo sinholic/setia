@@ -27,7 +27,7 @@
 							</div> -->
 
 							<div class="article-main-img">
-								<img src="{{asset('images/frontend/'.$listData->img)}}" style="height:auto" >
+								<img src="{{asset('images/'.$listData->img)}}" style="height:auto" >
 							</div>
 							<div class="article-body">
 								<ul class="article-info">

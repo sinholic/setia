@@ -41,7 +41,11 @@ class CategoryNewsController extends Controller
         $this->validate($request, [
             'nama' => 'required',
         ]);
-        CategoryNews::create($request->all());
+        $data_category=array(
+          "nama" =>$request->nama,
+          "notes" =>$request->notes
+        );
+        CategoryNews::create($data_category);
 
         return redirect(route('categorynews.index'))
                         ->with('message','Category News added successfully');

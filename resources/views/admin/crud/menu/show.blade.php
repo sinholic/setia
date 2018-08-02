@@ -12,30 +12,50 @@
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <p>
+          <div class="form-group row">
+              {{ Form::label('nama', 'Group Menu', ['class' => 'col-sm-3 form-control-label']) }}
+              {{ Form::label('nama', $menu->group_menu->nama, ['class' => 'col-sm-9 form-control-label']) }}
+          </div>
             <div class="form-group row">
-                {{ Form::label('link_label', 'Regional', ['class' => 'col-sm-3 form-control-label']) }}
-                {{ Form::label('regional', $$menu->link_label, ['class' => 'col-sm-9 form-control-label']) }}
+                {{ Form::label('link_label', 'Link Label', ['class' => 'col-sm-3 form-control-label']) }}
+                {{ Form::label('link_label', $menu->link_label, ['class' => 'col-sm-9 form-control-label']) }}
             </div>
             <div class="form-group row">
-                {{ Form::label('link_url', 'Kota', ['class' => 'col-sm-3 form-control-label']) }}
-                {{ Form::label('kota', $menu->link_url, ['class' => 'col-sm-9 form-control-label']) }}
+                {{ Form::label('link_url', 'Link URL', ['class' => 'col-sm-3 form-control-label']) }}
+                <a href="{{$menu->link_url}}" class="col-sm-9 form-control-label">Link URL</a>
+              
+            </div>
+            <div class="form-group row">
+                {{ Form::label('link_desc', 'Link Desc', ['class' => 'col-sm-3 form-control-label']) }}
+                {{ Form::label('link_desc', $menu->link_desc, ['class' => 'col-sm-9 form-control-label']) }}
+            </div>
+            <div class="form-group row">
+                {{ Form::label('is_frame', 'Frame', ['class' => 'col-sm-3 form-control-label']) }}
+                {{ Form::label('is_frame', $menu->is_frame, ['class' => 'col-sm-9 form-control-label']) }}
+            </div>
+            <div class="form-group row">
+                {{ Form::label('is_public', 'Public', ['class' => 'col-sm-3 form-control-label']) }}
+                {{ Form::label('is_public', $menu->is_public, ['class' => 'col-sm-9 form-control-label']) }}
+            </div>
+            <div class="form-group row">
+                {{ Form::label('is_show_on_sidebar', 'Show on sidebar', ['class' => 'col-sm-3 form-control-label']) }}
+                {{ Form::label('is_show_on_sidebar', $menu->is_show_on_sidebar, ['class' => 'col-sm-9 form-control-label']) }}
             </div>
 
             <div class="form-group row">
-                {{ Form::label('link_desc', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
-                {{ Form::label('remark', $menu, ['class' => 'col-sm-9 form-control-label']) }}
+                {{ Form::label('group_user', ' Group User', ['class' => 'col-sm-3 form-control-label']) }}
+                <div class="col-sm-9">
+                    @if(count($groupusers) > 0)
+                          @foreach($groupusers as $key => $groupusers)
+                            <label class="group_user"> {{ $groupusers->nama }}
+                            <br/>
+                          @endforeach
+                    @endif
+                </div>
             </div>
             <div class="form-group row">
-                {{ Form::label('is_frame', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
-                {{ Form::label('remark', $menu, ['class' => 'col-sm-9 form-control-label']) }}
-            </div>
-            <div class="form-group row">
-                {{ Form::label('is_public', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
-                {{ Form::label('remark', $menu, ['class' => 'col-sm-9 form-control-label']) }}
-            </div>
-            <div class="form-group row">
-                {{ Form::label('is_show_on_sidebar', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
-                {{ Form::label('remark', $menu, ['class' => 'col-sm-9 form-control-label']) }}
+                {{ Form::label('remark', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
+                {{ Form::label('', $menu->notes, ['class' => 'col-sm-9 form-control-label']) }}
             </div>
         </p>
     </div>

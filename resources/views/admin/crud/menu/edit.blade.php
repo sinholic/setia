@@ -55,7 +55,7 @@
         {{ Form::label('is_public', 'Public', ['class' => 'col-sm-3 form-control-label']) }}
 
         <div class="col-sm-9">
-            <input id="is_publics" type="checkbox" {{ $menu->is_publish==1 ?'checked': '' }} autofocus>  Centang jika ini boleh diakses untuk public
+            <input id="is_publics" type="checkbox" {{ $menu->is_public==1 ?'checked': '' }} autofocus> Centang jika ini boleh diakses untuk public
             <input id="is_public" type="text"  name="is_public"  value='{{ $menu->is_public }}' style="display:none">
 
 
@@ -70,15 +70,26 @@
         {{ Form::label('group_user', ' Group User', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
             @if(count($groupusers) > 0)
+
                   @foreach($groupusers as $key => $groupusers)
-                    <input class="group_user" name="group_user[]" type="checkbox" value="{{$groupusers->id}}" {{ $groupusers->group_user_id==$groupusers->id ?'checked': '' }}   autofocus> {{ $groupusers->nama }}
+                    <input class="group_user" name="group_user[]" type="checkbox" value="{{$groupusers->id}}" {{ $groupusers->id==$groupusers->id ?'checked': '' }}   autofocus> {{ $groupusers->nama }}
                     <br/>
-                  @endforeach
+                    @endforeach
+                    @foreach($groupuser_all as $key => $groupuser_all)
+                      <input class="group_user" name="group_user[]" type="checkbox" value="{{$groupuser_all->id}}" autofocus> {{ $groupuser_all->nama }}
+                      <br/>
+                    @endforeach
+
                 @if ($errors->has('group_user'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('group_user') }}</strong>
                     </span>
                 @endif
+                @else
+                @foreach($groupuser_all as $key => $groupuser_all)
+                  <input class="group_user" name="group_user[]" type="checkbox" value="{{$groupuser_all->id}}" autofocus> {{ $groupuser_all->nama }}
+                  <br/>
+                @endforeach
             @endif
         </div>
     </div>

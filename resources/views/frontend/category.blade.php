@@ -4,22 +4,24 @@
 		<!-- SECTION -->
 		<div class="section" style="background:#e4e5e6;padding:0 0 0 0">
 			<!-- CONTAINER -->
-			<div class="container" style="background:#fff;"">
+			<div class="container" style="background:#fff;">
 				<!-- ROW -->
 				<div class="row" style="padding:20px;">
 					<!-- Main Column -->
 					<div class="col-md-8">
 						<!-- row -->
 						<div class="row">
-							<!-- Column 1 -->
+
 							<div class="col-md-12 col-sm-12">
-								<!-- section title -->
+
 								<div class="section-title">
-									<h2 class="title">Roaming</h2>
+
+									<h2 class="title">{{$title}}</h2>
+
 								</div>
-								<!-- /section title -->
+
 								@foreach($datanews as $listData)
-								<!-- ARTICLE -->
+
 								 @if($loop->first)
 								<article class="article">
 									<div class="article-img">
