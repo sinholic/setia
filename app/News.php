@@ -11,12 +11,15 @@ class News extends Model
     protected $fillable = [
         "title",
         "konten",
+        "slug",
         "is_publish",
         "notes",
         "img",
         "id_category",
         "updated_at",
         "created_at",
+        "updated_by",
+        "created_by",
     ];
   public function category()
       {
