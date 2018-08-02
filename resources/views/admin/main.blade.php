@@ -51,23 +51,34 @@
                             <a class="dropdown-item {{{ (Request::is('*/groupmenu*') ? 'active' : '') }}} " href="{{ route('groupmenu.index') }}">Menu Group</a>
                         </div>
                     </li>
-                    @inject('groupmenus', 'App\GroupMenu')
+                    @inject('groups', 'App\GroupMenu')
                     <li class="nav-item dropdown {{{ (Request::is('*report*') ? 'active' : '') }}}">
                         <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-list-alt"></i><span>Menu</span>
+                            <i class="fas fa-cubes "></i><span>Menu</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        @foreach($groupmenus->with('menus')->whereHas('menus')->get() as $groupmenu)
-                            <!-- <li> -->
-                                <a class="dropdown-item dropdown-toggle dropdown-dropright" href="#">{{ $groupmenu->nama }}</a>
-                                <div class="dropdown-menu dropright">
-                                    @foreach($groupmenu->menus as $menu)
-                                        <!-- <li> -->
-                                            <a class="dropdown-item " href="#">{{ $menu->link_label }}</a>
-                                        <!-- </li> -->
-                                    @endforeach
-                                </div>
-                            <!-- </li> -->
+                            <?php
+                                $groupmenus = $groups->with('menus')
+                                ->whereHas('menus', function ($query) {
+                                    $query->where('is_show_on_sidebar', 1);
+                                })
+                                ->whereHas('menus.groupuser', function ($query) {
+                                    $query->where('id_group_user', \Auth::user()->id_group);
+                                })
+                                ->get();
+                                // dd($groupmenus);
+                            ?>
+                        @foreach($groupmenus as $groupmenu)
+                            <a class="dropdown-item dropdown-toggle dropdown-dropright" href="#">{{ $groupmenu->nama }}</a>
+                            <div class="dropdown-menu dropright">
+                                @foreach($groupmenu->menus as $menu)
+                                    @if($menu->is_frame)
+                                        <a class="dropdown-item " href="{{ route('frontend.handset', $menu->id) }}">{{ $menu->link_label }}</a>
+                                    @else
+                                        <a class="dropdown-item " href="{{ $menu->link_url }}">{{ $menu->link_label }}</a>
+                                    @endif
+                                @endforeach
+                            </div>
                         @endforeach
                         </div>
                     </li>
@@ -93,7 +104,7 @@
     <!-- /main -->
 
     <!-- /extra -->
-    <div class="footer">
+    <div class="footer fixed-bottom">
         <div class="footer-inner">
             <div class="container">
                 <div class="row">
