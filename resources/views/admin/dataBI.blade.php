@@ -32,16 +32,13 @@ $master = $master;
 
 $token = InstaBILogin($urlLogin, $username, $password, $master);
 @endphp
-<!-- ROW -->
-<div class="row">
-    <!-- Main Column -->
-    <div class="col-md-12">
+<!-- Main Column -->
+<div class="col-md-12">
 
-        <div id="iframe-instabi" class="the-iframe width-100-persen h-100" style="margin-left: 0px;height:700px;overflow-y:auto"></div>
-    </div>
+    <div id="iframe-instabi" class="the-iframe width-100-persen" style="margin-left: 0px;height:700px;overflow-y:auto"></div>
 </div>
 @endsection
-@section('scripts')
+@push('scripts')
 <script src="{{ asset('js/instabi.min.js') }}"></script>
 <script>
 
@@ -61,4 +58,4 @@ $(document).ready(function(){
     });
 });
 </script>
-@endsection
+@endpush
