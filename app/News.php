@@ -15,6 +15,8 @@ class News extends Model
         "notes",
         "img",
         "id_category",
+        "updated_at",
+        "created_at",
     ];
   public function category()
       {

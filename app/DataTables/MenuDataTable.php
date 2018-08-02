@@ -16,8 +16,26 @@ class MenuDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-        ->filterColumn('nama_group', function ($query, $keyword) {
-           $query->whereRaw("LOWER(xgroup_user.nama) like ?", ["%$keyword%"]);
+        ->filterColumn('label', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_menu.link_label) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('url', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_menu.link_url) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('desc', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_menu.link_desc) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('nama', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_group_menu.nama) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('frame', function ($query, $keyword) {
+           $query->whereRaw("(a_menu.is_frame) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('public', function ($query, $keyword) {
+           $query->whereRaw("(a_menu.is_public) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('sidebar', function ($query, $keyword) {
+           $query->whereRaw("(a_menu.is_show_on_sidebar) like ?", ["%$keyword%"]);
         })
         ->addColumn('action', function ($items) {
             return view('admin.crud.buttons', compact('items'))->render();
@@ -33,7 +51,7 @@ class MenuDataTable extends DataTable
     public function query(Menu $model)
     {
         return $model->newQuery()
-            ->join('a_group_menu', 'a_group_menu.id', '=', 'a_menu.id_group_menu')
+            ->leftjoin('a_group_menu', 'a_menu.id_group_menu', '=', 'a_group_menu.id')
             ->select(
                 'a_menu.id',
                 \DB::raw(' ROW_NUMBER () OVER (ORDER BY a_menu.id DESC) as no'),

@@ -2,9 +2,9 @@
 @section('body')
 
 		<!-- SECTION -->
-		<div class="section" style="background:#e4e5e6;padding:0 0 0 0">
+		<div class="section" style="padding:0 0 0 0;">
 			<!-- CONTAINER -->
-			<div class="container" style="background:#fff;">
+			<div class="container">
 				<!-- ROW -->
 				<div class="row" style="padding:20px;">
 					<!-- Main Column -->
@@ -208,16 +208,18 @@
 								<h2 class="title">Menu Analisys</h2>
 							</div>
 							<div style="background:#fff;padding:5px;border:solid 0.7px #ddd">
-								<?php $datamenu=''; ?>
+								<?php $datamenu='a'; ?>
 								@foreach($menu_bi as $index_bi => $listData_bi)
 
-								<article class="article widget-article" style="margin-bottom:5px !important">
+								<article class="article widget-article" style="margin-bottom:10px !important">
 								<ul class="article-body">
-									@if($listData_bi->nama!=$datamenu)
-										<h4 class="article-title" onclick='buttoncol({{$listData_bi->id}})' class="btn btn-info"><i class="fa fa-line-chart" aria-hidden="true"></i> {{$listData_bi->nama}}</h4>
+									@if($listData_bi->nama!=$datamenu && $listData_bi->nama!='')
+										<h4 class="article-title" onclick='buttoncol({{$listData_bi->id}})'><i class="fa fa-line-chart" aria-hidden="true"></i> {{$listData_bi->nama}}</h4>
+										@elseif($listData_bi->nama=='')
+										<a href="{{url('news/pageBI', ['id' => $listData_bi->id_menu])}}"><h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i> {{$listData_bi->link_label}}</h4></a>
 										@endif
 								<li style="background:#ddd;padding:10px;margin-bottom:0;" class="collapse collapse_menu{{$listData_bi->id}}">
-							   <a href="{{url('news/pageBI', ['id' => $listData_bi->id])}}">{{$listData_bi->link_label}}</a>
+							   <a href="{{url('news/pageBI', ['id' => $listData_bi->id_menu])}}">{{$listData_bi->link_label}}</a>
 							 </li>
 						 </ul>
 						</article>

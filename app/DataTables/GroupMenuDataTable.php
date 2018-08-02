@@ -16,6 +16,12 @@ class GroupMenuDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
+        ->filterColumn('nama', function ($query, $keyword) {
+           $query->whereRaw("LOWER(nama) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('is_show_on_sidebar', function ($query, $keyword) {
+           $query->whereRaw("LOWER(is_show_on_sidebar) like ?", ["%$keyword%"]);
+        })
         ->addColumn('action', function ($items) {
             return view('admin.crud.buttons', compact('items'))->render();
         });
