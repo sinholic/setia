@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth']],function () {
                     'telintarif'    => 'TelintariffController'
                 ]);
         });
+        Route::get('instabi/{slug}', ['uses' => 'DataBIController@adminBI', 'as' => 'admin.instabi']);
         Route::resource('categorynews', 'CategoryNewsController');
         Route::resource('newscrud', 'NewsCrudController');
         Route::resource('user', 'UserController');

@@ -24,4 +24,18 @@ class DataBIController extends Controller
         return view('frontend.dataBI', compact('categorynews','data_bi','master'));
     }
 
+    public function adminBI($slug)
+    {
+        $data_bi = Menu::where('link_slug',$slug)->first();
+        // dd();
+        $cx=Counter::find(0);
+
+        $cx->counter=$cx->counter + 1;
+        // $cx->counter=  1 ;
+        //$data_counter = array('counter' => $cx->counter );
+        $cx->save();
+        $master['username']= (($cx->counter % 12)+1);
+        return view('admin.dataBI', compact('categorynews','data_bi','master'));
+    }
+
 }

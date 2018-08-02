@@ -52,7 +52,7 @@
                         </div>
                     </li>
                     @inject('groups', 'App\GroupMenu')
-                    <li class="nav-item dropdown {{{ (Request::is('*report*') ? 'active' : '') }}}">
+                    <li class="nav-item dropdown {{{ (Request::is('*/custom*') ? 'active' : '') }}}">
                         <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-cubes "></i><span>Custom Menu</span>
                         </a>
@@ -73,7 +73,7 @@
                             <div class="dropdown-menu dropright">
                                 @foreach($groupmenu->menus as $menu)
                                     @if($menu->is_frame)
-                                        <a class="dropdown-item " href="{{ route('frontend.handset', $menu->id) }}">{{ $menu->link_label }}</a>
+                                        <a class="dropdown-item " href="{{ route('admin.instabi', $menu->link_slug) }}">{{ $menu->link_label }}</a>
                                     @else
                                         <a class="dropdown-item " href="{{ $menu->link_url }}">{{ $menu->link_label }}</a>
                                     @endif
