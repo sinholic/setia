@@ -54,7 +54,7 @@
                     @inject('groups', 'App\GroupMenu')
                     <li class="nav-item dropdown {{{ (Request::is('*report*') ? 'active' : '') }}}">
                         <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-cubes "></i><span>Menu</span>
+                            <i class="fas fa-cubes "></i><span>Custom Menu</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <?php
