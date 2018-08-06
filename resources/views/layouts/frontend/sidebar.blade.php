@@ -84,6 +84,7 @@
           <li><i class="fa fa-clock-o"></i> {{$listData->updated_at}}</li>
           <li>By {{$listData->name}}</li>
         </ul>
+        <p>{!! substr(strip_tags($listData->konten),0,140) !!}...</p>
       </div>
     </article><hr>
     <!-- /ARTICLE -->
