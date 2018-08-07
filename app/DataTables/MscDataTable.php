@@ -16,11 +16,23 @@ class MscDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
+        ->filterColumn('recentity', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_msc.recentity) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('gt', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_msc.gt) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('nama', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_msc.nama) like ?", ["%$keyword%"]);
+        })
         ->filterColumn('regional', function ($query, $keyword) {
            $query->whereRaw("LOWER(a_regional.nama) like ?", ["%$keyword%"]);
         })
         ->filterColumn('namakota', function ($query, $keyword) {
            $query->whereRaw("LOWER(a_kota.nama) like ?", ["%$keyword%"]);
+        })
+        ->filterColumn('filename', function ($query, $keyword) {
+           $query->whereRaw("LOWER(a_msc.filename) like ?", ["%$keyword%"]);
         })
         ->filterColumn('status', function ($query, $keyword) {
            $query->whereRaw("LOWER(a_status_data_switch.nama) like ?", ["%$keyword%"]);
