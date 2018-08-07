@@ -35,7 +35,7 @@ $token = InstaBILogin($urlLogin, $username, $password, $master);
 <!-- Main Column -->
 <div class="col-md-12">
 
-    <div id="iframe-instabi" class="the-iframe width-100-persen" style="margin-left: 0px;height:700px;overflow-y:auto"></div>
+    <div id="iframe-instabi" class="the-iframe width-100-persen" style="margin-left: 0px;height:800px;overflow-y:none"></div>
 </div>
 @endsection
 @push('scripts')
