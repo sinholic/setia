@@ -88,7 +88,7 @@
 				<div class="container">
 					<nav id="main-nav">
 						<div class="nav-logo">
-							<a href="#" class="logo"><img src="./img/logo-alt.png" alt=""></a>
+							<a href="#" class="logo"></a>
 						</div>
 						<ul class="main-nav nav navbar-nav">
 							<li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i>
@@ -166,8 +166,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- jQuery Plugins -->
     <!-- <script src="{{ asset('js/frontend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/frontend/js/bootstrap.min.js') }}"></script> -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="{{ asset('js/frontend/js/jquerynew.min.js') }}"></script>
+	  <script src="{{ asset('js/frontend/js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/frontend/js/main.js') }}"></script>
 		<!-- <script src="//code.jquery.com/jquery.js"></script> -->
