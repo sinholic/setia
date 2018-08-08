@@ -33,6 +33,7 @@
                             <a class="dropdown-item {{{ (Request::is('*/exchangerate*') ? 'active' : '') }}} " href="{{ route('exchangerate.index') }}">Exchange Rate</a>
                         </div>
                     </li>
+                    @if(\Auth::user()->group->nama == 'Group Administrator')
                     <li class="nav-item dropdown {{{ (Request::is('*user*') ? 'active' : '') }}}">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i><span>Users</span>
@@ -51,6 +52,7 @@
                             <a class="dropdown-item {{{ (Request::is('*/groupmenu*') ? 'active' : '') }}} " href="{{ route('groupmenu.index') }}">Menu Group</a>
                         </div>
                     </li>
+                    @endif
                     @inject('groups', 'App\GroupMenu')
                     <li class="nav-item dropdown {{{ (Request::is('*/instabi*') ? 'active' : '') }}}">
                         <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,7 +62,8 @@
                             <?php
                                 $groupmenus = $groups->with('menus')
                                 ->whereHas('menus', function ($query) {
-                                    $query->where('is_show_on_sidebar', 1);
+                                    $query->where('is_show_on_sidebar', 1)
+                                        ->where('is_public', 0);
                                 })
                                 ->whereHas('menus.groupuser', function ($query) {
                                     $query->where('id_group_user', \Auth::user()->id_group);
