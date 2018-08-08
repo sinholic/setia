@@ -50,7 +50,7 @@ class MenuController extends Controller
             'link_url'      => 'required',
 
         ]);
-        $slug=$this->slug->createSlug($request->link_label);
+
         $data_menu= array(
             "link_label"                    => $request->link_label,
             "link_url"                      => $request->link_url,
@@ -60,8 +60,7 @@ class MenuController extends Controller
             "is_show_on_sidebar"            => $request->is_show_on_sidebar,
             "id_group_menu"                 => $request->id_group_menu,
             "updated_by"                    => $request->updated_by,
-            "created_by"                    => $request->created_by,
-            "link_slug"                     => $slug
+            "created_by"                    => $request->created_by
         );
         $menu=Menu::create($data_menu);
         if (isset($request->group_user)) {
