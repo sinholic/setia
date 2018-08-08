@@ -93,7 +93,11 @@ class MenuDataTable extends DataTable
                 "title"         => 'No',
             ],
             'label',
-            'url',
+            [
+                'data' => 'url',
+                'title' => 'URL',
+                'width' => 250
+            ],
             'desc',
             'nama',
             'frame',
