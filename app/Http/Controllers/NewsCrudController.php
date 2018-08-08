@@ -12,9 +12,9 @@ class NewsCrudController extends Controller
 
     protected $slug;
 
-   public function __construct(Slug $slug) {
-       $this->slug = $slug;
-   }
+    public function __construct(Slug $slug) {
+    $this->slug = $slug;
+    }
     /**
      * Display a listing of the resource.
      *

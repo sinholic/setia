@@ -8,10 +8,16 @@ use App\Menu;
 use App\GroupMenu;
 use App\XGroupUser;
 use App\GroupUserMenuRelation;
+use \App\ClassHelper\Slug;
 
 class MenuController extends Controller
 {
     private $title = 'Menu';
+    protected $slug;
+
+    public function __construct(Slug $slug) {
+        $this->slug = $slug;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +56,7 @@ class MenuController extends Controller
             'link_url'      => 'required',
 
         ]);
-
+        $slug=$this->slug->createSlug($request->link_label);
         $data_menu= array(
             "link_label"                    => $request->link_label,
             "link_url"                      => $request->link_url,
@@ -60,7 +66,8 @@ class MenuController extends Controller
             "is_show_on_sidebar"            => $request->is_show_on_sidebar,
             "id_group_menu"                 => $request->id_group_menu,
             "updated_by"                    => $request->updated_by,
-            "created_by"                    => $request->created_by
+            "created_by"                    => $request->created_by,
+            "link_slug"                     => $slug
         );
         $menu=Menu::create($data_menu);
         if (isset($request->group_user)) {
@@ -155,16 +162,18 @@ class MenuController extends Controller
           'link_url'      => 'required',
 
       ]);
+      $slug=$this->slug->createSlug($request->link_label);
       $data_menu= array(
           "link_label"                  => $request->link_label,
-          "link_url"            => $request->link_url,
-          "link_desc"            => $request->link_desc,
-          "is_frame"            => $request->is_frame,
-          "is_public"            => $request->is_public,
-          "is_show_on_sidebar"            => $request->is_show_on_sidebar,
-          "id_group_menu"            => $request->id_group_menu,
-          "updated_by"               => $request->updated_by,
-          "created_by"               => $request->created_by
+          "link_url"                    => $request->link_url,
+          "link_desc"                   => $request->link_desc,
+          "is_frame"                    => $request->is_frame,
+          "is_public"                   => $request->is_public,
+          "is_show_on_sidebar"          => $request->is_show_on_sidebar,
+          "id_group_menu"               => $request->id_group_menu,
+          "updated_by"                  => $request->updated_by,
+          "created_by"                  => $request->created_by,
+          "link_slug"                   => $slug
       );
       $menu=Menu::find($id)->update($data_menu);
       if (isset($request->group_user)) {

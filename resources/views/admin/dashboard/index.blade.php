@@ -24,17 +24,17 @@
         <!-- /widget-content -->
     </div>
     <!-- /widget -->
-    <div class="widget widget-nopad">
+    <!-- <div class="widget widget-nopad">
         <div class="widget-header"> <i class="icon-bookmark fas fa-list-alt"></i>
             <h3> Recent News</h3>
-        </div>
+        </div> -->
         <!-- /widget-header -->
-        <div class="widget-content">
+        <!-- <div class="widget-content">
             <div id='calendar'>
             </div>
-        </div>
+        </div> -->
         <!-- /widget-content -->
-    </div>
+    <!-- </div> -->
     <!-- /widget -->
 </div>
 <!-- /col-6 -->
@@ -84,19 +84,19 @@
         <!-- /widget-content -->
     </div>
     <!-- /widget -->
-    <div class="widget">
-        <div class="widget-header"> <i class="icon-bookmark fas fa-signal"></i>
-            <h3> Area Chart Example</h3>
-        </div>
+    <!-- <div class="widget"> -->
+        <!-- <div class="widget-header"> <i class="icon-bookmark fas fa-signal"></i> -->
+            <!-- <h3> Area Chart Example</h3> -->
+        <!-- </div> -->
         <!-- /widget-header -->
-        <div class="widget-content">
-            <canvas id="area-chart" class="chart-holder" height="250" width="538"> </canvas>
+        <!-- <div class="widget-content"> -->
+            <!-- <canvas id="area-chart" class="chart-holder" height="250" width="538"> </canvas> -->
             <!-- /area-chart -->
-        </div>
+        <!-- </div> -->
         <!-- /widget-content -->
-    </div>
+    <!-- </div> -->
     <!-- /widget -->
-</div>
+<!-- </div> -->
 <!-- /col-6 -->
 @endsection
 
