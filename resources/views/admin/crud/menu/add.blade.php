@@ -86,10 +86,10 @@
 
 
     <div class="form-group row">
-        {{ Form::label('is_show_on_sidebar', 'Side On Sidebar', ['class' => 'col-sm-3 form-control-label']) }}
+        {{ Form::label('is_show_on_sidebar', 'Show On Report Menu', ['class' => 'col-sm-3 form-control-label']) }}
 
         <div class="col-sm-9">
-            <input id="is_show_on_sidebars" type="checkbox"  autofocus>  Centang untuk ditambilkan di Sidebar
+            <input id="is_show_on_sidebars" type="checkbox"  autofocus>  Centang untuk ditambilkan di Report Menu
             <input id="is_show_on_sidebar" type="text"  name="is_show_on_sidebar" value="0" style="display:none" >
 
 
