@@ -31,6 +31,9 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{{ (Request::is('*/telintarif*') ? 'active' : '') }}} " href="{{ route('telintarif.index') }}">Telin Tariff</a>
                             <a class="dropdown-item {{{ (Request::is('*/exchangerate*') ? 'active' : '') }}} " href="{{ route('exchangerate.index') }}">Exchange Rate</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item {{{ (Request::is('*/finance*') ? 'active' : '') }}} " href="{{ route('finance.index') }}">Finance</a>
+                            <a class="dropdown-item {{{ (Request::is('*/target*') ? 'active' : '') }}} " href="{{ route('target.index') }}">Target</a>
                         </div>
                     </li>
                     @if(\Auth::user()->group->nama == 'Group Administrator')

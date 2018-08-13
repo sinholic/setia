@@ -45,7 +45,9 @@ Route::group(['middleware' => ['auth']],function () {
                     'msc'           => 'MscController',
                     'negara'        => 'NegaraController',
                     'operator'      => 'OperatorController',
-                    'telintarif'    => 'TelintariffController'
+                    'telintarif'    => 'TelintariffController',
+                    'finance'       => 'FinanceDashboardController',
+                    'target'        => 'TargetDashboardController',
                 ]);
         });
         Route::get('instabi/{slug}', ['uses' => 'DataBIController@adminBI', 'as' => 'admin.instabi']);
