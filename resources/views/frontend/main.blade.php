@@ -39,7 +39,7 @@
 										<p>{!! substr(strip_tags($listData->konten),0,140) !!}...</p>
 									</div>
 								</article>
-								<hr>
+								<hr class="line">
 								@else
 								<!-- /ARTICLE -->
 
@@ -58,7 +58,7 @@
 											<p>{!! substr(strip_tags($listData->konten),0,140) !!}...</p>
 									</div>
 								</article>
-								<hr>
+							<hr class="line">
 								@endif
 								<!-- /ARTICLE -->
 

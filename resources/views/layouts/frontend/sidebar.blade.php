@@ -37,7 +37,7 @@
     <div class="section-title" style="margin:0">
       <h2 class="title">Menu Analisys</h2>
     </div>
-    <div style="background:#fff;padding:5px;border:solid 0.7px #ddd">
+    <div style="color:#fff;padding:5px;">
       <?php $datamenu='a'; ?>
       @foreach($menu_bi as $index_bi => $listData_bi)
 
@@ -86,7 +86,7 @@
         </ul>
         <p>{!! substr(strip_tags($listData->konten),0,140) !!}...</p>
       </div>
-    </article><hr>
+    </article><hr class="line">
     <!-- /ARTICLE -->
     @endif
     @endforeach

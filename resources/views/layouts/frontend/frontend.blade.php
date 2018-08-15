@@ -52,12 +52,41 @@
 			padding:0 !important;
 		}
 		</style>
-	<body>
+	<body id="fullLayout">
 
 		<!-- Header -->
 		<header id="header" >
 			<!-- Top Header -->
+			<div id="top-header">
+				<div class="container">
+					<div class="header-links">
+						<ul>
+								<li {{{ (Request::is('/') ? 'class=active' : '') }}}>
+									<a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+									</li>
+							@foreach($categorynews as $listData)
+								<li {{{ (Request::is('news/category/'.$listData->id) ? 'class=active' : '') }}}><a href="{{url('news/category', ['id' => $listData->id])}}">{{$listData->nama}}</a></li>
+							@endforeach
 
+
+						</ul>
+					</div>
+					<div class="header-social">
+						<ul style="padding-top:5px;">
+							@guest
+								<a style="color:#fff !important;margin-top:5px" onclick="login('{{ route('login') }}');" ><i class="fa fa-sign-in"></i> Login</a>
+								<!-- <button class="nav-collapse-btn"><i class="fa fa-bars"></i></button> -->
+								@endguest
+								@auth
+								<a style="color:#fff !important;margin-top:5px" onclick="login('{{ route('admin.index') }}');"><i class="fa fa-sign-in"></i> Admin</a>
+
+								@endauth
+
+
+						</ul>
+					</div>
+				</div>
+			</div>
 			<!-- /Top Header -->
 
 			<!-- Center Header -->
@@ -86,50 +115,15 @@
 			<!-- Nav Header -->
 			<div id="nav-header" style="box-shadow:5px 5px 5px #999;">
 				<div class="container">
-					<nav id="main-nav">
-						<div class="nav-logo">
-							<a href="#" class="logo"></a>
-						</div>
-						<ul class="main-nav nav navbar-nav">
-							<li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i>
- Home</a></li>
 
-							@foreach($categorynews as $listData)
-							<li {{{ (Request::is('news/category/'.$listData->id) ? 'class=active' : '') }}}><a href="{{url('news/category', ['id' => $listData->id])}}">{{$listData->nama}}</a></li>
-							@endforeach
-						  <!-- <li {{{ (Request::is('data/handset') ? 'class=active' : '') }}}><a href="{{url('data/handset')}}">Roaming</a></li>
-							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Handset</a></li>
-							<li {{{ (Request::is('operator') ? 'class=active' : '') }}}><a href="#">Operator</a></li> -->
-							<!-- <li {{{ (Request::is('roaminger') ? 'class=active' : '') }}}><a href="#">Roaming Exchange Rate</a></li>
-							<li {{{ (Request::is('roamingp') ? 'class=active' : '') }}}><a href="#">Roaming Partner</a></li>
-<<<<<<< HEAD
-							<li {{{ (Request::is('data/roaming') ? 'class=active' : '') }}}><a href="{{url('data/roaming')}}">Roaming Partner Map</a></li> -->
-							<!-- <li></li> -->
-						</ul>
-					</nav>
-					<div class="button-nav">
-						@guest
-						<button class="search-collapse-btn" onclick="login('{{ route('login') }}');" ><a style="color:#fff !important;"><i class="fa fa-sign-in"></i> Login</a></button>
-						<button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
-						@endguest
-						@auth
-						<button class="search-collapse-btn" onclick="login('{{ route('admin.index') }}');" ><a style="color:#fff !important;"><i class="fa fa-sign-in"></i> Admin</a></button>
-						<button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
-						@endauth
-
-						<!-- <div class="search-form">
-							<form>
-								<input class="input" type="text" name="search" placeholder="Search">
-							</form>
-						</div> -->
-					</div>
-				</div>
-			</div>
+					<!-- <button class="nav-collapse-btn"><i class="fa fa-bars"></i></button> -->
+				</div></div>
 			<!-- /Nav Header -->
 		</header>
 		<!-- /Header -->
-    @yield('body')
-
+		<div>
+    	@yield('body')
+		</div>
     <!-- FOOTER -->
     <footer id="footer" >
       <!-- Bottom Footer -->
@@ -145,7 +139,7 @@
             <div>
               <div class="footer-copyright">
                 <span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="https://zonderstudio.com.com" target="_blank">Zonder Studio</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="https://zonderstudio.com.com" target="_blank">Telkomsel</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
               </div>
             </div>
