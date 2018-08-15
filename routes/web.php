@@ -50,6 +50,14 @@ Route::group(['middleware' => ['auth']],function () {
                     'target'        => 'TargetDashboardController',
                 ]);
         });
+        Route::group([
+                'prefix'=>'csv'
+            ],function () {
+                Route::resources([
+                    'uploaddata'    => 'UploadCsvController',
+                    'manage'        => 'ImportDataController'
+                ]);
+        });
         Route::get('instabi/{slug}', ['uses' => 'DataBIController@adminBI', 'as' => 'admin.instabi']);
         Route::resource('categorynews', 'CategoryNewsController');
         Route::resource('newscrud', 'NewsCrudController');
