@@ -50,8 +50,9 @@ class UploadCsvController extends Controller
         $name = \Carbon\Carbon::now()->format('YmdHis').'_'.$file->getClientOriginalName();
         $destinationPath = public_path('/uploaded_file');
         $file->move($destinationPath, $name);
-
         $path = $destinationPath."/".$name;
+        $message = 'CSV uploaded successfully';
+
         if ($request->upload_and_process == 1) {
             $manage = ImportData::find($request->manage_id);
             $fields = explode("\n", $manage->fields);
@@ -77,6 +78,7 @@ class UploadCsvController extends Controller
 
                 }
             }
+            $message = 'Data from CSV inserted successfully';
         }
         $data_history = [
             'importdata_id' => $request->manage_id,
@@ -87,7 +89,7 @@ class UploadCsvController extends Controller
         ];
         UploadHistory::create($data_history);
         return redirect()->route('uploaddata.index')
-        ->with('message','Data from CSV inserted successfully');
+        ->with('message', $message);
     }
 
     /**
