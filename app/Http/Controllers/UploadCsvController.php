@@ -41,41 +41,43 @@ class UploadCsvController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'upload_and_process' => 'required',
             'manage_id' => 'required',
             'file_input' => 'required|mimes:csv,txt'
         ]);
-        // dd($request);
+
         $file = $request->file('file_input');
-        $name = \Carbon\Carbon::now().'_'.$file->getClientOriginalName();
+        $name = \Carbon\Carbon::now()->format('YmdHis').'_'.$file->getClientOriginalName();
         $destinationPath = public_path('/uploaded_file');
         $file->move($destinationPath, $name);
-        // dd($destinationPath);
-        // $path = $request->file('file_input')->getRealPath();
-        $path = $destinationPath."/".$name;
-        $manage = ImportData::find($request->manage_id);
-        $fields = explode("\n", $manage->fields);
 
-        $data = \Excel::load($path)->get();
-        \DB::statement("
-            COPY ".$manage->targettable." FROM '".$destinationPath."/".$name."' (DELIMITER(','))
-        ");
-        // if($data->count()){
-        //     foreach ($data as $key => $value) {
-        //         $insert_data = array();
-        //         foreach ($fields as $key => $field) {
-        //             $insert_field = explode("=", $field);
-        //             $target_field = trim($insert_field[0]);
-        //             $target_csv = trim($insert_field[1]);
-        //             $insert_data[$target_field] = $value->$target_csv;
-        //         }
-        //         $arr[] = $insert_data;
-        //
-        //     }
-        //     if(!empty($arr)){
-        //         \DB::table($manage->targettable)->insert($arr);
-        //
-        //     }
-        // }
+        $path = $destinationPath."/".$name;
+        if ($request->upload_and_process == 1) {
+            $manage = ImportData::find($request->manage_id);
+            $fields = explode("\n", $manage->fields);
+
+            $data = \Excel::load($path)->get();
+            // \DB::statement("
+            //     COPY ".$manage->targettable." FROM '".$destinationPath."/".$name."' (FORMAT CSV, DELIMITER(',') , HEADER)
+            // ");
+            if($data->count()){
+                foreach ($data as $key => $value) {
+                    $insert_data = array();
+                    foreach ($fields as $key => $field) {
+                        $insert_field = explode("=", $field);
+                        $target_field = trim($insert_field[0]);
+                        $target_csv = trim($insert_field[1]);
+                        $insert_data[$target_field] = $value->$target_csv;
+                    }
+                    $arr[] = $insert_data;
+
+                }
+                if(!empty($arr)){
+                    \DB::table($manage->targettable)->insert($arr);
+
+                }
+            }
+        }
         $data_history = [
             'importdata_id' => $request->manage_id,
             'filename' => $name,

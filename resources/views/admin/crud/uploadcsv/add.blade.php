@@ -4,7 +4,7 @@
     <div class="form-group row">
         {{ Form::label('manage_id', 'Target', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            {{ Form::select('manage_id', $manages, old('manage_id'), ['class' => 'form-control'.($errors->has('manage_id') ? ' is-invalid' : ''), 'placeholder' => 'Pilih Target ...']) }}
+            {{ Form::select('manage_id', $manages, old('manage_id'), ['class' => 'form-control'.($errors->has('manage_id') ? ' is-invalid' : ''), 'placeholder' => 'Pilih Target ...', 'required', 'autofocus']) }}
             @if ($errors->has('manage_id'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('manage_id') }}</strong>
@@ -19,6 +19,25 @@
             @if ($errors->has('file_input'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('file_input') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group row">
+        {{ Form::label('upload_and_process', '', ['class' => 'col-sm-3 form-control-label']) }}
+        <div class="col-sm-9">
+            <div class="btn-group btn-group-toggle form-control{{ $errors->has('upload_and_process') ? ' is-invalid' : '' }}" data-toggle="buttons">
+                <label class="btn btn-sm btn-outline-success">
+                    {{ Form::radio('upload_and_process', 1) }} Upload file and Process data
+                </label>
+                <label class="btn btn-sm btn-outline-success">
+                    {{ Form::radio('upload_and_process', 0) }} Upload file only
+                </label>
+            </div>
+            @if ($errors->has('upload_and_process'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('upload_and_process') }}</strong>
                 </span>
             @endif
         </div>
