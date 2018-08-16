@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\User;
+use App\ImportData;
 use Yajra\DataTables\Services\DataTable;
 
 class ImportDataDataTable extends DataTable
@@ -16,18 +16,31 @@ class ImportDataDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('action', 'importdata.action');
+        ->editColumn('fields', function(ImportData $data) {
+            return view('admin.crud.manage.fields', compact('data'))->render();
+        })
+        ->rawColumns(['fields', 'action'])
+        ->addColumn('action', function ($items) {
+            return view('admin.crud.buttons', compact('items'))->render();
+        });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\User $model
+     * @param \App\ImportData $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(ImportData $model)
     {
-        return $model->newQuery()->select('id', 'add-your-columns-here', 'created_at', 'updated_at');
+        return $model->newQuery()->select(
+            'id',
+            \DB::raw('ROW_NUMBER () OVER (ORDER BY id DESC) as no'),
+            'label',
+            'targettable',
+            'fields',
+            'created_at',
+            'updated_at');
     }
 
     /**
@@ -52,10 +65,14 @@ class ImportDataDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
-            'add your columns',
-            'created_at',
-            'updated_at'
+            [
+                "searchable"    => false,
+                "data"          => 'no',
+                "title"         => 'No',
+            ],
+            'label',
+            'targettable',
+            'fields'
         ];
     }
 

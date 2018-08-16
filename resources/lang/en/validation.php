@@ -128,6 +128,15 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'fields' => [
+            'regex' => ' The :attribute format must be <br/>
+                target_field = target_csv_data<br/>
+                target_field = target_csv_data<br/>
+                target_field = target_csv_data<br/>
+                target_field = target_csv_data<br/>
+            for multiple set target and data
+            ',
+        ],
     ],
 
     /*

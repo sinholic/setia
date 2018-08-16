@@ -15,10 +15,10 @@ class UploadHistoryDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        return datatables($query)
-        ->addColumn('action', function ($items) {
-            return view('admin.crud.buttons', compact('items'))->render();
-        });
+        return datatables($query);
+        // ->addColumn('action', function ($items) {
+        //     return view('admin.crud.buttons', compact('items'))->render();
+        // });
     }
 
     /**
@@ -42,7 +42,7 @@ class UploadHistoryDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->addAction(['width' => '80px'])
+                    // ->addAction(['width' => '80px'])
                     ->parameters($this->getBuilderParameters());
     }
 
