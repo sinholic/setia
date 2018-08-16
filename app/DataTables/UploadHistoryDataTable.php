@@ -59,8 +59,8 @@ class UploadHistoryDataTable extends DataTable
                 "data"          => 'no',
                 "title"         => 'No',
             ],
-            'filename',
-            'filepath'
+            'filepath',
+            'filename'
         ];
     }
 
