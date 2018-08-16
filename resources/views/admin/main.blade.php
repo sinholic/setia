@@ -60,7 +60,7 @@
                             <i class="fas fa-file-alt"></i><span>CSV</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item {{{ (Request::is('*/uploaddata*') ? 'active' : '') }}} " href="{{ route('uploaddata.index') }}">History Upload</a>
+                            <a class="dropdown-item {{{ (Request::is('*/uploaddata*') ? 'active' : '') }}} " href="{{ route('uploaddata.index') }}">Upload</a>
                             <a class="dropdown-item {{{ (Request::is('*/manage*') ? 'active' : '') }}} " href="{{ route('manage.index') }}">Manage Config</a>
                         </div>
                     </li>
