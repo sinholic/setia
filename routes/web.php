@@ -13,15 +13,21 @@
 
 Auth::routes();
 Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
+// Route::post('/search', ['uses' => 'SearchController@searching', 'as' => 'frontend.search']);
 Route::group([
         'prefix'=>'news'
     ],function () {
-        // Route::get('/', ['uses' => 'NewsController@index', 'as' => 'frontend.index']);
+
+        Route::any('/search',  ['uses' => 'NewsController@searching', 'as' => 'frontend.search']);
         Route::get('/detail/{id}/{slug}', ['uses' => 'NewsController@detail', 'as' => 'frontend.detail']);
-        Route::get('/pageBI/{id}', ['uses' => 'DataBIController@handset', 'as' => 'frontend.handset']);
+        Route::get('/pageBI/{id}/{nama}', ['uses' => 'DataBIController@handset', 'as' => 'frontend.handset']);
         //Route::get('/roaming', ['uses' => 'DataBIController@index', 'as' => 'frontend.roaming']);
         Route::get('/category/{id}', ['uses' => 'NewsController@bycategory', 'as' => 'frontend.category']);
 });
+// Route::resources([
+//     'search'     => 'SearchController',]);
+
+
 
 Route::group(['middleware' => ['auth']],function () {
     // Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home.index']);

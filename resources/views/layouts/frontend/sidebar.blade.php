@@ -1,4 +1,8 @@
-
+<style>
+.article-title{
+  color:#fff !important;
+}
+</style>
 <div class="col-md-4">
   <!-- Ad widget -->
   <!-- <div class="widget center-block hidden-xs">
@@ -39,21 +43,21 @@
     </div>
     <div style="color:#fff;padding:5px;">
       <?php $datamenu='a'; ?>
-      @foreach($menu_bi as $index_bi => $listData_bi)
+      @foreach(json_decode($menu_bi) as $listData_bi)
 
       <article class="article widget-article" style="margin-bottom:10px !important">
       <ul class="article-body">
         @if($listData_bi->nama!=$datamenu && $listData_bi->nama!='')
-          <h4 class="article-title" onclick='buttoncol({{$listData_bi->id}})'><i class="fa fa-line-chart" aria-hidden="true"></i> {{$listData_bi->nama}}</h4>
+          <span class="article-title" onclick='buttoncol({{$listData_bi->id}})'><i class="fa fa-line-chart" aria-hidden="true"></i> {{$listData_bi->nama}}</span>
           @elseif($listData_bi->nama=='')
-          <a href="{{url('news/pageBI', ['id' => $listData_bi->id_menu])}}"><h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i> {{$listData_bi->link_label}}</h4></a>
+          <a href="{{url('news/pageBI', ['id' => $listData_bi->id_menu, 'nama' => $listData_bi->link_label])}}"><span class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i> {{$listData_bi->link_label}}</span></a>
           @endif
       <li style="background:#ddd;padding:10px;margin-bottom:0;" class="collapse collapse_menu{{$listData_bi->id}}">
-       <a href="{{url('news/pageBI', ['id' => $listData_bi->id_menu])}}">{{$listData_bi->link_label}}</a>
+       <a href="{{url('news/pageBI', ['id' => $listData_bi->id_menu, 'nama' => $listData_bi->link_label])}}">{{$listData_bi->link_label}}</a>
      </li>
    </ul>
   </article>
-    <?php $datamenu=$listData_bi->nama; ?>
+
     <!-- <article class="article widget-article">
     <div class="article-body">
         <h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>

@@ -11,14 +11,14 @@
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CLato:300,400" rel="stylesheet">
-
+		<link rel="shortcut icon" href="{{ asset('images/frontend/favicon.ico')}}">
 		<!-- Bootstrap -->
 		<link type="text/css" rel="stylesheet" href="{{ asset('css/frontend/css/bootstrap.min.css') }}"/>
 
 		<!-- Owl Carousel -->
 		<link type="text/css" rel="stylesheet" href="{{ asset('css/frontend/css/owl.carousel.css') }}" />
 		<link type="text/css" rel="stylesheet" href="{{ asset('css/frontend/css/owl.theme.default.css') }}" />
-
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 		<!-- Font Awesome Icon -->
 		<link rel="stylesheet" href="{{ asset('css/frontend/css/font-awesome.min.css') }}">
 
@@ -60,7 +60,7 @@
 			<div id="top-header">
 				<div class="container">
 					<div class="header-links">
-						<ul>
+						<ul style="padding:10px 0px 5px 0px;">
 								<li {{{ (Request::is('/') ? 'class=active' : '') }}}>
 									<a href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
 									</li>
@@ -72,16 +72,29 @@
 						</ul>
 					</div>
 					<div class="header-social">
-						<ul style="padding-top:5px;">
+						<ul style="padding:5px 0px 5px 0px;">
+							<li>
+							{{ Form::open(array('route' => 'frontend.search', 'class' => 'form-horizontal')) }}
+								<div class="input-group">
+								<input class="input"  type="text" name="q" placeholder="Search">
+								<span class="input-group-btn" >
+									<button type="submit" style="height:40px" class="btn btn-default"><span class="fa fa-search"></spa></button>
+								</span>
+							</div>
+						{{ Form::close() }}
+						</li>
+						<li>
+							<div class="input-group">
 							@guest
-								<a style="color:#fff !important;margin-top:5px" onclick="login('{{ route('login') }}');" ><i class="fa fa-sign-in"></i> Login</a>
+								<a style="color:#fff !important;" onclick="login('{{ route('login') }}');" ><i class="fa fa-sign-in"></i> Login</a>
 								<!-- <button class="nav-collapse-btn"><i class="fa fa-bars"></i></button> -->
 								@endguest
 								@auth
-								<a style="color:#fff !important;margin-top:5px" onclick="login('{{ route('admin.index') }}');"><i class="fa fa-sign-in"></i> Admin</a>
+								<a style="color:#fff !important;" onclick="login('{{ route('admin.index') }}');"><i class="fa fa-sign-in"></i> Admin</a>
 
 								@endauth
-
+							</div>
+							</li>
 
 						</ul>
 					</div>
@@ -95,13 +108,11 @@
 				<div class="container" >
 
 					<div class="header-logo">
-						<a href="#" class="logo"><img src="{{asset('images/frontend/setialogo2.png')}}" alt=""></a>
+						<a href="#" class="logo"><img src="{{asset('images/frontend/setialogo2.png')}}" alt="" style="height:70px;"></a>
 					</div>
 
 
-					<!-- <div class="header-ads">
-						<img class="center-block" src="./img/ad-2.jpg" alt="">
-					</div> -->
+
 				</div>
 				<!-- </div> -->
 				<!-- <div class="col-lg-8 col-md-8 col-sm-8" style="background:#fff;">
@@ -127,7 +138,7 @@
     <!-- FOOTER -->
     <footer id="footer" >
       <!-- Bottom Footer -->
-      <div id="bottom-footer" class="section">
+      <div id="bottom-footer" style="background:transparent;" class="section">
         <!-- CONTAINER -->
         <div class="container">
           <!-- ROW -->
@@ -137,7 +148,7 @@
 
             <!-- footer copyright -->
             <div>
-              <div class="footer-copyright">
+              <div class="footer-copyright" >
                 <span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="https://zonderstudio.com.com" target="_blank">Telkomsel</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
@@ -164,6 +175,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	  <script src="{{ asset('js/frontend/js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/frontend/js/main.js') }}"></script>
+
+
+		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 		<!-- <script src="//code.jquery.com/jquery.js"></script> -->
 		  @yield('js')
 		<script>

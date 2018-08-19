@@ -157,6 +157,7 @@ textarea.input {
 \*----------------------------*/
 #header #top-header {
 	border-bottom: 1px solid #DDD;
+	margin:0 80px 0 80px;
 }
 
 .header-links {
@@ -208,6 +209,7 @@ textarea.input {
 	color: #fff;
 	font-size: 12.5px;
 	text-align: center;
+	margin-right: 30px;
 }
 
 .header-social ul li a:hover {
@@ -231,7 +233,7 @@ textarea.input {
 }
 
 .header-logo .logo > img {
-	width: 100%;
+	/* width: 100%; */
 	max-height: 90px;
 	padding: 10px;
 }
@@ -644,7 +646,7 @@ textarea.input {
 }
 
 .article .article-title > a {
-	font-weight:700;
+	font-weight:lighter;
 }
 
 .article .article-meta {
@@ -726,7 +728,7 @@ textarea.input {
 }
 
 .article.widget-article .article-title {
-	font-size:15px;
+	font-size:13px;
 }
 .article-title>a{
 	color:#fff;
@@ -1166,12 +1168,15 @@ textarea.input {
 .article-reply-form form button.input-btn {
 	margin-top:15px;
 }
-
+tbody>td{
+	color:#444 !important;
+}
 /*=========================================================
 	FOOTER
 ===========================================================*/
 #footer {
-	background-color: #07090C;
+	/* background-color: #07090C; */
+	background: transparent;
 }
 
 #footer p {
