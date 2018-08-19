@@ -39,7 +39,7 @@
   <!-- /subscribe widget -->
   <div class="widget" >
     <div class="section-title" style="margin:0">
-      <h2 class="title">Menu Analisys</h2>
+      <h2 class="title">Menu</h2>
     </div>
     <div style="color:#fff;padding:5px;">
       <?php $datamenu='a'; ?>
