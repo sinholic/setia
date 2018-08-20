@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <p style="text-align:center;">
-                        <img src="{{asset('images/frontend/setialogo2.png')}}" alt="" style="height:80px;margin-bottom:10px;margin:0 auto;">
+                        <img src="{{asset('images/frontend/setialogo2 old.png')}}" alt="" style="height:80px;margin-bottom:10px;margin:0 auto;">
                     </p>
                     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                         @csrf
