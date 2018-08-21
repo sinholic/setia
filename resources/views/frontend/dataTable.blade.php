@@ -11,7 +11,7 @@
     background: transparent;
     box-shadow: none;
 }
-.section,select,input{
+.section,select,input[type="search"]{
   color:#000 !important;
   font-size: 12px;
 }
@@ -29,14 +29,17 @@
     <div class="row">
       <!-- Main Column -->
       <div class="col-md-12">
-          @if(Session::get('status')=='Opertaor Code')
+          @if(Session::get('status')=='Operator Code')
           <table id="dataListMetric" class="table table-bordered asd" width="100%">
                   <thead>
                     <tr id="theadsize">
-                      <th >ID</th>
-                      <th >Appname</th>
-                       <th >Aggr</th>
-                      <th >Query</th>
+                      <th >Operator Code</th>
+                      <th >Operator</th>
+                       <th >MCCMNC</th>
+                      <th >Country</th>
+                        <th >Continent</th>
+                        <th >MCC</th>
+                        <th >CC</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -97,19 +100,46 @@
                         </thead>
                         <tbody>
                             @foreach($data as $listData)
+                            @php
+                            if (!function_exists('iconadd')) {
+                            function iconadd($param){
+                              if($param==1){
+                                 $img="img/close-button-small.png";
+                              }elseif($param==2){
+                                $img="img/check-box-small.png" ;
+                              }elseif($param==3){
+                                $img="img/check-box-uh-small.png" ;
+                              }else{
+                                $img="img/check-box-uv-small.png" ;
+                              }
+                              return $img;
+                            }
+                          }
+                              $POSTPAID_VOICE_SMS = iconadd($listData->POSTPAID_VOICE_SMS);
+                              $POSTPAID_GPRS_MMS = iconadd($listData->POSTPAID_GPRS_MMS);
+                              $POSTPAID_3GCS = iconadd($listData->POSTPAID_3GCS);
+                              $POSTPAID_3GPS = iconadd($listData->POSTPAID_3GPS);
+                              $POSTPAID_3GVT = iconadd($listData->POSTPAID_3GVT);
+                              $PREPAIDCAMEL_VOICE_MO = iconadd($listData->PREPAIDCAMEL_VOICE_MO);
+                              $PREPAID_VOICEMT_SMS = iconadd($listData->PREPAID_VOICEMT_SMS);
+                              $lte = iconadd($listData->lte);
+                              $smsi = iconadd($listData->smsi);
+
+
+                            @endphp
                           <tr>
                             <td>{{$listData->country}}</td>
                             <td>{{$listData->operator}}</td>
                             <td>{{$listData->operatorcode}}</td>
-                            <td>{{$listData->POSTPAID_VOICE_SMS}}</td>
-                            <td>{{$listData->POSTPAID_GPRS_MMS}}</td>
-                            <td>{{$listData->POSTPAID_3GCS}}</td>
-                            <td>{{$listData->POSTPAID_3GPS}}</td>
-                            <td>{{$listData->POSTPAID_3GVT}}</td>
-                            <td>{{$listData->PREPAIDCAMEL_VOICE_MO}}</td>
-                            <td>{{$listData->PREPAID_VOICEMT_SMS}}</td>
-                            <td>{{$listData->lte}}</td>
-                            <td>{{$listData->smsi}}</td>
+                            <td><img src="{{asset($POSTPAID_VOICE_SMS)}}"></td>
+                            <td><img src="{{asset($POSTPAID_GPRS_MMS)}}"></td>
+                            <td><img src="{{asset($POSTPAID_3GCS)}}"></td>
+                            <td><img src="{{asset($POSTPAID_3GPS)}}"></td>
+                            <td><img src="{{asset($POSTPAID_3GVT)}}"></td>
+                            <td><img src="{{asset($PREPAIDCAMEL_VOICE_MO)}}"></td>
+                            <td><img src="{{asset($PREPAID_VOICEMT_SMS)}}"></td>
+                            <td><img src="{{asset($lte)}}"></td>
+                            <td><img src="{{asset($smsi)}}"></td>
 
                           </tr>
                           @endforeach

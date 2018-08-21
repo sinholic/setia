@@ -20,23 +20,12 @@ class DataBIController extends Controller
             $namae=str_replace(' ','',$param);
             $table='v_'.$namae;
             $request->session()->put('status', $nama);
-            // if($nama='Roaming Partner'){
-            //     $table='v_roamingpartner';
-            //     $request->session()->put('status', 'Roaming Partner');
-            // }else if($nama='Handset Display'){
-            //   $table='v_handsetdisplay';
-            //    $request->session()->put('status', 'Handset Display');
-            // }else if($nama='Operator Code'){
-            //   $table='v_operatorcode';
-            //    $request->session()->put('status', 'Opertator Code');
-            // }else if($nama='Roaming Exchange Rate'){
-            //   $table='v_roamingexchangerate';
-            //    $request->session()->put('status', 'Roaminng Exchange Rate');
-            // }
+
             $categorynews = CategoryNews::get();
             $data=DB::table($table)->select('*')->get();
             return view('frontend.dataTable', compact('categorynews','data','param'));
         }else{
+
           $data_bi = Menu::find($id);
           $cx=Counter::find(0);
 
@@ -46,7 +35,7 @@ class DataBIController extends Controller
           $cx->save();
           $master['username']= (($cx->counter % 12)+1);
           $categorynews = CategoryNews::get();
-          //return view('frontend.dataBI', compact('categorynews','data_bi','master'));
+          return view('frontend.dataBI', compact('categorynews','data_bi','master'));
       }
     }
 
