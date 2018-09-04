@@ -11,7 +11,7 @@ use App\Menu;
 use App\GroupMenu;
 class NewsController extends Controller
 {
-    public function index(Request $request)
+    /*public function index(Request $request)
     {
         $menu_bi = Menu::select('a_group_menu.id','a_group_menu.nama', 'a_menu.link_label','a_menu.id as id_menu','a_menu.link_url')
         ->leftjoin('a_group_menu', 'a_menu.id_group_menu', '=', 'a_group_menu.id')
@@ -24,6 +24,19 @@ class NewsController extends Controller
         ->orderBy('updated_at', 'DESC')
         ->get()->toJson();
         return view('frontend.main', compact('dataAll','categorynews','menu_bi'));
+    }*/
+
+    public function index(Request $request)
+    {
+        $menu_bi = Menu::select('a_group_menu.id','a_group_menu.nama', 'a_menu.link_label','a_menu.id as id_menu','a_menu.link_url')
+        ->leftjoin('a_group_menu', 'a_menu.id_group_menu', '=', 'a_group_menu.id')
+        ->where('a_menu.is_public', '1')
+        ->get();
+        $categorynews = CategoryNews::get();
+        $dataAll=News::where('is_publish', 1)
+        ->orderBy('updated_at', 'DESC')
+        ->paginate(1);
+        return view('layoutsnew.main', compact('dataAll','categorynews','menu_bi'));
     }
 
     public function searching(Request $request)
