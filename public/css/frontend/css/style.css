@@ -224,6 +224,7 @@ textarea.input {
     background: -o-linear-gradient(left,#bb010a 0,#ff6100 100%);
     background: linear-gradient(to right,#bb010a 0,#ff6100 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bb010a',endColorstr='#ff6100',GradientType=1);
+	padding: 0;
 }
 
 #nav-header .nav-logo {
@@ -249,19 +250,37 @@ textarea.input {
 }
 
 .main-nav li a {
-	padding: 0;
-	color: #FFF;
-	opacity: 0.6;
+	/* padding-top: 0; */
 	text-transform: uppercase;
+	/* padding-bottom: 0; */
+	color: #FFF;
+	padding : .5rem 1rem;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: #FFF;
 }
 
 .main-nav li.active a {
 	opacity: 1;
+	color: #FFF;
+}
+
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover,
+.dropdown-item:focus,
+.dropdown-item:hover {
+	background-color: red;
+	color: #FFF;
 }
 
 .main-nav li a:hover, .main-nav li a:focus {
 	opacity: 1;
-	background-color: transparent;
+	/* background-color: transparent; */
 	/* background-color:#222; */
 }
 
@@ -688,7 +707,9 @@ textarea.input {
 
 .article.widget-article .article-img {
 	float:left;
-	width:80px;
+	/* width:80px; */
+	height: 140px;
+	width: 140px;
 	margin-right:15px;
 	margin-bottom:0px;
 }
@@ -1148,6 +1169,16 @@ textarea.input {
 	color:#E5131D;
 }
 
+.footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	line-height: 60px; /* Vertically center the text there */
+	background-color: #f5f5f5;
+}
+
 /*------------------------------------*\
 	Top Footer
 \*------------------------------------*/
@@ -1373,4 +1404,10 @@ textarea.input {
 	-webkit-transform:translateY(0px);
 	    -ms-transform:translateY(0px);
 	        transform:translateY(0px);
+}
+
+
+/* Custom Override Bootstrap */
+.dropdown-menu {
+	background-color: #C10A09;
 }

@@ -33,10 +33,11 @@ class NewsController extends Controller
         ->where('a_menu.is_public', '1')
         ->get();
         $categorynews = CategoryNews::get();
-        $dataAll=News::where('is_publish', 1)
+        $dataNews = News::with('category', 'create_user')
+        ->where('is_publish', 1)
         ->orderBy('updated_at', 'DESC')
-        ->paginate(1);
-        return view('layoutsnew.main', compact('dataAll','categorynews','menu_bi'));
+        ->paginate(2);
+        return view('layoutsnew.main', compact('dataNews','categorynews','menu_bi'));
     }
 
     public function searching(Request $request)

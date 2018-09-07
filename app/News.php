@@ -21,8 +21,19 @@ class News extends Model
         "updated_by",
         "created_by",
     ];
-  public function category()
-      {
-          return $this->belongsTo('App\CategoryNews', 'id_category');
-      }
+
+    public function category()
+    {
+        return $this->belongsTo('App\CategoryNews', 'id_category');
+    }
+
+    public function create_user()
+    {
+        return $this->belongsTo('App\User', 'created_by');
+    }
+
+    public function update_user()
+    {
+        return $this->belongsTo('App\User', 'updated_by');
+    }
 }
