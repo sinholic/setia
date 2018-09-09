@@ -7,29 +7,270 @@ Bootstrap Admin Template by EGrappler.com
 /*------------------------------------------------------------------
 [1. Shortcuts / .shortcuts]
 */
-
-.shortcuts {
-	text-align: center;	
+.article {
+	position:relative;
+	margin-bottom:30px;
+}
+a.nav-link{
+	color:#fff !important;
+}
+.article .article-img > a {
+	display:block;
 }
 
-.shortcuts .shortcut { 
+.article .article-img > a:after {
+	content:"";
+	position:absolute;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0;
+	background: #222;
+	opacity:0;
+	-webkit-transition:0.2s opacity;
+	transition:0.2s opacity;
+}
+
+.article:hover .article-img > a:after {
+	opacity:0.3;
+}
+
+.article .article-img {
+	position:relative;
+	overflow:hidden;
+	margin-bottom:15px;
+}
+
+.article .article-img img {
+	width:100%;
+	-webkit-transition:0.5s -webkit-transform;
+	transition:0.5s -webkit-transform;
+	transition:0.5s transform;
+	transition:0.5s transform, 0.5s -webkit-transform;
+}
+
+.article:hover .article-img img {
+	-webkit-transform:scale(1.1);
+	    -ms-transform:scale(1.1);
+	        transform:scale(1.1);
+}
+
+.article .article-img  .article-info {
+	position:absolute;
+	bottom:15px;
+	left:15px;
+	z-index:22;
+}
+
+.article .article-body .article-info {
+	margin-bottom:15px;
+}
+
+.article .article-info li {
+	display:inline-block;
+	margin-right:-2px;
+}
+
+.article .article-info .article-type {
+	width:30px;
+	height: 30px;
+	line-height: 30px;
+	text-align:center;
+	background: #222;
+	color: #FFF;
+	font-size: 12.5px;
+}
+
+.article .article-info .article-category > a {
+	display:block;
+	padding: 0px 15px;
+	height: 30px;
+	line-height: 30px;
+	background: #E5131D;
+	color: #FFF;
+	text-transform: uppercase;
+	font-size: 12.5px;
+}
+
+.article .article-info .article-category > a:hover {
+	opacity:0.8;
+}
+
+.article .article-title {
+	text-transform: uppercase;
+	margin-top:0px;
+}
+
+.article .article-title > a {
+	font-weight:700;
+}
+
+.article .article-meta {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.article .article-meta li {
+	display:inline-block;
+	color:#DDD;
+	font-weight:400;
+	font-size:12.5px;
+	text-transform:uppercase;
+}
+
+.article .article-meta li + li {
+	margin-left:10px;
+}
+
+/*------------------------------------*\
+	Thumb Article
+\*------------------------------------*/
+.article.thumb-article {
+	margin-bottom:0px;
+}
+
+.article.thumb-article .article-img {
+	margin-bottom:0px;
+}
+
+.article.thumb-article .article-img:after {
+	content:"";
+	position:absolute;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0;
+	background: -webkit-gradient(linear, left bottom, left top, from(#222), to(transparent));
+	background: linear-gradient(to top, #222 0%, transparent 100%);
+	opacity:0.5;
+	-webkit-transition:0.2s opacity;
+	transition:0.2s opacity;
+}
+
+.article.thumb-article:hover .article-img:after {
+	opacity:1;
+}
+
+.article.thumb-article .article-body {
+	position: absolute;
+	bottom: 0;
+	left:0;
+	right:0;
+	padding: 15px 5%;
+	z-index:20;
+}
+
+.article.thumb-article .article-body .article-title > a {
+	color:#FFF;
+}
+
+.article.thumb-article .article-body .article-title > a:hover {
+	color: #DDD;
+}
+
+/*------------------------------------*\
+	Widget Article
+\*------------------------------------*/
+.article.widget-article:after {
+	content:"";
+	display:block;
+	clear:both;
+}
+
+.article.widget-article .article-img {
+	float:left;
+	width:80px;
+	margin-right:15px;
+	margin-bottom:0px;
+}
+
+.article.widget-article .article-title {
+	font-size:15px;
+}
+
+/*------------------------------------*\
+	Row Article
+\*------------------------------------*/
+.article.row-article:after {
+	content:"";
+	display:block;
+	clear:both;
+}
+
+.article.row-article .article-img {
+	width:50%;
+	float:left;
+	margin-right:30px;
+	margin-bottom:0px;
+}
+
+@media only screen and (max-width: 767px) {
+	.article.row-article .article-img {
+		width:180px;
+	}
+
+	.article.row-article .article-body p {
+		display:none;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.article.row-article .article-img {
+		float:none;
+		margin-bottom:15px;
+	}
+}
+
+/*-- article pagination --*/
+.article-pagination {
+	margin-top:30px;
+	margin-bottom:30px;
+}
+
+.article-pagination ul li {
+	display:inline-block;
+}
+
+.article-pagination ul li a {
+	display:block;
+	padding:6px 15px;
+	color:#DDD;
+	border:1px solid #DDD;
+	font-size:12.5px;
+}
+.article-pagination ul li a:hover {
+	color:#E5131D;
+	border-color:#E5131D;
+}
+
+.article-pagination ul li.active a {
+	background-color:#E5131D;
+	border-color:#E5131D;
+	color:#FFF;
+}
+
+.shortcuts {
+	text-align: center;
+}
+
+.shortcuts .shortcut {
 	width: 22.50%;
 	display: inline-block;
 	padding: 12px 0;
 	margin: 0 .9% 1em;
-	vertical-align: top;	
-	
+	vertical-align: top;
+
 	text-decoration: none;
-	
+
 	background: #f9f6f1;
-	
+
 	border-radius: 5px;
 }
 
 .shortcuts .shortcut .shortcut-icon {
 	margin-top: .25em;
 	margin-bottom: .25em;
-	
+
 	font-size: 32px;
 	color: #545454;
 }
@@ -48,7 +289,7 @@ Bootstrap Admin Template by EGrappler.com
 
 .shortcuts .shortcut-label {
 	display: block;
-	
+
 	font-weight: 400;
 	color: #545454;
 }
@@ -71,7 +312,7 @@ Bootstrap Admin Template by EGrappler.com
 	display: table-cell;
 	width: 40%;
 	vertical-align: top;
-	
+
 	font-size: 11px;
 	font-weight: bold;
 	color: #999;
@@ -80,7 +321,7 @@ Bootstrap Admin Template by EGrappler.com
 .stat-value {
 	display: block;
 	margin-bottom: .55em;
-	
+
 	font-size: 30px;
 	font-weight: bold;
 	letter-spacing: -2px;
@@ -99,7 +340,7 @@ Bootstrap Admin Template by EGrappler.com
 
 .stats #donut-chart {
 	height: 100px;
-	margin-left: -20px;	
+	margin-left: -20px;
 }
 
 
@@ -141,27 +382,27 @@ Bootstrap Admin Template by EGrappler.com
 	width: 75px;
 	vertical-align: middle;
 	text-align: center;
-	
+
 }
 
 .news-item-day {
 	display: block;
 	margin-bottom: .25em;
-	
+
 	font-size: 24px;
 	color: #888;
 }
 
 .news-item-preview {
 	margin-bottom: 0;
-	
+
 	color: #777;
 }
 
 .news-item-month {
 	display: block;
-	padding-right: 1px;	
-	
+	padding-right: 1px;
+
 	font-size: 12px;
 	font-weight: 600;
 	color: #888;
@@ -175,33 +416,33 @@ Bootstrap Admin Template by EGrappler.com
 
 .action-table .btn-small {
 	padding: 4px 5px 5px;
-	
+
 	font-size: 10px;
 }
 
-.action-table .td-actions { 
-	width: 80px; 
-	
-	text-align: center; 
+.action-table .td-actions {
+	width: 80px;
+
+	text-align: center;
 }
 
-	.action-table .td-actions .btn { 
-		margin-right: .5em;		
+	.action-table .td-actions .btn {
+		margin-right: .5em;
 	}
-	
-	.action-table .td-actions .btn:last-child { 
-		margin-rigth: 0; 		
+
+	.action-table .td-actions .btn:last-child {
+		margin-rigth: 0;
 	}
-	
-	
-	
-#big_stats 
-{ 
-	width: 100%; 
+
+
+
+#big_stats
+{
+	width: 100%;
 	display: table;
 	margin-top: 1.5em;
-	
-	
+
+
 }
 
 .big-stats-container .widget-content {
@@ -216,7 +457,7 @@ Bootstrap Admin Template by EGrappler.com
 	display: table-cell;
 	padding: 0;
 	position: relative;
-	
+
 	border-right: 1px solid #CCC;
 	border-left: 1px solid #FFF;
 }
@@ -255,27 +496,27 @@ margin-bottom: 26px;}
 
 
 @media all and (max-width: 950px) and (min-width: 1px) {
-	
+
 	#big_stats {
 		display: block;
 		margin-bottom: -40px;
 	}
-	
+
 	#big_stats .stat {
 		width: 49%;
 		display: block;
 		margin-bottom: 3em;
 		float: left;
-	}	
-	
+	}
+
 	#big_stats .stat:nth-child(2) {
 		border-right: none;
 	}
-	
+
 	#big_stats .stat:nth-child(3) {
 		border-left: none;
 	}
-	
+
 }
 
 @media (max-width: 767px) {
@@ -283,12 +524,12 @@ margin-bottom: 26px;}
 		font-size: 40px;
 	}
 }
-	
-	
-	
-	
+
+
+
+
 @media (max-width: 979px) {
-	
+
 	.shortcuts .shortcut {
 		width: 31%;
 	}
@@ -296,30 +537,30 @@ margin-bottom: 26px;}
 
 
 @media (max-width: 480px) {
-	
+
 	.stats .stat {
-		
+
 		margin-bottom: 3em;
 	}
-	
+
 	.stats .stat .stat-value {
 		margin-bottom: .15em;
-		
+
 		font-size: 20px;
 	}
-	
+
 	.stats {
 		float: left;
-		
+
 		display: block;
-		
+
 		margin-bottom: 0;
 	}
-	
+
 	#chart-stats {
-		margin: 2em 0 1em;		
+		margin: 2em 0 1em;
 	}
-	
+
 	.shortcuts .shortcut {
 		width: 48%;
 	}

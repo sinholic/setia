@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="footer" style="bottom:0;position:relative;padding:10px;background:#ddd;width:100%;border-top:0.7px solid #f00">
     <div class="footer-inner">
         <div class="container">
             <div class="row">

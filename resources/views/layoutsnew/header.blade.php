@@ -29,6 +29,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CLato:300,400" rel="stylesheet">
 		<link rel="shortcut icon" href="{{ asset('images/frontend/favicon.ico')}}">
 		<!-- <link type="text/css" rel="stylesheet" href="{{ asset('css/frontend/css/bootstrap.min.css') }}"/> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 		<link rel="stylesheet" href="{{ asset('css/frontend/css/font-awesome.min.css') }}">
 		<link type="text/css" rel="stylesheet" href="{{ asset('css/frontend/css/style.css') }}"/>
     @endif

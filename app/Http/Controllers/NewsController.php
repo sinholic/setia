@@ -35,7 +35,7 @@ class NewsController extends Controller
         $categorynews = CategoryNews::get();
         $dataAll=News::where('is_publish', 1)
         ->orderBy('updated_at', 'DESC')
-        ->paginate(1);
+        ->get();
         return view('layoutsnew.main', compact('dataAll','categorynews','menu_bi'));
     }
 
@@ -53,11 +53,15 @@ class NewsController extends Controller
               ->where('a_news.is_publish', '1')
               ->where('a_news.title', 'LIKE','%'.$q.'%')->orWhere('xuser.name','LIKE','%'.$q.'%')
               ->orderBy('updated_at', 'DESC')
-              ->get()->toJson();
-        return view('frontend.search', compact('dataAll','categorynews','menu_bi'));
+              ->get();
+        return view('layoutsnew.main', compact('dataAll','categorynews','menu_bi'));
     }
     public function detail($id,$slug)
     {
+      $menu_bi = Menu::select('a_group_menu.id','a_group_menu.nama', 'a_menu.link_label','a_menu.id as id_menu','a_menu.link_url')
+      ->leftjoin('a_group_menu', 'a_menu.id_group_menu', '=', 'a_group_menu.id')
+      ->where('a_menu.is_public', '1')
+      ->get()->toJson();
       $categorynews = CategoryNews::get();
       $dataDetail=News::select('a_news.*', 'xuser.name')
               ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
@@ -65,7 +69,7 @@ class NewsController extends Controller
               ->where('a_news.id', $id)
               ->where('a_news.slug', $slug)
               ->get()->toJson();
-        return view('frontend.detail', compact('dataDetail','categorynews'));
+        return view('layoutsnew.detail', compact('dataDetail','categorynews','menu_bi'));
     }
     public function bycategory($id){
       $menu_bi = Menu::select('a_group_menu.id','a_group_menu.nama', 'a_menu.link_label','a_menu.id as id_menu','a_menu.link_url')
@@ -73,15 +77,15 @@ class NewsController extends Controller
                       ->leftjoin('a_group_menu', 'a_menu.id_group_menu', '=', 'a_group_menu.id')->get();
         $title = CategoryNews::find($id);
         $categorynews = CategoryNews::get();
-        $dataAll=News::select('a_news.*', 'xuser.name')
-                  ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
-                  ->where('a_news.is_publish', '1')
-                  ->orderBy('updated_at', 'DESC')
-                  ->get()->toJson();
-        $datanews = News::select('a_news.*', 'xuser.name')
+        // $dataAll=News::select('a_news.*', 'xuser.name')
+        //           ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
+        //           ->where('a_news.is_publish', '1')
+        //           ->orderBy('updated_at', 'DESC')
+        //           ->get()->toJson();
+        $dataAll = News::select('a_news.*', 'xuser.name')
                     ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
                     ->where('a_news.is_publish','1')
                     ->where('a_news.id_category',$id)->get();
-        return view('frontend.category', compact('datanews','categorynews','menu_bi','dataAll'))->with('title', $title->nama);
+        return view('layoutsnew.main', compact('categorynews','menu_bi','dataAll'))->with('title', $title->nama);
     }
 }

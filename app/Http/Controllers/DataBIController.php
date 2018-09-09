@@ -20,10 +20,13 @@ class DataBIController extends Controller
             $namae=str_replace(' ','',$param);
             $table='v_'.$namae;
             $request->session()->put('status', $nama);
-
+            $menu_bi = Menu::select('a_group_menu.id','a_group_menu.nama', 'a_menu.link_label','a_menu.id as id_menu','a_menu.link_url')
+            ->leftjoin('a_group_menu', 'a_menu.id_group_menu', '=', 'a_group_menu.id')
+            ->where('a_menu.is_public', '1')
+            ->get();
             $categorynews = CategoryNews::get();
             $data=DB::table($table)->select('*')->get();
-            return view('frontend.dataTable', compact('categorynews','data','param'));
+            return view('layoutsnew.dataTable', compact('categorynews','data','param','menu_bi'));
         }else{
 
           $data_bi = Menu::find($id);
@@ -35,7 +38,11 @@ class DataBIController extends Controller
           $cx->save();
           $master['username']= (($cx->counter % 12)+1);
           $categorynews = CategoryNews::get();
-          return view('frontend.dataBI', compact('categorynews','data_bi','master'));
+          $menu_bi = Menu::select('a_group_menu.id','a_group_menu.nama', 'a_menu.link_label','a_menu.id as id_menu','a_menu.link_url')
+          ->leftjoin('a_group_menu', 'a_menu.id_group_menu', '=', 'a_group_menu.id')
+          ->where('a_menu.is_public', '1')
+          ->get();
+          return view('layoutsnew.dataBI', compact('categorynews','data_bi','master','menu_bi'));
       }
     }
 
@@ -50,7 +57,7 @@ class DataBIController extends Controller
         //$data_counter = array('counter' => $cx->counter );
         $cx->save();
         $master['username']= (($cx->counter % 12)+1);
-        return view('admin.dataBI', compact('categorynews','data_bi','master'));
+        return view('layoutsnew.dataBI', compact('categorynews','data_bi','master'));
     }
 
 }

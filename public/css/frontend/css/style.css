@@ -31,6 +31,31 @@ Table OF Contents
 /*----------------------------*\
 	typography
 \*----------------------------*/
+table.dataTable.no-footer,table.dataTable.no-header {
+  border: none !important;
+}
+table.dataTable thead td,
+table.dataTable tfoot td,
+table.dataTable.no-footer{
+    border: none !important;
+}
+
+a.nav-link{
+	color:#fff !important;
+}
+.news {
+
+		font: 14px/1.5em 'Open Sans' !important;
+
+}
+.image-news{
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	height: 150px;
+	width:100%;
+}
 body {
 	font-family: 'Lato', sans-serif;
 	color:#2C2C2C;
@@ -621,16 +646,20 @@ textarea.input {
 
 .article .article-meta li {
 	display:inline-block;
-	color:#DDD;
-	font-weight:400;
-	font-size:12.5px;
+	color:#555;
+	font-weight:300;
+	font-size:12px;
 	text-transform:uppercase;
 }
 
 .article .article-meta li + li {
 	margin-left:10px;
 }
-
+.article-meta{
+	color:#666;
+	font-weight:300;
+	font-size:12px;
+}
 /*------------------------------------*\
 	Thumb Article
 \*------------------------------------*/

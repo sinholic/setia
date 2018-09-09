@@ -14,7 +14,17 @@
                 <div class="col-6 header-social">
                     <div class="d-flex">
                         <ul class="ml-auto">
-                            <li><a href="#" class="text-uppercase"><i class="fa fa-sign-in" style="color:#E5131D"></i> Login</a></li>
+                          <li>
+                          @guest
+                            <a class="text-uppercase" onclick="login('{{ route('login') }}');" ><i style="color:#E5131D" class="fa fa-sign-in"></i> Login</a>
+                            <!-- <button class="nav-collapse-btn"><i class="fa fa-bars"></i></button> -->
+                            @endguest
+                            @auth
+                            <a class="text-uppercase" onclick="login('{{ route('admin.index') }}');"><i style="color:#E5131D" class="fa fa-sign-in"></i> Admin</a>
+
+                            @endauth
+                          </li>
+                            <!-- <li><a href="#" class="text-uppercase"><i class="fa fa-sign-in" style="color:#E5131D"></i> Login</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -34,19 +44,23 @@
                         </a>
                     </div>
                 </div>
+
                 <div class="col-6 d-flex">
                     <div class="d-flex align-items-center ml-auto">
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                      {{ Form::open(array('route' => 'frontend.search', 'class' => 'form-inline')) }}
+                            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
+                        {{ Form::close() }}
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
     <!-- /Center Header -->
 </header>
+
+
     <!-- Nav Header -->
     <!-- <div id="nav-header" class="scarlet">
         <div class="container">
@@ -64,9 +78,21 @@
                             <div class="collapse navbar-collapse" id="navbar1">
                                 <ul class="main-nav navbar-nav mr-auto">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
                                     </li>
-                                    <li class="nav-item">
+                                    <?php $datamenu='a'; ?>
+                                      @foreach(json_decode($menu_bi) as $listData_bi)
+                                      @if($listData_bi->nama!=$datamenu && $listData_bi->nama!='')
+                                      <li class="nav-item">
+                                        <a class="nav-link" onclick='buttoncol({{$listData_bi->id}})'> {{$listData_bi->nama}}</a>
+                                      </li>
+
+                                        @elseif($listData_bi->nama=='')
+                                          <li class="nav-item">
+                                              <a class="nav-link" href="{{url('news/pageBI', ['id' => $listData_bi->id_menu, 'nama' => $listData_bi->link_label])}}">{{$listData_bi->link_label}}</a>
+                                            </li>
+                                        @endif
+                                    <!-- <li class="nav-item">
                                         <a class="nav-link" href="#">Link</a>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -82,8 +108,21 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link disabled" href="#">Disabled</a>
-                                    </li>
+                                    </li> -->
+                                      @endforeach
                                 </ul>
+
+
+
+
+
+                              <!-- <article class="article widget-article">
+                              <div class="article-body">
+                                  <h4 class="article-title"><i class="fa fa-line-chart" aria-hidden="true"></i>
+                                      <a href="{{url('news/pageBI', ['id' => $listData_bi->id])}}">{{$listData_bi->nama}}</a></h4>
+                              </div>
+                            </article> -->
+
                             </div>
                         <!-- </div> -->
                     </div>
