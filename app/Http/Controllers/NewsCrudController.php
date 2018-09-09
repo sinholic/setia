@@ -50,7 +50,7 @@ class NewsCrudController extends Controller
             'id_category'          => 'required',
             'title'                => 'required',
         ]);
-        $name='';
+        $name='roaming'.rand(1, 10).'.jpg';
 
         if ($request->hasFile('img')) {
             $this->validate($request, [
@@ -64,12 +64,12 @@ class NewsCrudController extends Controller
         }
         $slug=$this->slug->createSlug($request->title);
         $data_news = array(
-            'title'          => $request->title,
+            'title'         => $request->title,
             'id_category'   => $request->id_category,
-            'slug'          =>$slug,
-            'konten'   => $request->konten,
-            'img'       => $name,
-            'is_publish'   => $request->is_publish,
+            'slug'          => $slug,
+            'konten'        => $request->konten,
+            'img'           => $name,
+            'is_publish'    => $request->is_publish,
             'notes'         => $request->notes,
             'updated_by'    => $request->updated_by,
             'created_by'    => $request->created_by

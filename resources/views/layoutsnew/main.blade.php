@@ -37,7 +37,7 @@
             <div class="row">
                 <ul>
                     @foreach($categorynews->news_lists as $listMenu)
-                    <li><a href="{{url('news/detail', ['id' => $news->id, 'slug' => $news->slug])}}">{{$news->title}}</a></li>
+                    <li><a href="{{url('news/detail', ['id' => $listMenu->id, 'slug' => $listMenu->slug])}}">{{$listMenu->title}}</a></li>
 
                     @endforeach
                 </ul>
