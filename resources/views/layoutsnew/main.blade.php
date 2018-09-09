@@ -5,7 +5,7 @@
 </style>
 <div class="container">
 
-    <div class="row" style="margin-bottom:20px;">
+    <div class="row" style="margin-bottom:70px;">
       <div class="col-lg-9" style="padding-top:10px;">
         <table id="listnews" class="" width="100%">
           <thead >

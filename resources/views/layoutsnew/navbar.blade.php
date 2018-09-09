@@ -178,7 +178,13 @@
                             </div>
                         </li>
                     @else
-
+                      @inject('menu', 'App\Menu')
+                      <?php
+                      $menu_bi = $menu::select('a_group_menu.id','a_group_menu.nama', 'a_menu.link_label','a_menu.id as id_menu','a_menu.link_url')
+                      ->leftjoin('a_group_menu', 'a_menu.id_group_menu', '=', 'a_group_menu.id')
+                      ->where('a_menu.is_public', '1')
+                      ->get()->toJson();
+                      ?>
                         <li class="nav-item active">
                             <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
                         </li>
@@ -212,7 +218,7 @@
                             <a class="nav-link disabled" href="#">Disabled</a>
                         </li> -->
                           @endforeach
-                  
+
                     @endif
                 </ul>
             </div>

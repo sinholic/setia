@@ -1183,7 +1183,8 @@ textarea.input {
 	FOOTER
 ===========================================================*/
 #footer {
-	background-color: #07090C;
+	margin-top:0;
+	border-top: 1px solid #f00;
 }
 
 #footer p {
@@ -1206,6 +1207,8 @@ textarea.input {
 	height: 60px;
 	line-height: 60px; /* Vertically center the text there */
 	background-color: #f5f5f5;
+	margin-top:0;
+	border-top: 1px solid #f00;
 }
 
 /*------------------------------------*\
