@@ -19,9 +19,25 @@
 								<!-- <a style="color:#fff !important;" onclick="login('{{ route('login') }}');" ><i class="fa fa-sign-in"></i> Login</a> -->
 								<!-- <button class="nav-collapse-btn"><i class="fa fa-bars"></i></button> -->
 							@endguest
-							@auth
-								<li><a style="color:#fff !important;" onclick="login('{{ route('admin.index') }}');"><i class="fa fa-sign-in"></i> Admin</a></li>
-							@endauth
+                            @auth
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user"></i> {{ Auth::user()->name }} <b class="caret"></b>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <!-- <a class="dropdown-item" href="javascript:;">Profile</a> -->
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"
+                                        data-toggle="tooltip" data-placement="top" title="Logout"
+                                        >
+                                        Logout
+                                    </a>
+                                    <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </div>
+                            </li>
+                            @endauth
                         </ul>
                     </div>
                 </div>
@@ -36,7 +52,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="header-logo">
-                        <a href="#" class="logo">
+                        <a href="{{ route('frontend.index') }}" class="logo">
                             <img src="{{asset('images/frontend/setialogo2 old.png')}}" alt="">
                         </a>
                     </div>
