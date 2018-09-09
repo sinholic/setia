@@ -33,7 +33,8 @@
     <div class="row" style="padding:10px;border:0.7px solid #f3f3f3;background:#f3f3f3;min-height:300px">
         <div class="col-lg-12">
             <div class="row"><h3 style="color:#E5131D; font-weight:400;">News Category</h3></div>
-            <div class="row"><h3 style="color:#E5131D; font-weight:400;">{{ $categorynews->nama }}</h3></div>
+            <div class="row"><h3 style="color:#E5131D; font-weight:400;">{{ $categorynews->nama or '' }}</h3></div>
+            @if ( isset($categorynews))
             <div class="row">
                 <ul>
                     @foreach($categorynews->news_lists as $listMenu)
@@ -42,6 +43,7 @@
                     @endforeach
                 </ul>
             </div>
+            @endif
         </div>
     </div>
 </div>
