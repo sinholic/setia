@@ -8,14 +8,14 @@ function InstaBILogin($urlLogin, $username, $password, $master)
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query(array("username" => $username . $master['username'], "password" => $username . $master['username'] . '@1234', "remember" => true)));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
     $response = curl_exec($curl);
 
-	if (curl_errno($curl)) {
-		return curl_error($curl);
-	}
-	curl_close($curl);
+    if (curl_errno($curl)) {
+        return curl_error($curl);
+    }
+    curl_close($curl);
     $parse = json_decode($response, true);
     $token = $parse['accessToken'];
     return $token;
@@ -34,19 +34,21 @@ $token = InstaBILogin($urlLogin, $username, $password, $master);
 @endphp
 
 
-<div class="section">
-  <!-- CONTAINER -->
-  <div class="container">
-    <!-- ROW -->
-    <div class="row">
-      <!-- Main Column -->
-      <div class="col-md-12">
+<!-- <div class="section"> -->
+    <!-- CONTAINER -->
+    <!-- <div class="container"> -->
+        <!-- ROW -->
+        <!-- <div class="row"> -->
+            <!-- Main Column -->
+            <div class="col-md-12">
+                <!-- <div class="embed-responsive embed-responsive-16by9"> -->
 
-        <div id="iframe-instabi" class="the-iframe width-100-persen h-100" style="margin-left: 0px;height:700px;overflow-y:auto"></div>
-      </div>
-    </div>
-  </div>
-</div>
+                    <div id="iframe-instabi" class="the-iframe w-100 h-100" style="margin-left: 0px;min-height:700px;overflow-y:auto"></div>
+                <!-- </div> -->
+            </div>
+        <!-- </div> -->
+    <!-- </div> -->
+<!-- </div> -->
 
 
 @endsection
@@ -55,19 +57,19 @@ $token = InstaBILogin($urlLogin, $username, $password, $master);
 <script>
 
 $(document).ready(function(){
- var ibApp = new InstaBI('https://10.251.94.146:2112');
+    var ibApp = new InstaBI('https://10.251.94.146:2112');
 
- //url should contain siteId and docId(objectId)
- ibApp.loginByToken('<?php echo $token;?>', function(err){
-   if(err)
-           alert(err + '<?php echo $token;?>');
+    //url should contain siteId and docId(objectId)
+    ibApp.loginByToken('<?php echo $token;?>', function(err){
+        if(err)
+        alert(err + '<?php echo $token;?>');
 
-   ibApp.openDocument({
-     uri:'{{$data_bi->link_url}}'.replace(/&amp;/g, "&"),
-     container:$('#iframe-instabi'),
-     showToolbar:true
-   });
- });
+        ibApp.openDocument({
+            uri:'{{$data_bi->link_url}}'.replace(/&amp;/g, "&"),
+            container:$('#iframe-instabi'),
+            showToolbar:true
+        });
+    });
 });
- </script>
- @endsection
+</script>
+@endsection

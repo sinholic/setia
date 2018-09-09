@@ -2,7 +2,7 @@
     @include('layoutsnew.navbar')
     <div class="container">
         <div class="row">
-            <div class="col-12 py-5">
+            <div class="col-12 py-3">
 
             </div>
             @yield('content')

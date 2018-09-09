@@ -13,12 +13,19 @@
         </div>
     </div>
     <div class="form-group row">
-        {{ Form::label('sidebar', 'Show on sidebar', ['class' => 'col-sm-3 form-control-label']) }}
+        {{ Form::label('is_show_on_sidebar', 'Show on menu', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="sidebar" type="checkbox"  name="sidebar" value="" autofocus> Centang Untuk Tampil di Sidebar
-            @if ($errors->has('sidebar'))
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-sm btn-outline-primary">
+                    {{ Form::radio('is_show_on_sidebar', 1) }} YES
+                </label>
+                <label class="btn btn-sm btn-outline-primary">
+                    {{ Form::radio('is_show_on_sidebar', 0) }} NO
+                </label>
+            </div>
+            @if ($errors->has('is_show_on_sidebar'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('sidebar') }}</strong>
+                    <strong>{{ $errors->first('is_show_on_sidebar') }}</strong>
                 </span>
             @endif
         </div>

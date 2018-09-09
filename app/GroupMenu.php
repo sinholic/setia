@@ -9,6 +9,7 @@ Class GroupMenu extends Model
 
     protected $guarded = [
     ];
+    
     public function menus()
     {
         return $this->hasMany('App\Menu', 'id_group_menu');

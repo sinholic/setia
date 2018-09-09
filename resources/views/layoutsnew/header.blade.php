@@ -22,7 +22,6 @@
                 width: 100% !important;
             }
         </style>
-        <link href="{{ asset('css/admin/pages/dashboard.css') }}" rel="stylesheet">
     @else
         <title>Telkomsel SETIA</title>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CLato:300,400" rel="stylesheet">

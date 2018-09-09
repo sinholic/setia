@@ -40,6 +40,7 @@ class GroupMenuController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
+            'is_show_on_sidebar' => 'required'
         ]);
         GroupMenu::create($request->all());
 

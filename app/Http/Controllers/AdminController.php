@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\News;
+use App\CategoryNews;
 
 class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $news = News::select('a_news.*', 'xuser.name')
-                ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
-                ->where('a_news.is_publish', '1')
-                ->orderBy('id', 'DESC')
-                ->limit(5)
-                ->get();
-        return view('admin.dashboard.index', compact('news'));
+
+        $categorynews = CategoryNews::with('news_lists')->where('nama', \Carbon\Carbon::now()->year)->first();
+        $dataNews = News::with('category', 'create_user')
+        ->where('is_publish', 1)
+        ->orderBy('updated_at', 'DESC')
+        ->get();
+        $dataNews = News::with('category', 'create_user')
+        ->where('is_publish', 1)
+        ->orderBy('updated_at', 'DESC')
+        ->paginate(3);
+        return view('layoutsnew.main', compact('dataNews','categorynews'));
     }
 }
