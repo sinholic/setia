@@ -10,14 +10,13 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
     <link href="{{ asset('css/admin/bootstrap-4-navbar.css') }}" rel="stylesheet">
-    @if(Request::is('*/admin*'))
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    @if(Request::is('*admin*'))
         <title>Dashboard - Telkomsel SETIA</title>
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-        <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
         <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <link href="//cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
-        <link href="{{ asset('css/admin/style.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/admin/pages/dashboard.css') }}" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/frontend/css/style.css') }}"/>
         <style media="screen">
             .select2-container--bootstrap {
                 width: 100% !important;

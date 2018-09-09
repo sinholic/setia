@@ -33,7 +33,8 @@ class NewsController extends Controller
         ->where('a_menu.is_public', '1')
         ->get();
         $categorynews = CategoryNews::get();
-        $dataAll=News::where('is_publish', 1)
+        $dataNews = News::with('category', 'create_user')
+        ->where('is_publish', 1)
         ->orderBy('updated_at', 'DESC')
         ->get();
         return view('layoutsnew.main', compact('dataAll','categorynews','menu_bi'));
