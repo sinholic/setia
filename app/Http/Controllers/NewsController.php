@@ -37,6 +37,11 @@ class NewsController extends Controller
         ->where('is_publish', 1)
         ->orderBy('updated_at', 'DESC')
         ->get();
+        $dataAll=News::select('a_news.*', 'xuser.name')
+                  ->join('xuser', 'a_news.updated_by', '=', 'xuser.id')
+                  ->where('a_news.is_publish', '1')
+                  ->orderBy('updated_at', 'DESC')
+                  ->get();
         return view('layoutsnew.main', compact('dataAll','categorynews','menu_bi'));
     }
 
