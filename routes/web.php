@@ -44,9 +44,11 @@ Route::group(['middleware' => ['auth']],function () {
             ],function () {
                 Route::get('/', ['uses' => 'AdminController@index', 'as' => 'admin.master']);
                 Route::resources([
+                    'aa14'          => 'AA14Controller',
                     'continent'     => 'ContinentController',
                     'exchangerate'  => 'ExchangerateController',
                     'groupoperator' => 'GroupoperatorController',
+                    'iotimplement'  => 'IotImplementController',
                     'kota'          => 'KotaController',
                     'msc'           => 'MscController',
                     'negara'        => 'NegaraController',

@@ -57,6 +57,17 @@
                 </div>
             </div>
             <div class="form-group row">
+                {{ Form::label('aa14', 'AA14', ['class' => 'col-sm-3 form-control-label']) }}
+                <div class="col-sm-9">
+                    <input id="aa14" type="text" class="form-control{{ $errors->has('aa14') ? ' is-invalid' : '' }}" name="aa14" value="{{ $negara->aa14 }}">
+                    @if ($errors->has('aa14'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('aa14') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <div class="form-group row">
                 {{ Form::label('remark', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
                 <div class="col-sm-9">
                     <textarea id="remark" name="notes" rows="5" cols="50" class="form-control{{ $errors->has('notes') ? ' is-invalid' : '' }}" value="{{ $negara->notes }}">

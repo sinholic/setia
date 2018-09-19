@@ -41,7 +41,8 @@
                 console.log(date);
                 $(this).datetimepicker({
                     date:date,
-                    format: 'YYYY-MM-DD'
+                    format: 'YYYY-MM-DD',
+                    keepOpen: true
                 });
             });
             $('select').not('.phpdebugbar-datasets-switcher').select2({

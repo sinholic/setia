@@ -57,7 +57,7 @@ class DataBIController extends Controller
         //$data_counter = array('counter' => $cx->counter );
         $cx->save();
         $master['username']= (($cx->counter % 12)+1);
-        return view('layoutsnew.dataBI', compact('categorynews','data_bi','master'));
+        return view('admin.dataBI', compact('categorynews','data_bi','master'));
     }
 
 }

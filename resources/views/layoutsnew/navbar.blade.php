@@ -115,6 +115,9 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{{ (Request::is('*/finance*') ? 'active' : '') }}} " href="{{ route('finance.index') }}">Finance</a>
                             <a class="dropdown-item {{{ (Request::is('*/target*') ? 'active' : '') }}} " href="{{ route('target.index') }}">Target</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item {{{ (Request::is('*/iotimplement*') ? 'active' : '') }}} " href="{{ route('iotimplement.index') }}">IOT Implement</a>
+                            <a class="dropdown-item {{{ (Request::is('*/aa14*') ? 'active' : '') }}} " href="{{ route('aa14.index') }}">AA14</a>
                         </div>
                     </li>
                     @if(\Auth::user()->group->nama == 'Group Administrator')

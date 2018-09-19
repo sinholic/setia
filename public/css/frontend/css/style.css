@@ -1501,6 +1501,10 @@ RESPONSIVE
 		font-size: 11px;
 	}
 
+	.bootstrap-datetimepicker-widget {
+		background-color: #F7F7F7;
+	}
+
 	p {
 		margin-bottom: 0;
 	}
