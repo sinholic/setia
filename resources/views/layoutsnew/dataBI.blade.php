@@ -46,6 +46,9 @@ $token = InstaBILogin($urlLogin, $username, $password, $master);
                     <div id="iframe-instabi" class="the-iframe w-100 h-100" style="margin-left: 0px;min-height:700px;overflow-y:auto"></div>
                 <!-- </div> -->
             </div>
+            <div class="col-md-12">
+                {!! $data_bi->notes !!}
+            </div>
         <!-- </div> -->
     <!-- </div> -->
 <!-- </div> -->

@@ -100,11 +100,11 @@
             @endif
         </div>
     </div>
+
     <div class="form-group row">
         {{ Form::label('remark', 'Remark', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <textarea name="notes" rows="5" cols="50" class="form-control{{ $errors->has('notes') ? ' is-invalid' : '' }}" value="{{ old('notes') }}" required autofocus>
-            </textarea>
+            <textarea name="notes" id="summary-ckeditor" rows="5" cols="50" class="form-control{{ $errors->has('notes') ? ' is-invalid' : '' }}" value="{{ old('notes') }}"  autofocus></textarea>
             @if ($errors->has('notes'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('notes') }}</strong>
@@ -124,7 +124,9 @@
 {{ Form::close() }}
 @endsection
 @push('scripts')
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script>
+CKEDITOR.replace( 'summary-ckeditor' );
 $('#is_frames').click(function(){
   if($(this).is(':checked')){
       $('#is_frame').val(1);
