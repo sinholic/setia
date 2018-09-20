@@ -65,6 +65,7 @@ class MenuController extends Controller
             "is_public"                     => $request->is_public,
             "is_show_on_sidebar"            => $request->is_show_on_sidebar,
             "id_group_menu"                 => $request->id_group_menu,
+            "notes"                         => $request->notes,
             "updated_by"                    => $request->updated_by,
             "created_by"                    => $request->created_by,
             "link_slug"                     => $slug
@@ -171,6 +172,7 @@ class MenuController extends Controller
           "is_public"                   => $request->is_public,
           "is_show_on_sidebar"          => $request->is_show_on_sidebar,
           "id_group_menu"               => $request->id_group_menu,
+          "notes"                       => $request->notes,
           "updated_by"                  => $request->updated_by,
           "created_by"                  => $request->created_by,
           "link_slug"                   => $slug
