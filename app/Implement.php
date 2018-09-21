@@ -13,6 +13,6 @@ class Implement extends Model
 
     public function operator()
     {
-        return $this->hasMany('App\Operator', 'operator_id');
+        return $this->belongsTo('App\Operator', 'operator_id');
     }
 }

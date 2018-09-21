@@ -37,7 +37,7 @@
     <div class="form-group row">
         {{ Form::label('status', 'Status', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            {{ Form::select('status', ['Done', 'On Progress'], old('status'), ['class' => 'form-control'.($errors->has('status') ? ' is-invalid' : ''), 'placeholder' => 'Pilih Status ...']) }}
+            {{ Form::select('status', ['Done' => 'Done', 'On Progress'=>'On Progress'], old('status'), ['class' => 'form-control'.($errors->has('status') ? ' is-invalid' : ''), 'placeholder' => 'Pilih Status ...']) }}
             @if ($errors->has('status'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('status') }}</strong>

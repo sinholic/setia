@@ -54,6 +54,11 @@ Class Operator extends Model
         return $this->hasMany('App\RateInterkoneksiOperator', 'id_operator');
     }
 
+    public function implement()
+    {
+        return $this->hasMany('App\Implement', 'operator_id');
+    }
+
     public function roamingpartners()
     {
         return $this->belongsToMany('App\RoamingPartner', 'a_operator_roaming_partner', 'id_operator', 'id_roaming_partner')

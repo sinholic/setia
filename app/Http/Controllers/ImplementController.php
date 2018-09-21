@@ -63,7 +63,7 @@ class ImplementController extends Controller
     {
         $implement = Implement::find($id);
         $operators = Operator::pluck('nama','id');
-        return view('admin.crud.implement.show', compact('implement','operators'))->with('title',$implement->label);
+        return view('admin.crud.implement.show', compact('implement','operators'))->with('title',$implement->operator->nama);
     }
 
     /**
@@ -75,7 +75,8 @@ class ImplementController extends Controller
     public function edit($id)
     {
         $implement = Implement::find($id);
-        return view('admin.crud.implement.edit', compact('implement','regional'))->with('title',$implement->label);
+        $operators = Operator::pluck('nama','id');
+        return view('admin.crud.implement.edit', compact('implement','operators'))->with('title',$implement->operator->nama);
     }
 
     /**
