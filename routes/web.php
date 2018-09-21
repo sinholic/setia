@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth']],function () {
                     'continent'     => 'ContinentController',
                     'exchangerate'  => 'ExchangerateController',
                     'groupoperator' => 'GroupoperatorController',
+                    'implement'     => 'ImplementController',
                     'iotimplement'  => 'IotImplementController',
                     'kota'          => 'KotaController',
                     'msc'           => 'MscController',
