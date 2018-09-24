@@ -26,7 +26,7 @@ class SettlementSmsiwInvoiceController extends Controller
      */
     public function create()
     {
-        return view('admin.crud.settlementsmsiwinvoice.add', compact('groups'))
+        return view('admin.crud.settlementsmsiw.add', compact('groups'))
             ->with('title', $this->title);
     }
 
@@ -40,7 +40,7 @@ class SettlementSmsiwInvoiceController extends Controller
     {
         SettlementSmsiwInvoice::create($request->all());
 
-        return redirect(route('settlementsmsiwinvoice.index'))
+        return redirect(route('settlementsmsiw.index'))
                         ->with('message','Settlement SMS IW Invoice added successfully');
     }
 
@@ -53,7 +53,7 @@ class SettlementSmsiwInvoiceController extends Controller
     public function show($id)
     {
         $settlementsmsiwinvoice = SettlementSmsiwInvoice::find($id);
-        return view('admin.crud.SettlementSmsiwInvoice.show',compact('settlementsmsiwinvoice'))
+        return view('admin.crud.settlementsmsiw.show',compact('settlementsmsiwinvoice'))
             ->with('title', $settlementsmsiwinvoice->nama);
     }
 
@@ -66,7 +66,7 @@ class SettlementSmsiwInvoiceController extends Controller
     public function edit($id)
     {
         $settlementsmsiwinvoice = SettlementSmsiwInvoice::find($id);
-        return view('admin.crud.SettlementSmsiwInvoice.edit', compact('settlementsmsiwinvoice', 'groups'))->with('title', $this->title);
+        return view('admin.crud.settlementsmsiw.edit', compact('settlementsmsiwinvoice', 'groups'))->with('title', $this->title);
     }
 
     /**
@@ -79,7 +79,7 @@ class SettlementSmsiwInvoiceController extends Controller
     public function update(Request $request, $id)
     {
         SettlementSmsiwInvoice::find($id)->update($request->all());
-        return redirect()->route('settlementsmsiwinvoice.index')
+        return redirect()->route('settlementsmsiw.index')
                 ->with('message','Settlement SMS IW Invoice updated successfully');
     }
 
@@ -92,7 +92,7 @@ class SettlementSmsiwInvoiceController extends Controller
     public function destroy($id)
     {
         SettlementSmsiwInvoice::find($id)->delete();
-        return redirect()->route('settlementsmsiwinvoice.index')
+        return redirect()->route('settlementsmsiw.index')
                         ->with('message','Settlement SMS IW Invoice deleted successfully');
     }
 }

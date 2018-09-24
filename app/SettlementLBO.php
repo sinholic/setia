@@ -6,7 +6,7 @@ Class SettlementLBO extends Model
 {
     protected $table = "a_settlement_lbo";
 
-    protected $fillable = [
-        
+    protected $guarded = [
+
     ];
 }

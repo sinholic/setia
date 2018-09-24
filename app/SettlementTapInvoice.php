@@ -6,7 +6,7 @@ Class SettlementTapInvoice extends Model
 {
     protected $table = "a_settlement_tapinvoice";
 
-    protected $fillable = [
-        
+    protected $guarded = [
+
     ];
 }

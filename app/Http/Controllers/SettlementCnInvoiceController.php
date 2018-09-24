@@ -26,7 +26,7 @@ class SettlementCnInvoiceController extends Controller
      */
     public function create()
     {
-        return view('admin.crud.settlementcninvoice.add', compact('groups'))
+        return view('admin.crud.settlementcndn.add', compact('groups'))
             ->with('title', $this->title);
     }
 
@@ -40,7 +40,7 @@ class SettlementCnInvoiceController extends Controller
     {
         SettlementCnInvoice::create($request->all());
 
-        return redirect(route('settlementcninvoice.index'))
+        return redirect(route('settlementcndn.index'))
                         ->with('message','Settlement Cn Invoice added successfully');
     }
 
@@ -53,7 +53,7 @@ class SettlementCnInvoiceController extends Controller
     public function show($id)
     {
         $settlementcninvoice = SettlementCnInvoice::find($id);
-        return view('admin.crud.settlementcninvoice.show',compact('settlementcninvoice'))
+        return view('admin.crud.settlementcndn.show',compact('settlementcninvoice'))
             ->with('title', $settlementcninvoice->nama);
     }
 
@@ -66,7 +66,7 @@ class SettlementCnInvoiceController extends Controller
     public function edit($id)
     {
         $settlementcninvoice = SettlementCnInvoice::find($id);
-        return view('admin.crud.settlementcninvoice.edit', compact('settlementcninvoice', 'groups'))->with('title', $this->title);
+        return view('admin.crud.settlementcndn.edit', compact('settlementcninvoice', 'groups'))->with('title', $this->title);
     }
 
     /**
@@ -79,7 +79,7 @@ class SettlementCnInvoiceController extends Controller
     public function update(Request $request, $id)
     {
         SettlementCnInvoice::find($id)->update($request->all());
-        return redirect()->route('settlementcninvoice.index')
+        return redirect()->route('settlementcndn.index')
                 ->with('message','Settlement Cn Invoice updated successfully');
     }
 
@@ -92,7 +92,7 @@ class SettlementCnInvoiceController extends Controller
     public function destroy($id)
     {
         SettlementCnInvoice::find($id)->delete();
-        return redirect()->route('settlementcninvoice.index')
+        return redirect()->route('settlementcndn.index')
                         ->with('message','Settlement Cn Invoice deleted successfully');
     }
 }

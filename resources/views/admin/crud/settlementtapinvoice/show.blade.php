@@ -23,7 +23,7 @@
     </div>
     <div class="form-group row">
         {{ Form::label('discrep', 'Discrep', ['class' => 'col-sm-3 form-control-label']) }}
-        {{ Form::label('', $settlementtapinvoice->discrep, ['class' => 'col-sm-9 form-control-label']) }}
+        {{ Form::label('', ($settlementtapinvoice->discrep == 1 ? 'YES' : 'NO'), ['class' => 'col-sm-9 form-control-label']) }}
     </div>
     <div class="form-group row">
         {{ Form::label('checkdate', 'Check Date', ['class' => 'col-sm-3 form-control-label']) }}

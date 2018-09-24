@@ -15,7 +15,14 @@
     <div class="form-group row">
         {{ Form::label('periode', 'Periode', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="periode" type="text" class="form-control{{ $errors->has('periode') ? ' is-invalid' : '' }}" name="periode" value="{{ $settlementtapinvoice->periode }}">
+            <div class="btn-group btn-group-toggle form-control{{ $errors->has('upload_and_process') ? ' is-invalid' : '' }}" data-toggle="buttons">
+                <label class="btn btn-sm btn-outline-success">
+                    {{ Form::radio('discrep', 1) }} Yes
+                </label>
+                <label class="btn btn-sm btn-outline-success">
+                    {{ Form::radio('discrep', 0) }} No
+                </label>
+            </div>
             @if ($errors->has('periode'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('periode') }}</strong>

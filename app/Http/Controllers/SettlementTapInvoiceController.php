@@ -26,7 +26,7 @@ class SettlementTapInvoiceController extends Controller
      */
     public function create()
     {
-        return view('admin.crud.settlementtapinvoice.add', compact('groups'))
+        return view('admin.crud.settlementtap.add', compact('groups'))
             ->with('title', $this->title);
     }
 
@@ -40,7 +40,7 @@ class SettlementTapInvoiceController extends Controller
     {
         SettlementTapInvoice::create($request->all());
 
-        return redirect(route('settlementtapinvoice.index'))
+        return redirect(route('settlementtap.index'))
                         ->with('message','Settlement Tap Invoice added successfully');
     }
 
@@ -53,7 +53,7 @@ class SettlementTapInvoiceController extends Controller
     public function show($id)
     {
         $settlementtapinvoice = SettlementTapInvoice::find($id);
-        return view('admin.crud.settlementtapinvoice.show',compact('settlementtapinvoice'))
+        return view('admin.crud.settlementtap.show',compact('settlementtapinvoice'))
             ->with('title', $settlementtapinvoice->nama);
     }
 
@@ -66,7 +66,7 @@ class SettlementTapInvoiceController extends Controller
     public function edit($id)
     {
         $settlementtapinvoice = SettlementTapInvoice::find($id);
-        return view('admin.crud.settlementtapinvoice.edit', compact('settlementtapinvoice', 'groups'))->with('title', $this->title);
+        return view('admin.crud.settlementtap.edit', compact('settlementtapinvoice', 'groups'))->with('title', $this->title);
     }
 
     /**
@@ -79,7 +79,7 @@ class SettlementTapInvoiceController extends Controller
     public function update(Request $request, $id)
     {
         SettlementTapInvoice::find($id)->update($request->all());
-        return redirect()->route('settlementtapinvoice.index')
+        return redirect()->route('settlementtap.index')
                 ->with('message','Settlement Tap Invoice updated successfully');
     }
 
@@ -92,7 +92,7 @@ class SettlementTapInvoiceController extends Controller
     public function destroy($id)
     {
         SettlementTapInvoice::find($id)->delete();
-        return redirect()->route('settlementtapinvoice.index')
+        return redirect()->route('settlementtap.index')
                         ->with('message','Settlement Tap Invoice deleted successfully');
     }
 }
