@@ -28,7 +28,7 @@ class DataBIController extends Controller
             $data_bi = Menu::find($id);
             $categorynews = CategoryNews::get();
             $data=DB::table($table)->select('*')->get();
-            return view('layoutsnew.dataTable', compact('categorynews','data','param','menu_bi'));
+            return view('layoutsnew.dataTable', compact('categorynews','data','param','menu_bi', 'data_bi'));
         }else{
 
             $data_bi = Menu::find($id);
