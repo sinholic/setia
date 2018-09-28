@@ -42,7 +42,7 @@ $token = InstaBILogin($urlLogin, $username, $password, $master);
             <div class="col-md-12">
                 <!-- <div class="embed-responsive embed-responsive-16by9"> -->
 
-                    <div id="iframe-instabi" class="the-iframe w-100 h-100" style="margin-left: 0px;min-height:700px;overflow-y:auto"></div>
+                    <div id="iframe-instabi" class="the-iframe w-100 h-100 embed-responsive embed-responsive-16by9" style="margin-left: 0px;min-height:700px;overflow-y:auto"></div>
                 <!-- </div> -->
             </div>
         <!-- </div> -->

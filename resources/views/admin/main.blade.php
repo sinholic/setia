@@ -1,6 +1,6 @@
 @include('layoutsnew.header')
     @include('layoutsnew.navbar')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12 py-3">
 
