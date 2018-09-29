@@ -15,14 +15,7 @@
     <div class="form-group row">
         {{ Form::label('periode', 'Periode', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <div class="btn-group btn-group-toggle form-control{{ $errors->has('upload_and_process') ? ' is-invalid' : '' }}" data-toggle="buttons">
-                <label class="btn btn-sm btn-outline-success">
-                    {{ Form::radio('discrep', 1) }} Yes
-                </label>
-                <label class="btn btn-sm btn-outline-success">
-                    {{ Form::radio('discrep', 0) }} No
-                </label>
-            </div>
+            <input id="periode" type="text" class="form-control{{ $errors->has('periode') ? ' is-invalid' : '' }}" name="periode" value="{{ $settlementtapinvoice->periode }}">
             @if ($errors->has('periode'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('periode') }}</strong>
@@ -66,7 +59,14 @@
     <div class="form-group row">
         {{ Form::label('discrep', 'Discrep', ['class' => 'col-sm-3 form-control-label']) }}
         <div class="col-sm-9">
-            <input id="discrep" type="text" class="datetimepicker-input discrep form-control{{ $errors->has('discrep') ? ' is-invalid' : '' }}" name="discrep" value="{{ $settlementtapinvoice->discrep }}" data-toggle="datetimepicker" data-target=".discrep">
+            <div class="btn-group btn-group-toggle form-control{{ $errors->has('upload_and_process') ? ' is-invalid' : '' }}" data-toggle="buttons">
+                <label class="btn btn-sm btn-outline-success">
+                    {{ Form::radio('discrep', 1) }} Yes
+                </label>
+                <label class="btn btn-sm btn-outline-success">
+                    {{ Form::radio('discrep', 0) }} No
+                </label>
+            </div>
             @if ($errors->has('discrep'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('discrep') }}</strong>
